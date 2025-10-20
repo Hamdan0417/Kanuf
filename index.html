@@ -266,6 +266,130 @@
       color: var(--primary);
     }
 
+    .org-chart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .org-chart ul {
+        padding-top: 20px;
+        position: relative;
+        transition: all 0.5s;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .org-chart li {
+        float: right;
+        text-align: center;
+        list-style-type: none;
+        position: relative;
+        padding: 20px 5px 0 5px;
+        transition: all 0.5s;
+    }
+    .org-chart li::before, .org-chart li::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 50%;
+        border-top: 2px solid #a1a1aa;
+        width: 50%;
+        height: 20px;
+    }
+    .org-chart li::after {
+        right: auto;
+        left: 50%;
+        border-left: 2px solid #a1a1aa;
+    }
+    .org-chart li:only-child::after, .org-chart li:only-child::before {
+        display: none;
+    }
+    .org-chart li:only-child {
+        padding-top: 0;
+    }
+    .org-chart li:first-child::before, .org-chart li:last-child::after {
+        border: 0 none;
+    }
+    .org-chart li:last-child::before {
+        border-right: 2px solid #a1a1aa;
+        border-radius: 0 5px 0 0;
+    }
+    .org-chart li:first-child::after {
+        border-radius: 5px 0 0 0;
+    }
+    .org-chart ul ul::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 50%;
+        border-right: 2px solid #a1a1aa;
+        width: 0;
+        height: 20px;
+    }
+    .org-chart li .node {
+        border: 2px solid #e2e8f0;
+        padding: 12px 16px;
+        text-decoration: none;
+        color: #3d4451;
+        background-color: #ffffff;
+        display: inline-block;
+        min-width: 180px;
+        min-height: 80px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .org-chart li .node:hover, .org-chart li .node:hover+ul li .node {
+        background: #f7fafc;
+        border-color: #4c51bf;
+    }
+    .org-chart li .node .title {
+        font-weight: 700;
+        font-size: 0.9rem;
+    }
+    .org-chart li .node .subtitle {
+        font-size: 0.75rem;
+        color: #718096;
+        direction: ltr;
+    }
+    .node.level-board { background-color: #e3f2fd; border-color: #90caf9; }
+    .node.level-ceo { background-color: #e8f5e9; border-color: #a5d6a7; }
+    .node.level-control { background-color: #fffde7; border-color: #fff176; }
+    .node.level-sector { background-color: #f3e5f5; border-color: #ce93d8; }
+    .node.level-dept { background-color: #e0f2f1; border-color: #80cbc4; }
+
+    .node.has-children::after {
+        content: ' ▼';
+        font-size: 10px;
+        display: inline-block;
+        margin-right: 5px;
+        transition: transform 0.3s;
+    }
+    .node.collapsed::after {
+        transform: rotate(-90deg);
+    }
+    .node .note {
+        font-size: 0.65rem;
+        color: #f56565;
+        font-style: italic;
+        margin-top: 4px;
+        direction: ltr;
+    }
+    .independent-line li::before, .independent-line li::after {
+        border-top: 2px dashed #fb923c;
+    }
+    .independent-line li:last-child::before {
+         border-right: 2px dashed #fb923c;
+    }
+    .independent-line ul::before {
+         border-right: 2px dashed #fb923c;
+    }
+
     .lang {
       display: none;
     }
@@ -406,6 +530,213 @@
             <div class="badge">Org Design</div>
             <div class="badge">Project Delivery</div>
           </div>
+        </div>
+      </section>
+
+      <section id="resources" class="section-card">
+        <h2 class="lang lang-ar">موارد إضافية</h2>
+        <h2 class="lang lang-en">Additional Resources</h2>
+        <div class="lang lang-ar" dir="rtl">
+          <article>
+            <h3>عارض الهيكل التنظيمي التفاعلي</h3>
+            <p>يوفّر العارض التفاعلي رؤية شاملة للحوكمة وطبقات القيادة داخل كانوف مع تجربة مستخدم ثنائية اللغة تعزز اتخاذ القرار السريع وتوضّح خطوط المسؤولية.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>الميزات الرئيسية</h4>
+                <ul>
+                  <li>عرض هرمي متدرج يبدأ من مجلس الإدارة وينتهي بالفرق الميدانية مع ألوان مميّزة لكل مستوى.</li>
+                  <li>خاصية الطيّ والتوسّع لعقد الاجتماعات أو عمليات النقل السريعة بين القطاعات.</li>
+                  <li>بحث فوري عن المسميات الوظيفية أو أصحاب الصلاحيات مع إبراز نتائج البحث.</li>
+                  <li>مؤشرات حالة تظهر إن كان المنصب شاغراً، بالإنابة، أو يعمل عن بُعد.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>طبقات المخطط</h4>
+                <dl>
+                  <dt>مجلس الإدارة</dt>
+                  <dd>الإشراف الاستراتيجي، لجان التدقيق والمخاطر، اعتماد الخطط السنوية.</dd>
+                  <dt>الرئيس التنفيذي</dt>
+                  <dd>إدارة التنفيذ الشامل، قيادة مكتب التحول، وقياس الأداء.</dd>
+                  <dt>المستشارون والرقابة</dt>
+                  <dd>المراجعة الداخلية، الالتزام، وإدارة المخاطر المؤسسية.</dd>
+                  <dt>القطاعات الرئيسية</dt>
+                  <dd>الهندسة والمشاريع، الدعم المؤسسي، الأعمال التجارية، وتقنية المعلومات.</dd>
+                  <dt>الإدارات التنفيذية</dt>
+                  <dd>المالية، الموارد البشرية، المشتريات، الصحة والسلامة، إدارة الأسطول والمستودعات.</dd>
+                </dl>
+              </div>
+              <div class="resource-card">
+                <h4>حوكمة البيانات والتكامل</h4>
+                <ul>
+                  <li>تكامل مع دليل تفويض الصلاحيات لإظهار مستويات الموافقة المطلوبة.</li>
+                  <li>ربط بخارطة الأدوار والمسؤوليات (RASCI) لمواءمة أصحاب المخرجات.</li>
+                  <li>تدفق بيانات يومي من نظام الموارد البشرية لضمان تحديث المسميات.</li>
+                  <li>تصدير PDF وPowerPoint لمشاركتها في اجتماعات اللجان أو العروض التنفيذية.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article>
+            <h3>إرشادات تصميم واجهة المستخدم وتجربة المستخدم</h3>
+            <p>تم إعداد واجهة العارض وفق مبادئ التصميم المعتمد في كانوف لضمان وضوح الهوية الرقمية وسهولة الاستخدام عبر الأجهزة المختلفة.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>مبادئ التصميم</h4>
+                <ul>
+                  <li>استخدام ألوان العلامة (الأزرق العميق والبرتقالي) مع تباين مرتفع للنصوص.</li>
+                  <li>ترميز مستويات الهيكل باستخدام ألوان ثانوية متجانسة لتسهيل التمييز البصري.</li>
+                  <li>مساحات بيضاء سخية بين العقد لضمان قراءة مريحة خلال العروض.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>تجربة المستخدم</h4>
+                <ul>
+                  <li>تجاوب كامل مع الهواتف والأجهزة اللوحية مع الحفاظ على اتجاه اللغة المختار.</li>
+                  <li>تلميحات تفاعلية (Tooltips) تعرض نطاق المسؤوليات ومقاييس الأداء لكل منصب.</li>
+                  <li>تسلسل حركي خفيف عند التوسّع/الطي يقلل العبء الإدراكي.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>إمكانية الوصول</h4>
+                <ul>
+                  <li>دعم لوحة المفاتيح بالكامل عبر مفاتيح التاب والمسافة.</li>
+                  <li>توافق مع قارئات الشاشة بإضافة أوصاف بديلة للعقد.</li>
+                  <li>خيارات تكبير الخط وحفظ التفضيلات على مستوى المستخدم.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article>
+            <h3>مواد التفعيل والدعم</h3>
+            <p>تتوافر الحزمة التشغيلية للعارض لدعم إدارات الموارد البشرية والحَوْكَمة في جلسات التعريف أو ورش العمل.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>حزمة الإطلاق</h4>
+                <ul>
+                  <li>دليل إعداد خطوة بخطوة يتضمن لقطات شاشة وإرشادات التخصيص.</li>
+                  <li>قالب عرض تقديمي لاستخدامه في اجتماعات اللجان التنفيذية.</li>
+                  <li>رسائل جاهزة للتواصل الداخلي تعلن عن توفر الأداة.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>مسارات الاتصال</h4>
+                <ul>
+                  <li>نقطة اتصال رئيسية: مكتب الحوكمة المؤسسية (governance@kanuf.sa).</li>
+                  <li>دعم تقني: فريق المنتجات الرقمية، طلبات Jira فئة "Org-Tools".</li>
+                  <li>تحديثات المحتوى: الموارد البشرية الاستراتيجية بالتنسيق مع مكتب التحول.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>مقاييس النجاح</h4>
+                <ul>
+                  <li>نسبة المستخدمين النشطين شهرياً مقارنةً بإجمالي المديرين.</li>
+                  <li>متوسط زمن العثور على صاحب الصلاحية خلال الاجتماعات.</li>
+                  <li>عدد التعديلات المعتمدة التي تمت مزامنتها خلال الربع.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="lang lang-en" dir="ltr">
+          <article>
+            <h3>Interactive Org Chart</h3>
+            <p>The interactive viewer provides full governance transparency for Kanuf’s leadership layers, pairing bilingual content with intuitive navigation to accelerate decision-making.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>Key Features</h4>
+                <ul>
+                  <li>Tiered hierarchy from Board level down to field crews with colour accents per layer.</li>
+                  <li>Expand/collapse controls that support leadership huddles and rapid cross-functional reviews.</li>
+                  <li>Instant search across job titles and mandate owners with highlighted hits.</li>
+                  <li>Status chips calling out acting roles, vacancies, or remote assignments.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>Chart Layers</h4>
+                <dl>
+                  <dt>Board of Directors</dt>
+                  <dd>Strategic oversight, Audit &amp; Risk Committee stewardship, annual plan approvals.</dd>
+                  <dt>Chief Executive Officer</dt>
+                  <dd>Enterprise delivery leadership, Transformation Office sponsorship, performance cadence.</dd>
+                  <dt>Advisory &amp; Control</dt>
+                  <dd>Internal audit, compliance, and enterprise risk management partners.</dd>
+                  <dt>Core Sectors</dt>
+                  <dd>Engineering &amp; Projects, Corporate Enablement, Commercial, and Digital Technology.</dd>
+                  <dt>Delivery Departments</dt>
+                  <dd>Finance, People, Procurement, HSE, Fleet &amp; Warehousing operations.</dd>
+                </dl>
+              </div>
+              <div class="resource-card">
+                <h4>Data &amp; Integration</h4>
+                <ul>
+                  <li>Synchronised with the Delegation of Authority matrix to expose approval thresholds.</li>
+                  <li>RASCI mapping overlay to align accountable/consulted stakeholders per initiative.</li>
+                  <li>Nightly feed from the HRIS to keep job titles and reporting lines current.</li>
+                  <li>Export to PDF and PowerPoint for committee packs and executive briefings.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article>
+            <h3>UI &amp; UX Guidance</h3>
+            <p>The viewer follows Kanuf’s digital design system, ensuring a consistent internal brand experience and usability across desktop and mobile form factors.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>Design Principles</h4>
+                <ul>
+                  <li>Corporate blue and accent orange palette with accessible contrast ratios.</li>
+                  <li>Secondary colour tagging per hierarchy level to reinforce visual parsing.</li>
+                  <li>Generous whitespace and modular spacing to support on-screen presentations.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>User Experience</h4>
+                <ul>
+                  <li>Responsive breakpoints tuned for tablets and mobiles while respecting language direction.</li>
+                  <li>Hover and tooltip microcopy surfacing remit, KPIs, and current initiatives.</li>
+                  <li>Subtle motion when expanding/collapsing nodes to maintain cognitive flow.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>Accessibility</h4>
+                <ul>
+                  <li>Full keyboard navigation with tab/space controls.</li>
+                  <li>Screen-reader friendly labels and role descriptions on each node.</li>
+                  <li>Font scaling options with persisted user preferences.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article>
+            <h3>Enablement &amp; Support Assets</h3>
+            <p>A dedicated rollout package equips Governance and People teams to embed the tool during onboarding, leadership forums, and compliance reviews.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>Launch Kit</h4>
+                <ul>
+                  <li>Step-by-step configuration guide with annotated screenshots.</li>
+                  <li>Executive presentation template for committee briefings.</li>
+                  <li>Pre-drafted internal communications announcing availability.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>Support Channels</h4>
+                <ul>
+                  <li>Primary contact: Corporate Governance Office (governance@kanuf.sa).</li>
+                  <li>Technical support: Digital Products squad via Jira “Org-Tools” queue.</li>
+                  <li>Content upkeep: Strategic HR partnering with the Transformation Office.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>Success Metrics</h4>
+                <ul>
+                  <li>Monthly active user ratio versus total people leaders.</li>
+                  <li>Average time-to-locate mandate owner during governance meetings.</li>
+                  <li>Count of approved structural updates synchronised each quarter.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -570,7 +901,7 @@
             <h3>3) Governance Structure</h3>
             <h4>3.1 Partners</h4>
             <p>Partners exercise their rights through ordinary and extraordinary meetings, appoint and remove managers, approve financial statements, distribute profits, amend the articles, and authorize major transformations.</p>
-            <h4>3.2 Board of Managers</h4>
+            <h4>3..2 Board of Managers</h4>
             <p>At least three managers: Chair Khalid Hamoud Ibrahim Al-Dheyab, Vice Chair Fawzi Hamoud Ibrahim Al-Dheyab, and Managing Director & CEO Nusrat Mohammed Dilwar Mohammed. The Board supervises strategy, budgets, policies, and represents the company within the contractual limits.</p>
             <p>Unanimous board approval is required for financing, guarantees, bank account changes, partner admissions or exits, establishing companies, liquidations, and similar matters.</p>
             <h4>3.3 Board Committees</h4>
@@ -2129,391 +2460,132 @@
       <section id="org-design" class="section-card">
         <h2 class="lang lang-ar">القسم الخامس: الهيكلة التنظيمية الشاملة</h2>
         <h2 class="lang lang-en">Section V – Comprehensive Organizational Design</h2>
-        <div class="lang lang-ar" dir="rtl">
-          <article>
-            <h3>1) مبادئ التصميم</h3>
-            <ul>
-              <li>ترسيخ الحوكمة بفصل التدقيق الداخلي ورفع تقاريره للجنة التدقيق والمخاطر.</li>
-              <li>اعتماد مصفوفة قيادة ثنائية (وظيفي × مشروع) لتسريع التنفيذ وضبط التكلفة.</li>
-              <li>تصميم قابل للتوسع مع إمكانية مضاعفة فرق المشاريع حسب الحجم.</li>
-              <li>فصل المهام بين المالية والخزينة والمشتريات والمستودعات والاستلام والصرف.</li>
-              <li>الامتثال للأنظمة السعودية ولوائح العمل والضرائب والتأمينات والدفاع المدني والبلدية والأمن السيبراني.</li>
-            </ul>
-          </article>
-          <article>
-            <h3>2) المخطط العام</h3>
-            <p>يتكون من الشركاء ومجلس المديرين (رئيس/نائب/عضو-مدير تنفيذي) ولجنتي التدقيق والمخاطر والترشيحات والمكافآت، مع هيكل تنفيذي يقوده الـCEO ويضم PMO، الاستراتيجية والأداء، الجودة، الصحة والسلامة والبيئة، الشؤون القانونية والامتثال، التدقيق الداخلي، إدارة المخاطر واستمرارية الأعمال، الاتصال المؤسسي والعلاقات الحكومية، وتقنية المعلومات/أمن المعلومات.</p>
-            <p>القطاعات التنفيذية تحت الـCEO تشمل: العمليات (المشاريع والإنشاء)، القطاع التجاري والفني، سلسلة الإمداد، المعدات والورش، المالية والخزينة، الموارد البشرية والشؤون الإدارية، تطوير الأعمال والتقدير.</p>
-            <p>تفاصيل قطاع العمليات تتضمن إدارة المشاريع، التنفيذ المدني والمعماري، أعمال الـMEP، التخطيط والجدولة، ضبط التكاليف، ضبط الوثائق، المساحة والاختبارات.</p>
-          </article>
-          <article>
-            <h3>3) سلم المسميات والدرجات</h3>
-            <table class="inline-table">
-              <thead>
-                <tr>
-                  <th>الرمز</th>
-                  <th>الدرجة</th>
-                  <th>أمثلة مسميات</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>EX</td>
-                  <td>تنفيذي</td>
-                  <td>CEO / COO / CFO</td>
-                </tr>
-                <tr>
-                  <td>D</td>
-                  <td>مدير قطاع</td>
-                  <td>مدير العمليات / التجاري / SCM / المعدات / المالي / HR / BD</td>
-                </tr>
-                <tr>
-                  <td>SD</td>
-                  <td>مدير إدارة</td>
-                  <td>مدير مشاريع / مدير المكتب الفني / مدير العقود / مدير المشتريات / مدير التخطيط / مدير HSE / مدير QA / مدير المالية / مدير HR</td>
-                </tr>
-                <tr>
-                  <td>M</td>
-                  <td>رئيس قسم</td>
-                  <td>رئيس QS / رئيس مخزون / رئيس ورشة / رئيس أسطول / رئيس تخطيط / رئيس PMO</td>
-                </tr>
-                <tr>
-                  <td>S</td>
-                  <td>أقدم</td>
-                  <td>مهندس أقدم تخطيط / مهندس أقدم موقع / محاسب أقدم مشاريع</td>
-                </tr>
-                <tr>
-                  <td>P</td>
-                  <td>محترف</td>
-                  <td>مهندس / محاسب / أخصائي / مراقب</td>
-                </tr>
-                <tr>
-                  <td>T</td>
-                  <td>تقني/فني</td>
-                  <td>فني ورشة / فني مختبر / مسّاح / رسام BIM</td>
-                </tr>
-                <tr>
-                  <td>O</td>
-                  <td>تشغيلي</td>
-                  <td>مراقب عمال / فورمان / عمال مهرة</td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
-          <article>
-            <h3>4) توصيف القطاعات والإدارات</h3>
-            <p><strong>العمليات:</strong> فرق المشاريع بقيادة مدير مشروع، مدير إنشاءات، مهندسو موقع، فرق MEP، التخطيط، ضبط التكاليف، QA/QC، HSE، ضبط الوثائق، المساحة.</p>
-            <p><strong>القطاع التجاري والفني:</strong> المكتب الفني (رسومات، BIM)، قسم الكميات، العقود والمطالبات، القيمة الهندسية.</p>
-            <p><strong>سلسلة الإمداد:</strong> المشتريات، اللوجستيات، المستودعات، إدارة الموردين.</p>
-            <p><strong>المعدات والورش:</strong> صيانة ميكانيكية وكهربائية وهيدروليكية، إدارة الأسطول والتخصيص والمراقبة.</p>
-            <p><strong>المالية:</strong> أقسام الحسابات العامة، الذمم، الخزينة، الضرائب، الأصول، محاسبة المشاريع.</p>
-            <p><strong>الموارد البشرية والإدارة:</strong> التوظيف، شؤون الموظفين، الرواتب والمزايا، التعلم والتطوير، الخدمات الإدارية والسفر.</p>
-            <p><strong>تطوير الأعمال والتقدير:</strong> تطوير الأعمال، ما قبل التأهيل، التقدير والتسعير، العروض الفنية والمالية.</p>
-            <p><strong>الجودة والسلامة:</strong> استقلال تنظيمي، تطبيق ISO، تدقيقات داخلية، إدارة NCR، خطط HSE، تقارير الحوادث.</p>
-            <p><strong>تقنية المعلومات/أمن المعلومات:</strong> دعم المستخدمين، الشبكات، أجهزة المواقع، ERP، الأمن السيبراني.</p>
-            <p><strong>الشؤون القانونية والامتثال:</strong> مراجعة العقود، إدارة النزاعات، الامتثال النظامي، الأطراف ذات العلاقة.</p>
-            <p><strong>الاستراتيجية وإدارة الأداء/PMO/ERM:</strong> بطاقة الأداء المتوازن، خارطة المشاريع، إدارة المخاطر المؤسسية، خطط الاستمرارية.</p>
-          </article>
-          <article>
-            <h3>5) نماذج توزيع القوى العاملة</h3>
-            <table class="inline-table">
-              <thead>
-                <tr>
-                  <th>الفئة</th>
-                  <th>إيراد سنوي</th>
-                  <th>إجمالي الموظفين</th>
-                  <th>ملاحظات</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>S</td>
-                  <td>50–100 مليون ر.س</td>
-                  <td>120–180</td>
-                  <td>مشروعان متوسطان متوازيان</td>
-                </tr>
-                <tr>
-                  <td>M</td>
-                  <td>200–400 مليون ر.س</td>
-                  <td>300–500</td>
-                  <td>حتى 5 مشاريع متوازية</td>
-                </tr>
-                <tr>
-                  <td>L</td>
-                  <td>500+ مليون ر.س</td>
-                  <td>700–1200</td>
-                  <td>عدة مشاريع كبرى ومتعددة المناطق</td>
-                </tr>
-              </tbody>
-            </table>
-            <p>توزيع نموذجي لحجم M:</p>
-            <ul>
-              <li>العمليات: 200–320</li>
-              <li>القطاع التجاري والفني: 25–45</li>
-              <li>سلسلة الإمداد: 20–35</li>
-              <li>المعدات والورش: 25–40</li>
-              <li>المالية: 15–25</li>
-              <li>الموارد البشرية والإدارة: 15–25</li>
-              <li>تطوير الأعمال والتقدير: 10–18</li>
-              <li>الجودة: 6–10</li>
-              <li>السلامة: 10–18</li>
-              <li>IT/IS: 6–10</li>
-              <li>القانوني/الامتثال/ERM/PMO/استراتيجية: 6–10</li>
-            </ul>
-            <p>تكوين فرق المشاريع حسب الحجم من صغير إلى كبير كما ورد في الدليل.</p>
-          </article>
-          <article>
-            <h3>6) تبعية ماتريكس</h3>
-            <p>مهندسو التخطيط والتكلفة وHSE وQA وضبط الوثائق يتبعون وظيفيًا لمديريهم المركزيين وعمليًا لمديري المشاريع، مع تقييم سنوي 60% من المدير الوظيفي و40% من مدير المشروع.</p>
-          </article>
-          <article>
-            <h3>7) خطوط التقارير الرسمية</h3>
-            <ul>
-              <li>مديرو المشاريع يرفعون لمدير قطاع العمليات.</li>
-              <li>المكتب الفني، الكميات، العقود يرفعون للقطاع التجاري والفني مع ارتباط بالمشاريع.</li>
-              <li>المشتريات والمستودعات واللوجستيات ترفع لمدير سلسلة الإمداد.</li>
-              <li>المالية تحت المدير المالي؛ الموارد البشرية تحت مدير HR؛ المعدات تحت مدير القطاع.</li>
-              <li>HSE وQA يرفعان للـCEO مباشرة.</li>
-              <li>التدقيق الداخلي يرفع للجنة التدقيق والمخاطر وإداريًا للـCEO.</li>
-            </ul>
-          </article>
-          <article>
-            <h3>8) توصيفات وظيفية موجزة</h3>
-            <ul>
-              <li><strong>مدير مشروع:</strong> قيادة التنفيذ وفق الوقت والميزانية والجودة، إدارة المقاولين الفرعيين، تقارير التقدم، إدارة المخاطر.</li>
-              <li><strong>مهندس تخطيط:</strong> إعداد جداول Primavera، تحديث التقدم، تقارير التأخير، دمج الموارد.</li>
-              <li><strong>مهندس كميات:</strong> حصر الكميات، إعداد المستخلصات، تقييم أوامر التغيير.</li>
-              <li><strong>مدير مشتريات:</strong> استراتيجية الشراء، عقود الباطن، التفاوض، الالتزام بالسياسات.</li>
-              <li><strong>رئيس ورشة:</strong> برنامج صيانة وقائية، جاهزية المعدات، إدارة قطع الغيار.</li>
-              <li><strong>مسؤول HSE:</strong> إعداد خطط السلامة، التوعية، التفتيش، تقارير الحوادث والإجراءات التصحيحية.</li>
-              <li><strong>مهندس جودة:</strong> خطط ITP، الفحوصات، NCR، إدارة الوثائق الفنية.</li>
-            </ul>
-          </article>
-          <article>
-            <h3>9) مؤشرات أداء رئيسة</h3>
-            <ul>
-              <li><strong>العمليات:</strong> نسبة التقدم، SPI/CPI، زمن إغلاق قوائم الملاحظات.</li>
-              <li><strong>القطاع التجاري:</strong> نسبة أوامر التغيير المقبولة، DSO، ربحية المشروع.</li>
-              <li><strong>سلسلة الإمداد:</strong> OTIF، نسبة الشراء من موردين معتمدين، دوران المخزون.</li>
-              <li><strong>HSE:</strong> معدل الإصابات، الساعات بلا حادث، التزام خطط السلامة.</li>
-              <li><strong>QA:</strong> معدل العيوب، نتائج التدقيق.</li>
-              <li><strong>المالية:</strong> التدفق التشغيلي، DPO/DSO، دقة التنبؤ النقدي.</li>
-              <li><strong>الموارد البشرية:</strong> دوران الموظفين، نسبة السعودة، أيام التدريب للفرد.</li>
-            </ul>
-          </article>
-          <article>
-            <h3>10) خارطة الاستلام والتسليم</h3>
-            <p>يتضمن فتح المشروع (خطة تعبئة، فريق، خطة مشتريات، أساسيات السلامة، خطة جودة) وإغلاق المشروع (رسومات As-Built، شهادات، أدلة تشغيل وصيانة، إغلاق العقود، تسليم المخزون).</p>
-          </article>
-          <article>
-            <h3>11) مخطط هرمي نصي</h3>
-            <pre class="code-block" dir="ltr">Partners
-└─ Board of Managers (Chair / Vice / CEO)
-   ├─ CEO
-   │  ├─ PMO / Strategy / ERM / Internal Audit
-   │  ├─ QA (independent)      ├─ HSE (independent)
-   │  ├─ Legal & Compliance    ├─ Corp Comms & GR
-   │  └─ IT / IS
-   ├─ Operations (Projects & Construction)
-   ├─ Commercial & Technical Office (QS / Contracts / TO / BIM)
-   ├─ SCM (Procurement / Logistics / Warehouse)
-   ├─ Plant & Equipment (Workshops / Fleet)
-   ├─ Finance & Treasury
-   └─ HR & Administration</pre>
-          </article>
-        </div>
-        <div class="lang lang-en" dir="ltr">
-          <article>
-            <h3>1) Design Principles</h3>
-            <ul>
-              <li>Embed governance by aligning Internal Audit with the Audit & Risk Committee.</li>
-              <li>Adopt a dual (functional × project) leadership matrix for speed and cost control.</li>
-              <li>Ensure scalability with fixed core roles and expandable project teams.</li>
-              <li>Segregate duties across finance, treasury, procurement, warehouse, receiving, and disbursement.</li>
-              <li>Maintain compliance with Saudi corporate, labor, tax, social insurance, civil defense, municipality, and cybersecurity requirements.</li>
-            </ul>
-          </article>
-          <article>
-            <h3>2) High-Level Organogram</h3>
-            <p>Structure comprises partners, Board of Managers (Chair/Vice/CEO), ACRC, NRC, and an executive layer led by the CEO with PMO, Strategy & Performance, QA, HSE, Legal & Compliance, Internal Audit, ERM/BCP, Corporate Communications & Government Relations, and IT/Information Security.</p>
-            <p>Executive sectors include Operations, Commercial & Technical Office, Supply Chain, Plant & Equipment, Finance & Treasury, HR & Administration, and Business Development & Estimation.</p>
-            <p>Operations cover project management, civil/architectural execution, MEP, planning & scheduling, cost control, document control, and survey/lab services.</p>
-          </article>
-          <article>
-            <h3>3) Grade & Title Ladder</h3>
-            <table class="inline-table">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Grade</th>
-                  <th>Sample Titles</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>EX</td>
-                  <td>Executive</td>
-                  <td>CEO / COO / CFO</td>
-                </tr>
-                <tr>
-                  <td>D</td>
-                  <td>Sector Director</td>
-                  <td>Operations / Commercial / SCM / Equipment / Finance / HR / BD Director</td>
-                </tr>
-                <tr>
-                  <td>SD</td>
-                  <td>Department Director</td>
-                  <td>Projects, Technical Office, Contracts, Procurement, Planning, HSE, QA, Finance, HR Director</td>
-                </tr>
-                <tr>
-                  <td>M</td>
-                  <td>Head of Section</td>
-                  <td>Head of QS, Inventory, Workshop, Fleet, Planning, PMO</td>
-                </tr>
-                <tr>
-                  <td>S</td>
-                  <td>Senior</td>
-                  <td>Senior Planning Engineer, Senior Site Engineer, Senior Project Accountant</td>
-                </tr>
-                <tr>
-                  <td>P</td>
-                  <td>Professional</td>
-                  <td>Engineer / Accountant / Specialist / Controller</td>
-                </tr>
-                <tr>
-                  <td>T</td>
-                  <td>Technical</td>
-                  <td>Workshop Technician, Lab Technician, Surveyor, CAD/BIM Drafter</td>
-                </tr>
-                <tr>
-                  <td>O</td>
-                  <td>Operational</td>
-                  <td>Foreman / Crew Supervisor / Skilled Labor</td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
-          <article>
-            <h3>4) Functional Descriptions</h3>
-            <p><strong>Operations:</strong> Project teams led by Project Managers, Construction Managers, site engineers, MEP crews, planners, cost controllers, QA/QC, HSE, document controllers, survey & lab.</p>
-            <p><strong>Commercial & Technical:</strong> Technical office (shop drawings, BIM), quantity surveying, contracts & claims, value engineering.</p>
-            <p><strong>Supply Chain:</strong> Procurement, logistics, warehouse, vendor management.</p>
-            <p><strong>Plant & Equipment:</strong> Mechanical/electrical/hydraulic workshops, fleet allocation and monitoring.</p>
-            <p><strong>Finance:</strong> GL, AP/AR, treasury, tax, fixed assets, project accounting.</p>
-            <p><strong>HR & Admin:</strong> Recruitment, employee relations, payroll & benefits, L&D, admin services, travel.</p>
-            <p><strong>BD & Estimation:</strong> Business development, pre-qualification, estimation & pricing, technical and financial proposals.</p>
-            <p><strong>QA & HSE:</strong> Independent reporting, ISO systems, internal audits, NCR/CAPA, project HSE plans, training, incident reporting.</p>
-            <p><strong>IT/IS:</strong> User support, networks, site devices, ERP (Oracle/Odoo/SAP), cybersecurity controls.</p>
-            <p><strong>Legal & Compliance:</strong> Contract review, dispute management, regulatory compliance, related parties.</p>
-            <p><strong>Strategy / PMO / ERM:</strong> Balanced scorecard, project portfolio, enterprise risk, business continuity.</p>
-          </article>
-          <article>
-            <h3>5) Workforce Models</h3>
-            <table class="inline-table">
-              <thead>
-                <tr>
-                  <th>Band</th>
-                  <th>Annual Revenue</th>
-                  <th>Total Headcount</th>
-                  <th>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>S</td>
-                  <td>SAR 50–100M</td>
-                  <td>120–180</td>
-                  <td>Two medium projects in parallel</td>
-                </tr>
-                <tr>
-                  <td>M</td>
-                  <td>SAR 200–400M</td>
-                  <td>300–500</td>
-                  <td>Up to five concurrent projects</td>
-                </tr>
-                <tr>
-                  <td>L</td>
-                  <td>SAR 500M+</td>
-                  <td>700–1200</td>
-                  <td>Multiple mega projects across regions</td>
-                </tr>
-              </tbody>
-            </table>
-            <p>Sample distribution for size M:</p>
-            <ul>
-              <li>Operations: 200–320</li>
-              <li>Commercial/Technical: 25–45</li>
-              <li>Supply Chain: 20–35</li>
-              <li>Plant & Equipment: 25–40</li>
-              <li>Finance: 15–25</li>
-              <li>HR & Admin: 15–25</li>
-              <li>BD & Estimation: 10–18</li>
-              <li>QA: 6–10</li>
-              <li>HSE: 10–18</li>
-              <li>IT/IS: 6–10</li>
-              <li>Legal/Compliance/ERM/PMO/Strategy: 6–10</li>
-            </ul>
-            <p>Project team sizing by project scale: small (≤SAR 50M), medium (SAR 50–150M), large (≥SAR 150M) with detailed staffing as per the manual.</p>
-          </article>
-          <article>
-            <h3>6) Matrix Reporting</h3>
-            <p>Planning, cost control, HSE, QA, and document control staff report functionally to central managers and operationally to project managers; annual evaluation weighted 60% functional manager, 40% project manager.</p>
-          </article>
-          <article>
-            <h3>7) Reporting Lines</h3>
-            <ul>
-              <li>Project Managers → Operations Sector Director.</li>
-              <li>Technical Office / QS / Contracts → Commercial & Technical Director with project dotted line.</li>
-              <li>Procurement / Warehouse / Logistics → SCM Director.</li>
-              <li>Finance → CFO; HR → HR Director; Plant & Equipment → Sector Director.</li>
-              <li>HSE and QA → CEO directly.</li>
-              <li>Internal Audit → Audit & Risk Committee, administratively to CEO.</li>
-            </ul>
-          </article>
-          <article>
-            <h3>8) Role Snapshots</h3>
-            <ul>
-              <li><strong>Project Manager:</strong> Deliver on time, budget, quality; manage subcontractors; report progress; mitigate risks.</li>
-              <li><strong>Planning Engineer:</strong> Build Primavera schedules, update progress, analyze delays, integrate resources.</li>
-              <li><strong>Quantity Surveyor:</strong> Measure quantities, prepare claims, support change orders.</li>
-              <li><strong>Procurement Manager:</strong> Sourcing strategy, subcontract agreements, negotiation, compliance.</li>
-              <li><strong>Workshop Manager:</strong> Preventive maintenance program, equipment readiness, spare parts management.</li>
-              <li><strong>HSE Officer:</strong> Develop HSE plans, training, inspections, incident reporting and corrective actions.</li>
-              <li><strong>Quality Engineer:</strong> ITP plans, inspections, NCR management, technical documentation.</li>
-            </ul>
-          </article>
-          <article>
-            <h3>9) Key KPIs</h3>
-            <ul>
-              <li><strong>Operations:</strong> Progress vs plan %, CPI/SPI, punch list close-out time.</li>
-              <li><strong>Commercial:</strong> Approved change order ratio, DSO, project margin.</li>
-              <li><strong>Supply Chain:</strong> OTIF, approved supplier ratio, inventory turns.</li>
-              <li><strong>HSE:</strong> LTIFR, no-lost-time hours, HSE plan compliance.</li>
-              <li><strong>QA:</strong> Defect/rework rate, audit results.</li>
-              <li><strong>Finance:</strong> Operating cash flow, DPO/DSO, forecast accuracy.</li>
-              <li><strong>HR:</strong> Turnover, Saudization %, training days per employee.</li>
-            </ul>
-          </article>
-          <article>
-            <h3>10) Handover Map</h3>
-            <p>Project kickoff: mobilization plan, team assignment, initial procurement plan, safety basics, quality plan. Project closeout: as-built drawings, test certificates, O&M manuals, contract and claim closure, inventory handover.</p>
-          </article>
-          <article>
-            <h3>11) Textual Hierarchy Diagram</h3>
-            <pre class="code-block">Partners
-└─ Board of Managers (Chair / Vice / CEO)
-   ├─ CEO
-   │  ├─ PMO / Strategy / ERM / Internal Audit
-   │  ├─ QA (independent)      ├─ HSE (independent)
-   │  ├─ Legal & Compliance    ├─ Corp Comms & GR
-   │  └─ IT / IS
-   ├─ Operations (Projects & Construction)
-   ├─ Commercial & Technical Office (QS / Contracts / TO / BIM)
-   ├─ SCM (Procurement / Logistics / Warehouse)
-   ├─ Plant & Equipment (Workshops / Fleet)
-   ├─ Finance & Treasury
-   └─ HR & Administration</pre>
-          </article>
+        <div class="w-full overflow-x-auto pb-8">
+            <div class="org-chart min-w-[1400px]">
+                <ul>
+                    <li>
+                        <div class="node level-board has-children" data-target="board-children">
+                            <div class="title">الشركاء ومجلس المديرين</div>
+                            <div class="subtitle">Partners & Board of Managers</div>
+                        </div>
+                        <ul id="board-children">
+                            <li>
+                                <div class="node level-ceo has-children" data-target="ceo-children">
+                                    <div class="title">الرئيس التنفيذي</div>
+                                    <div class="subtitle">Chief Executive Officer (CEO)</div>
+                                </div>
+                                <ul id="ceo-children" class="space-x-2">
+                                    <li>
+                                        <div class="node level-control has-children" data-target="control-units">
+                                            <div class="title">الوحدات الرقابية والاستشارية</div>
+                                            <div class="subtitle">Control & Advisory Units</div>
+                                        </div>
+                                        <ul id="control-units" class="independent-line">
+                                            <li><div class="node"><div class="title">التدقيق الداخلي</div><div class="subtitle">Internal Audit</div><div class="note">Reports to ACRC</div></div></li>
+                                            <li><div class="node"><div class="title">إدارة الجودة</div><div class="subtitle">Quality Assurance (QA)</div><div class="note">Independent from Ops.</div></div></li>
+                                            <li><div class="node"><div class="title">إدارة الصحة والسلامة</div><div class="subtitle">HSE</div><div class="note">Independent from Ops.</div></div></li>
+                                            <li><div class="node"><div class="title">مكتب إدارة المشاريع</div><div class="subtitle">PMO</div></div></li>
+                                            <li><div class="node"><div class="title">الاستراتيجية والأداء</div><div class="subtitle">Strategy & Performance</div></div></li>
+                                            <li><div class="node"><div class="title">الشؤون القانونية والامتثال</div><div class="subtitle">Legal & Compliance</div></div></li>
+                                            <li><div class="node"><div class="title">إدارة المخاطر</div><div class="subtitle">Risk Management (ERM)</div></div></li>
+                                            <li><div class="node"><div class="title">الاتصال المؤسسي</div><div class="subtitle">Corporate Comms.</div></div></li>
+                                            <li><div class="node"><div class="title">تقنية وأمن المعلومات</div><div class="subtitle">IT & InfoSec</div></div></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="node level-sector has-children" data-target="op-sector">
+                                            <div class="title">قطاع العمليات</div>
+                                            <div class="subtitle">Operations Sector</div>
+                                        </div>
+                                        <ul id="op-sector">
+                                            <li><div class="node level-dept"><div class="title">إدارة المشاريع</div><div class="subtitle">Project Management</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">إدارة التنفيذ</div><div class="subtitle">Construction</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">أعمال الكهروميكانيك</div><div class="subtitle">MEP Works</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">التخطيط والجدولة</div><div class="subtitle">Planning & Scheduling</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">ضبط التكاليف</div><div class="subtitle">Cost Control</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">ضبط الوثائق</div><div class="subtitle">Document Control</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">المساحة والمختبر</div><div class="subtitle">Survey & Lab</div></div></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="node level-sector has-children" data-target="comm-sector">
+                                            <div class="title">القطاع التجاري والفني</div>
+                                            <div class="subtitle">Commercial & Technical</div>
+                                        </div>
+                                        <ul id="comm-sector">
+                                             <li><div class="node level-dept"><div class="title">المكتب الفني</div><div class="subtitle">Technical Office (BIM)</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">إدارة الكميات</div><div class="subtitle">Quantity Surveying (QS)</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">العقود والمطالبات</div><div class="subtitle">Contracts & Claims</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">القيمة الهندسية</div><div class="subtitle">Value Engineering</div></div></li>
+                                       </ul>
+                                    </li>
+                                    <li>
+                                        <div class="node level-sector has-children" data-target="scm-sector">
+                                            <div class="title">قطاع سلسلة الإمداد</div>
+                                            <div class="subtitle">Supply Chain (SCM)</div>
+                                        </div>
+                                        <ul id="scm-sector">
+                                             <li><div class="node level-dept"><div class="title">المشتريات</div><div class="subtitle">Procurement</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">الخدمات اللوجستية</div><div class="subtitle">Logistics</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">المستودعات</div><div class="subtitle">Warehouse</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">إدارة الموردين</div><div class="subtitle">Vendor Management</div></div></li>
+                                       </ul>
+                                    </li>
+                                    <li>
+                                        <div class="node level-sector has-children" data-target="plant-sector">
+                                            <div class="title">قطاع المعدات والورش</div>
+                                            <div class="subtitle">Plant & Equipment</div>
+                                        </div>
+                                        <ul id="plant-sector">
+                                             <li><div class="node level-dept"><div class="title">ورش الصيانة</div><div class="subtitle">Workshops</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">الأسطول والنقل</div><div class="subtitle">Fleet & Transport</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">معدات الرفع</div><div class="subtitle">Lifting Equipment</div></div></li>
+                                       </ul>
+                                    </li>
+                                     <li>
+                                        <div class="node level-sector has-children" data-target="finance-sector">
+                                            <div class="title">القطاع المالي</div>
+                                            <div class="subtitle">Finance & Treasury</div>
+                                        </div>
+                                        <ul id="finance-sector">
+                                            <li><div class="node level-dept"><div class="title">الحسابات العامة</div><div class="subtitle">General Ledger</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">الذمم (AR/AP)</div><div class="subtitle">Receivables/Payables</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">الخزينة والبنوك</div><div class="subtitle">Treasury</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">الضرائب والزكاة</div><div class="subtitle">Tax & Zakat</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">محاسبة المشاريع</div><div class="subtitle">Project Accounting</div></div></li>
+                                       </ul>
+                                    </li>
+                                     <li>
+                                        <div class="node level-sector has-children" data-target="hr-sector">
+                                            <div class="title">الموارد البشرية والإدارية</div>
+                                            <div class="subtitle">HR & Admin</div>
+                                        </div>
+                                        <ul id="hr-sector">
+                                             <li><div class="node level-dept"><div class="title">التوظيف</div><div class="subtitle">Recruitment</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">شؤون الموظفين</div><div class="subtitle">Personnel Affairs</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">الرواتب والمزايا</div><div class="subtitle">Payroll & Benefits</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">التطوير</div><div class="subtitle">Learning & Development</div></div></li>
+                                             <li><div class="node level-dept"><div class="title">الخدمات الإدارية</div><div class="subtitle">Admin Services</div></div></li>
+                                       </ul>
+                                    </li>
+                                     <li>
+                                        <div class="node level-sector has-children" data-target="bd-sector">
+                                            <div class="title">تطوير الأعمال والتقدير</div>
+                                            <div class="subtitle">BD & Estimation</div>
+                                        </div>
+                                        <ul id="bd-sector">
+                                            <li><div class="node level-dept"><div class="title">تطوير الأعمال</div><div class="subtitle">Business Development</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">ما قبل التأهيل</div><div class="subtitle">Pre-qualification</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">التقدير والتسعير</div><div class="subtitle">Estimation & Pricing</div></div></li>
+                                            <li><div class="node level-dept"><div class="title">إعداد العروض</div><div class="subtitle">Proposals</div></div></li>
+                                       </ul>
+                                    </li>
+                               </ul>
+                           </li>
+                       </ul>
+                   </li>
+               </ul>
+            </div>
         </div>
       </section>
       <section id="operational-readiness" class="section-card">
@@ -2867,66 +2939,6 @@
               </div>
             </div>
           </article>
-          <article>
-            <h3>إرشادات تصميم واجهة المستخدم وتجربة المستخدم</h3>
-            <p>تم إعداد واجهة العارض وفق مبادئ التصميم المعتمد في كانوف لضمان وضوح الهوية الرقمية وسهولة الاستخدام عبر الأجهزة المختلفة.</p>
-            <div class="resource-grid">
-              <div class="resource-card">
-                <h4>مبادئ التصميم</h4>
-                <ul>
-                  <li>استخدام ألوان العلامة (الأزرق العميق والبرتقالي) مع تباين مرتفع للنصوص.</li>
-                  <li>ترميز مستويات الهيكل باستخدام ألوان ثانوية متجانسة لتسهيل التمييز البصري.</li>
-                  <li>مساحات بيضاء سخية بين العقد لضمان قراءة مريحة خلال العروض.</li>
-                </ul>
-              </div>
-              <div class="resource-card">
-                <h4>تجربة المستخدم</h4>
-                <ul>
-                  <li>تجاوب كامل مع الهواتف والأجهزة اللوحية مع الحفاظ على اتجاه اللغة المختار.</li>
-                  <li>تلميحات تفاعلية (Tooltips) تعرض نطاق المسؤوليات ومقاييس الأداء لكل منصب.</li>
-                  <li>تسلسل حركي خفيف عند التوسّع/الطي يقلل العبء الإدراكي.</li>
-                </ul>
-              </div>
-              <div class="resource-card">
-                <h4>إمكانية الوصول</h4>
-                <ul>
-                  <li>دعم لوحة المفاتيح بالكامل عبر مفاتيح التاب والمسافة.</li>
-                  <li>توافق مع قارئات الشاشة بإضافة أوصاف بديلة للعقد.</li>
-                  <li>خيارات تكبير الخط وحفظ التفضيلات على مستوى المستخدم.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-          <article>
-            <h3>مواد التفعيل والدعم</h3>
-            <p>تتوافر الحزمة التشغيلية للعارض لدعم إدارات الموارد البشرية والحَوْكَمة في جلسات التعريف أو ورش العمل.</p>
-            <div class="resource-grid">
-              <div class="resource-card">
-                <h4>حزمة الإطلاق</h4>
-                <ul>
-                  <li>دليل إعداد خطوة بخطوة يتضمن لقطات شاشة وإرشادات التخصيص.</li>
-                  <li>قالب عرض تقديمي لاستخدامه في اجتماعات اللجان التنفيذية.</li>
-                  <li>رسائل جاهزة للتواصل الداخلي تعلن عن توفر الأداة.</li>
-                </ul>
-              </div>
-              <div class="resource-card">
-                <h4>مسارات الاتصال</h4>
-                <ul>
-                  <li>نقطة اتصال رئيسية: مكتب الحوكمة المؤسسية (governance@kanuf.sa).</li>
-                  <li>دعم تقني: فريق المنتجات الرقمية، طلبات Jira فئة "Org-Tools".</li>
-                  <li>تحديثات المحتوى: الموارد البشرية الاستراتيجية بالتنسيق مع مكتب التحول.</li>
-                </ul>
-              </div>
-              <div class="resource-card">
-                <h4>مقاييس النجاح</h4>
-                <ul>
-                  <li>نسبة المستخدمين النشطين شهرياً مقارنةً بإجمالي المديرين.</li>
-                  <li>متوسط زمن العثور على صاحب الصلاحية خلال الاجتماعات.</li>
-                  <li>عدد التعديلات المعتمدة التي تمت مزامنتها خلال الربع.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
         </div>
         <div class="lang lang-en" dir="ltr">
           <article>
@@ -2968,66 +2980,6 @@
               </div>
             </div>
           </article>
-          <article>
-            <h3>UI &amp; UX Guidance</h3>
-            <p>The viewer follows Kanuf’s digital design system, ensuring a consistent internal brand experience and usability across desktop and mobile form factors.</p>
-            <div class="resource-grid">
-              <div class="resource-card">
-                <h4>Design Principles</h4>
-                <ul>
-                  <li>Corporate blue and accent orange palette with accessible contrast ratios.</li>
-                  <li>Secondary colour tagging per hierarchy level to reinforce visual parsing.</li>
-                  <li>Generous whitespace and modular spacing to support on-screen presentations.</li>
-                </ul>
-              </div>
-              <div class="resource-card">
-                <h4>User Experience</h4>
-                <ul>
-                  <li>Responsive breakpoints tuned for tablets and mobiles while respecting language direction.</li>
-                  <li>Hover and tooltip microcopy surfacing remit, KPIs, and current initiatives.</li>
-                  <li>Subtle motion when expanding/collapsing nodes to maintain cognitive flow.</li>
-                </ul>
-              </div>
-              <div class="resource-card">
-                <h4>Accessibility</h4>
-                <ul>
-                  <li>Full keyboard navigation with tab/space controls.</li>
-                  <li>Screen-reader friendly labels and role descriptions on each node.</li>
-                  <li>Font scaling options with persisted user preferences.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-          <article>
-            <h3>Enablement &amp; Support Assets</h3>
-            <p>A dedicated rollout package equips Governance and People teams to embed the tool during onboarding, leadership forums, and compliance reviews.</p>
-            <div class="resource-grid">
-              <div class="resource-card">
-                <h4>Launch Kit</h4>
-                <ul>
-                  <li>Step-by-step configuration guide with annotated screenshots.</li>
-                  <li>Executive presentation template for committee briefings.</li>
-                  <li>Pre-drafted internal communications announcing availability.</li>
-                </ul>
-              </div>
-              <div class="resource-card">
-                <h4>Support Channels</h4>
-                <ul>
-                  <li>Primary contact: Corporate Governance Office (governance@kanuf.sa).</li>
-                  <li>Technical support: Digital Products squad via Jira &ldquo;Org-Tools&rdquo; queue.</li>
-                  <li>Content upkeep: Strategic HR partnering with the Transformation Office.</li>
-                </ul>
-              </div>
-              <div class="resource-card">
-                <h4>Success Metrics</h4>
-                <ul>
-                  <li>Monthly active user ratio versus total people leaders.</li>
-                  <li>Average time-to-locate mandate owner during governance meetings.</li>
-                  <li>Count of approved structural updates synchronised each quarter.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
         </div>
       </section>
     </div>
@@ -3049,6 +3001,53 @@
         document.documentElement.setAttribute('dir', selected === 'ar' ? 'rtl' : 'ltr');
       });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggles = document.querySelectorAll('.has-children');
+
+        const collapseAll = (exceptNode) => {
+             toggles.forEach(toggle => {
+                if (toggle !== exceptNode) {
+                    const targetId = toggle.getAttribute('data-target');
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement && !targetElement.classList.contains('hidden')) {
+                         targetElement.classList.add('hidden');
+                         toggle.classList.add('collapsed');
+                    }
+                }
+            });
+        }
+
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', function (event) {
+                event.stopPropagation(); 
+                
+                const targetId = this.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const isCollapsed = targetElement.classList.toggle('hidden');
+                    this.classList.toggle('collapsed', isCollapsed);
+                }
+            });
+        });
+        
+        collapseAll(null);
+        
+        const boardNode = document.querySelector('[data-target="board-children"]');
+        if (boardNode) {
+             document.getElementById('board-children').classList.remove('hidden');
+             boardNode.classList.remove('collapsed');
+        }
+         const ceoNode = document.querySelector('[data-target="ceo-children"]');
+        if (ceoNode) {
+             document.getElementById('ceo-children').classList.remove('hidden');
+             ceoNode.classList.remove('collapsed');
+        }
+
+    });
   </script>
 </body>
 </html>
+}
+
