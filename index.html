@@ -1,2080 +1,1227 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang='ar' dir='rtl'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كانوف | دليل الحوكمة الشامل</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            color-scheme: light;
-            --primary: #0f4c75;
-            --primary-dark: #0b3a59;
-            --accent: #f9a826;
-            --bg: #f5f8fb;
-            --text: #14213d;
-            --muted: #6c7a89;
-            --card-bg: #ffffff;
-            --shadow: 0 10px 30px rgba(15, 76, 117, 0.12);
-        }
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            margin: 0;
-            font-family: 'Cairo', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.8;
-        }
-        header.hero {
-            background: linear-gradient(135deg, rgba(15,76,117,0.95), rgba(36,123,160,0.85)), url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80') center/cover;
-            color: #fff;
-            padding: 120px 8vw 110px;
-            position: relative;
-            overflow: hidden;
-        }
-        header.hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top right, rgba(249,168,38,0.35), transparent 55%);
-        }
-        header .hero-content {
-            position: relative;
-            max-width: 900px;
-        }
-        header .hero-content h1 {
-            font-size: clamp(2.4rem, 4vw, 3.6rem);
-            margin: 0 0 15px;
-            font-weight: 800;
-        }
-        header .hero-content p {
-            font-size: 1.12rem;
-            color: rgba(255,255,255,0.92);
-            margin-bottom: 25px;
-        }
-        .cta-group {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .cta-group a {
-            text-decoration: none;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .cta-primary {
-            background: var(--accent);
-            color: #1b1b1b;
-            box-shadow: var(--shadow);
-        }
-        .cta-secondary {
-            border: 1px solid rgba(255,255,255,0.6);
-            color: #fff;
-            backdrop-filter: blur(8px);
-        }
-        .cta-group a:hover {
-            transform: translateY(-4px);
-        }
-        nav.page-nav {
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            background: rgba(245, 248, 251, 0.94);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 6px 18px rgba(15, 76, 117, 0.08);
-        }
-        nav.page-nav ul {
-            list-style: none;
-            display: flex;
-            gap: 22px;
-            margin: 0;
-            padding: 18px 8vw;
-            overflow-x: auto;
-        }
-        nav.page-nav a {
-            color: var(--primary-dark);
-            text-decoration: none;
-            font-weight: 600;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s ease, color 0.3s ease;
-            white-space: nowrap;
-        }
-        nav.page-nav a.active {
-            border-color: var(--accent);
-            color: var(--primary);
-        }
-        main {
-            padding: 70px 8vw 120px;
-        }
-        section {
-            margin-bottom: 120px;
-        }
-        section h2 {
-            font-size: clamp(1.8rem, 3vw, 2.6rem);
-            margin-bottom: 24px;
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-        }
-        section h2::after {
-            content: "";
-            display: inline-block;
-            width: 50px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 999px;
-        }
-        .intro-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 28px;
-        }
-        .card {
-            background: var(--card-bg);
-            padding: 28px;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        .card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top left, rgba(15, 76, 117, 0.08), transparent 60%);
-        }
-        .card > * {
-            position: relative;
-        }
-        .card h3 {
-            margin-top: 0;
-            font-size: 1.35rem;
-            color: var(--primary-dark);
-        }
-        .card ul {
-            padding-right: 20px;
-            margin: 0;
-        }
-        .insights {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-        .highlight {
-            color: var(--primary);
-            font-weight: 700;
-        }
-        .manual-wrapper {
-            display: grid;
-            gap: 30px;
-        }
-        .manual-wrapper .tools {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 16px;
-        }
-        .manual-wrapper .tools input[type="search"] {
-            flex: 1 1 260px;
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 1px solid rgba(15,76,117,0.18);
-            font-size: 1rem;
-            background: #fff;
-            transition: box-shadow 0.3s ease;
-        }
-        .manual-wrapper .tools input[type="search"]:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(249, 168, 38, 0.2);
-        }
-        .manual-wrapper .tools button {
-            padding: 11px 20px;
-            border-radius: 12px;
-            border: none;
-            font-weight: 600;
-            background: var(--primary);
-            color: #fff;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .manual-wrapper .tools button:hover {
-            transform: translateY(-3px);
-        }
-        .manual-body {
-            background: #fff;
-            border-radius: 22px;
-            padding: 40px 32px;
-            box-shadow: var(--shadow);
-            max-height: 65vh;
-            overflow-y: auto;
-            position: relative;
-            scroll-behavior: smooth;
-        }
-        .manual-body h1,
-        .manual-body h2,
-        .manual-body h3,
-        .manual-body h4,
-        .manual-body h5 {
-            color: var(--primary-dark);
-        }
-        .manual-body table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 22px 0;
-        }
-        .manual-body table th,
-        .manual-body table td {
-            border: 1px solid rgba(15,76,117,0.2);
-            padding: 10px 14px;
-            vertical-align: top;
-        }
-        .manual-body table th {
-            background: rgba(15,76,117,0.08);
-            color: var(--primary-dark);
-        }
-        .toc {
-            position: sticky;
-            top: 120px;
-            align-self: start;
-            background: rgba(255,255,255,0.92);
-            border-radius: 18px;
-            padding: 24px;
-            box-shadow: var(--shadow);
-            max-height: 60vh;
-            overflow-y: auto;
-        }
-        .toc h3 {
-            margin-top: 0;
-            font-size: 1.1rem;
-        }
-        .toc ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            gap: 12px;
-        }
-        .toc a {
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-        .toc a.active {
-            color: var(--primary);
-            font-weight: 700;
-        }
-        .manual-layout {
-            display: grid;
-            grid-template-columns: minmax(220px, 280px) 1fr;
-            gap: 32px;
-        }
-        .recommendations {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-        .chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(15,76,117,0.1);
-            color: var(--primary);
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            padding: 12px 18px;
-            border-radius: 999px;
-            background: var(--primary);
-            color: #fff;
-            font-weight: 700;
-            border: none;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        .scroll-top.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        footer {
-            background: #0b3a59;
-            color: rgba(255,255,255,0.8);
-            padding: 60px 8vw;
-            text-align: center;
-        }
-        footer .socials {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            margin-bottom: 14px;
-        }
-        footer a {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        @media (max-width: 1024px) {
-            .manual-layout {
-                grid-template-columns: 1fr;
-            }
-            .toc {
-                position: relative;
-                top: 0;
-                max-height: unset;
-            }
-        }
-        @media (max-width: 720px) {
-            header.hero {
-                padding: 80px 6vw;
-            }
-            nav.page-nav ul {
-                padding: 14px 6vw;
-            }
-            main {
-                padding: 50px 6vw 80px;
-            }
-            .manual-body {
-                padding: 28px 20px;
-                max-height: unset;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header class="hero">
-        <div class="hero-content">
-            <span class="chip">حوكمة · التزام · تميز تشغيلي</span>
-            <h1>كانوف: تمكين الأعمال بمنظومة حوكمة متكاملة</h1>
-            <p>تُقدّم شركة كانوف منظومة حوكمة واستمرارية أعمال مبنية على أفضل الممارسات السعودية، وتضمن إدارة المخاطر، الامتثال، ووضوح الأدوار بين الشركاء، المجلس، والإدارة التنفيذية. يوفّر هذا الموقع النسخة الرقمية التفاعلية للدليل الشامل، مع خلاصة تنفيذية وأدوات مساعدة للفرق.</p>
-            <div class="cta-group">
-                <a class="cta-primary" href="#manual">استكشاف دليل الحوكمة</a>
-                <a class="cta-secondary" href="#recommendations">عرض التوصيات الاستراتيجية</a>
-            </div>
-        </div>
-    </header>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>دليل حوكمة شركة كانوف | Kanuf Governance Manual</title>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap' rel='stylesheet'>
+  <style>
+    :root {
+      --primary: #005c71;
+      --primary-light: #008aa6;
+      --accent: #f0b429;
+      --background: #f7f9fb;
+      --card-bg: #ffffff;
+      --border: #d9e2ec;
+      --text-dark: #102a43;
+      --text-muted: #486581;
+    }
 
-    <nav class="page-nav">
-        <ul>
-            <li><a href="#overview" class="nav-link">نظرة عامة</a></li>
-            <li><a href="#insights" class="nav-link">الركائز الأساسية</a></li>
-            <li><a href="#recommendations" class="nav-link">توصيات التطوير</a></li>
-            <li><a href="#manual" class="nav-link">الدليل الكامل</a></li>
-            <li><a href="#contact" class="nav-link">تواصل واستفسارات</a></li>
-        </ul>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--text-dark);
+      transition: all 0.3s ease;
+    }
+
+    body.lang-en {
+      font-family: 'Inter', 'Cairo', sans-serif;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(0,92,113,0.95), rgba(0,138,166,0.85)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 2.5rem 0 3.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0 2rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.15);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 0.35rem;
+      gap: 0.35rem;
+    }
+
+    .lang-toggle button {
+      border: none;
+      background: transparent;
+      color: #fff;
+      padding: 0.35rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .lang-toggle button.active {
+      background: #fff;
+      color: var(--primary);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      flex-wrap: wrap;
+      padding-inline: 2rem;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .hero {
+      padding: 0 2rem 0;
+      display: grid;
+      gap: 1.75rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin: 0;
+      color: rgba(255,255,255,0.85);
+      max-width: 52rem;
+    }
+
+    .quick-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .quick-card {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 1.2rem 1.35rem;
+      display: grid;
+      gap: 0.4rem;
+      backdrop-filter: blur(6px);
+      min-height: 130px;
+    }
+
+    .quick-card span {
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .quick-card strong {
+      font-size: 1.25rem;
+      color: #fff;
+    }
+
+    main {
+      margin-top: -2rem;
+      padding: 0 2rem 4rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      margin-top: 2.5rem;
+      box-shadow: 0 20px 45px rgba(15, 76, 92, 0.08);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: '';
+
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,92,113,0.05), transparent 60%);
+      pointer-events: none;
+    }
+
+    section h2 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 12px 24px rgba(16, 42, 67, 0.06);
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .tag {
+      background: rgba(0, 92, 113, 0.08);
+      color: var(--primary);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .timeline {
+      position: relative;
+      padding-inline-start: 1.2rem;
+      border-inline-start: 2px solid var(--border);
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-inline-start: 1.2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      inset-inline-start: -1.35rem;
+      top: 0.35rem;
+      width: 14px;
+      height: 14px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(0,92,113,0.12);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 24px rgba(16, 42, 67, 0.05);
+    }
+
+    th, td {
+      padding: 0.85rem 0.9rem;
+      border: 1px solid var(--border);
+      text-align: inherit;
+      vertical-align: top;
+    }
+
+    th {
+      background: rgba(0,92,113,0.08);
+      font-weight: 700;
+    }
+
+    .matrix-head {
+      background: rgba(240, 180, 41, 0.12);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(0,92,113,0.12);
+      color: var(--primary);
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .list li {
+      padding: 0.75rem 1rem;
+      background: rgba(0,92,113,0.05);
+      border-radius: 12px;
+      line-height: 1.6;
+    }
+
+    .footer-note {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    [data-lang] {
+      display: none;
+    }
+
+    body.lang-ar [data-lang='ar'],
+    body.lang-en [data-lang='en'] {
+      display: contents;
+    }
+
+    body.lang-en {
+      direction: ltr;
+    }
+
+    body.lang-en header,
+    body.lang-en .hero,
+    body.lang-en main {
+      text-align: left;
+    }
+
+    body.lang-en nav ul {
+      flex-direction: row;
+    }
+
+    body.lang-en nav a {
+      font-family: 'Inter', sans-serif;
+    }
+
+    body.lang-en section,
+    body.lang-en .card,
+    body.lang-en .list li {
+      text-align: left;
+    }
+
+    body.lang-en table {
+      direction: ltr;
+    }
+
+    body.lang-en .timeline {
+      border-inline-start: none;
+      border-left: 2px solid var(--border);
+      padding-left: 1.2rem;
+    }
+
+    body.lang-en .timeline-item {
+      padding-left: 1.2rem;
+    }
+
+    body.lang-en .timeline-item::before {
+      inset-inline-start: auto;
+      left: -1.35rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        position: static;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class='lang-ar'>
+  <header>
+    <div class='topbar'>
+      <div class='brand'>
+        <div class='brand-logo'>K</div>
+        <div>
+          <div class='lang-block'>
+            <strong data-lang='ar'>شركة كانوف</strong>
+            <strong data-lang='en'>Kanuf Company</strong>
+          </div>
+          <div class='lang-block' style='opacity: 0.85; font-size: 0.95rem;'>
+            <span data-lang='ar'>دليل الحوكمة الداخلي - للاستخدام التنفيذي فقط</span>
+            <span data-lang='en'>Internal Governance Manual – Executive Use Only</span>
+          </div>
+        </div>
+      </div>
+      <div class='lang-toggle' role='group' aria-label='Language toggle'>
+        <button type='button' class='active' data-switch='ar'>العربية</button>
+        <button type='button' data-switch='en'>English</button>
+      </div>
+    </div>
+    <nav aria-label='Primary navigation'>
+      <ul>
+        <li><a href='#overview' data-lang='ar'>نظرة عامة</a><a href='#overview' data-lang='en'>Overview</a></li>
+        <li><a href='#principles' data-lang='ar'>مبادئ</a><a href='#principles' data-lang='en'>Principles</a></li>
+        <li><a href='#structure' data-lang='ar'>الهيكل</a><a href='#structure' data-lang='en'>Structure</a></li>
+        <li><a href='#processes' data-lang='ar'>السياسات</a><a href='#processes' data-lang='en'>Policies</a></li>
+        <li><a href='#risk' data-lang='ar'>المخاطر والامتثال</a><a href='#risk' data-lang='en'>Risk &amp; Compliance</a></li>
+        <li><a href='#appendix' data-lang='ar'>الملاحق</a><a href='#appendix' data-lang='en'>Appendix</a></li>
+        <li><a href='#contacts' data-lang='ar'>التواصل</a><a href='#contacts' data-lang='en'>Contacts</a></li>
+      </ul>
     </nav>
-
-    <main>
-        <section id="overview">
-            <h2>الخلاصة التنفيذية</h2>
-            <div class="intro-grid">
-                <div class="card">
-                    <h3>رسالة الدليل</h3>
-                    <p>يُرسّخ الدليل ثقافة حوكمة تُوازن بين سرعة القرارات وصرامة الرقابة، مع ضمان امتثال الشركة للأنظمة المحلية، وإبراز أدوار الشركاء، المجلس، واللجان التنفيذية المتخصصة.</p>
-                    <ul>
-                        <li>إطار تنظيمي متكامل من التعاريف حتى التقارير.</li>
-                        <li>نماذج جاهزة للاجتماعات، المتابعة، وإدارة المخاطر.</li>
-                        <li>ربط واضح بين حوكمة الشركات واستمرارية الأعمال.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>نطاق الهيكل المؤسسي</h3>
-                    <p>يُغطي الدليل الشركاء، مجلس المديرين، اللجان المنبثقة، والإدارة التنفيذية، إضافةً إلى سياسات الموارد البشرية، التقنية، المشتريات، وأمن المعلومات.</p>
-                    <ul>
-                        <li>تحديد الصلاحيات والحدود المالية.</li>
-                        <li>معايير تشكيل اللجان وتقييم أدائها.</li>
-                        <li>آليات الاستجابة للأزمات واستمرارية الأعمال.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>أدوات تشغيلية</h3>
-                    <p>يوفّر الدليل قوالب جاهزة للاجتماعات، سجلات المتابعة، تحليل المخاطر، خطة BCP/DR، وسجلات الامتثال للجهات الحكومية.</p>
-                    <ul>
-                        <li>نموذج أجندة ومحضر مجلس المديرين.</li>
-                        <li>سجل القرارات والمتابعة التصحيحية.</li>
-                        <li>قوائم تحقق للعقود، إدارة الموردين، وحماية البيانات.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="insights">
-            <h2>الركائز الأساسية للدليل</h2>
-            <div class="insights">
-                <div class="card">
-                    <h3>حوكمة فعّالة</h3>
-                    <p>تحديد السلطات والمسؤوليات ضمن تسلسل واضح يُسهِّل المحاسبة، ويمكّن المجلس من رقابة مالية وتشغيلية دقيقة من خلال لجان متخصصة وتقارير دورية.</p>
-                    <p><span class="highlight">مخرجات رئيسة:</span> مواثيق اللجان، سياسات تضارب المصالح، جداول تقييم الأداء.</p>
-                </div>
-                <div class="card">
-                    <h3>إدارة مخاطر واستمرارية</h3>
-                    <p>خطة متكاملة لاختبار استمرارية الأعمال والتعافي من الكوارث مع تحديد RTO/RPO، فرق الاستجابة، وقياس فعالية الاختبارات.</p>
-                    <p><span class="highlight">مخرجات رئيسة:</span> سجل المخاطر المؤسسية، مصفوفة التأثير/الاحتمال، وسجل الحوادث التقنية.</p>
-                </div>
-                <div class="card">
-                    <h3>امتثال وتشغيل</h3>
-                    <p>قوائم تحقق تغطي الالتزامات النظامية، الضرائب والزكاة، التأمينات، الدفاع المدني، الأمن السيبراني، وسلامة العمليات.</p>
-                    <p><span class="highlight">مخرجات رئيسة:</span> سجل المتطلبات الحكومية، جداول التدقيق الداخلي، وسياسات الأمن الفيزيائي والرقمي.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="recommendations">
-            <h2>توصيات تطويرية لشركة كانوف</h2>
-            <div class="recommendations">
-                <div class="card">
-                    <h3>تحليلات أداء لحظية</h3>
-                    <p>تطوير لوحة مؤشرات تنفيذية تربط بين الأداء المالي، المشاريع، والامتثال، مع تنبيهات فورية للحالات الحرجة وتكامل مع السجلات الرقمية.</p>
-                    <ul>
-                        <li>ربط محاضر المجلس وسجل القرارات بمنصة تقارير Power BI أو Looker.</li>
-                        <li>أتمتة قياس KPIs مثل دورة التدفقات النقدية، معدل الالتزام بالضوابط، ونضج إدارة المخاطر.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>حوكمة بيانات وسيبرانية</h3>
-                    <p>تبني إطار موحد لحماية البيانات يتماشى مع متطلبات الهيئة الوطنية للأمن السيبراني، مع اعتماد تصنيف البيانات وتوعية الموظفين.</p>
-                    <ul>
-                        <li>اعتماد سياسة تصنيف وأدوار مالكي البيانات.</li>
-                        <li>جدولة اختبارات اختراق ربع سنوية ومراجعة الوصول المميز.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>مسار نضج رأس المال البشري</h3>
-                    <p>تفعيل نظام رقمي لإدارة دورة حياة الموظف من الاستقطاب إلى تطوير القيادات مع برامج تعاقب وظيفي مرتبطة بمؤشرات الأداء.</p>
-                    <ul>
-                        <li>برنامج تقييم قادة الصف الثاني وربطه بخطة التعاقب.</li>
-                        <li>أكاديمية داخلية مصغرة لتطوير المهارات التقنية والسلوكية.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>شراكات وتمويل استراتيجي</h3>
-                    <p>استغلال قوة الحوكمة في التفاوض مع البنوك والمستثمرين، وتقديم تقارير شفافة تعزز التصنيف الائتماني وتستقطب مشاريع جديدة.</p>
-                    <ul>
-                        <li>تحديث سياسة العلاقات المصرفية وجدولة مراجعات ربع سنوية.</li>
-                        <li>ابتكار آلية تمويل للمشاريع الكبرى مع حماية التدفق النقدي.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="manual">
-            <h2>الدليل التشغيلي الكامل</h2>
-            <div class="manual-wrapper">
-                <div class="tools">
-                    <input type="search" id="manual-search" placeholder="ابحث في محتوى الدليل (الكلمات المفتاحية، اللجان، النماذج...)" aria-label="بحث في الدليل">
-                    <button type="button" id="clear-search">مسح البحث</button>
-                </div>
-                <div class="manual-layout">
-                    <aside class="toc" aria-label="جدول المحتويات">
-                        <h3>أقسام الدليل</h3>
-                        <ul id="toc-list"></ul>
-                    </aside>
-                    <article class="manual-body" id="manual-body">
-                        <p>دليل الحوكمة الشامل – شركة كانوف (ذات مسؤولية محدودة)
-اعتماد أولي – للإقرار من الشركاء ومجلس المديرين
-أُعدّ هذا الدليل وفق نظام الشركات السعودي ولوائحه، وبالاستناد إلى عقد تأسيس شركة كانوف (شركة ذات مسؤولية محدودة) ومركزها الرئيسي الرياض ورأس مالها 500,000 ريال سعودي، وهي مُدارة عبر مجلس مديرين من ثلاثة أعضاء: رئيس المجلس خالد حمود إبراهيم الذياب، نائب الرئيس فوزي حمود إبراهيم الذياب، وعضو المجلس والمدير التنفيذي نصرت محمد ديلوار محمد. تسود أحكام نظام الشركات وعقد التأسيس عند التعارض مع هذا الدليل.</p>
-<p>1) التعاريف والترتيب النظامي
-الترتيب النظامي للوثائق: (1) نظام الشركات ولوائحه، (2) عقد تأسيس الشركة وأي ملاحق تعديل، (3) هذا الدليل وسياساته وملاحقه، (4) الإجراءات الداخلية التنفيذية.
-تعاريف موجزة:
-المجلس: مجلس المديرين.
-الشركاء: مالكو حصص الشركة.
-اللجان: اللجان المنبثقة من المجلس (التدقيق والمخاطر، الترشيحات والمكافآت، وغيرها).
-الإدارة التنفيذية: يشمل المدير التنفيذي وكبار التنفيذيين (المالية، القانونية، الموارد البشرية، العمليات…).</p>
-<p>2) مبادئ الحوكمة
-العدالة والمساواة بين الشركاء.
-النزاهة والشفافية والإفصاح الكافي وفي الوقت المناسب.
-المساءلة والمسؤولية أمام الشركاء والجهات الرقابية.
-الكفاءة في اتخاذ القرار وإدارة المخاطر.
-الالتزام بجميع الأنظمة واللوائح ذات الصلة (الزكاة والضرائب والجمارك، الموارد البشرية، التأمينات، الدفاع المدني، البلديات، الاتصالات، منصة اعتماد…)، وبما لا يتعارض مع أحكام الشريعة الإسلامية.</p>
-<p>3) هيكل الحوكمة
-3.1 الشركاء
-يمارس الشركاء حقوقهم من خلال اجتماعات الشركاء العادية وغير العادية وفق عقد التأسيس ونظام الشركات.
-من صلاحيات الشركاء: تعيين/عزل المديرين، اعتماد القوائم المالية، توزيع الأرباح، تعديل عقد التأسيس، زيادة/تخفيض رأس المال، الاندماج/التحول/التصفية.
-3.2 مجلس المديرين (المجلس)
-التشكيل: ثلاثة مديرين على الأقل وفق عقد التأسيس. الرئيس: خالد حمود إبراهيم الذياب. نائب الرئيس: فوزي حمود إبراهيم الذياب. عضو ومدير تنفيذي: نصرت محمد ديلوار محمد.
-الدور: الإشراف على الاستراتيجية والميزانية والسياسات والرقابة على الإدارة التنفيذية، وتمثيل الشركة أمام الغير ضمن الحدود المنصوص عليها في العقد والأنظمة.
-أعمال تتطلب موافقة جميع المديرين: التمويل والاقتراض والضمانات، فتح/إغلاق الحسابات، بيع/شراء الحصص أو دخول شركاء، تعديل العقد أو الأغراض، تأسيس شركات أو المشاركة فيها، الرهن، توقيع الأوراق التجارية والقروض والاعتمادات، تصفية الشركة، وغيرها مما نص عليه عقد التأسيس.
-3.3 اللجان المنبثقة عن المجلس
-لجنة التدقيق والمخاطر (ACRC): تدقيق، ضوابط داخلية، إدارة المخاطر، الالتزام، المراجع الخارجي.
-لجنة الترشيحات والمكافآت (NRC): الحوكمة البشرية، سياسات الأجور والحوافز، تخطيط التعاقب الوظيفي، تقييم المجلس والتنفيذيين، ومراجعة تضارب المصالح.
-تشكل اللجان بقرار مجلس المديرين، وتُعتمد مواثيقها في الملاحق.
-3.4 الإدارة التنفيذية
-يقودها المدير التنفيذي نصرت محمد ديلوار محمد، ويعاونه مديرو الوظائف: المالية، المشتريات، المشاريع/العمليات، الموارد البشرية، التقنية/الأمن السيبراني، الشؤون القانونية والامتثال.</p>
-<p>4) اجتماعات الشركاء
-الدعوة: من المجلس أو من يملِكه العقد أو النظام. ترسل الدعوة قبل موعد الاجتماع بوقت كافٍ مع جدول الأعمال والمرفقات.
-النصاب والتصويت: وفق عقد التأسيس ونظام الشركات. توثّق القرارات بمحاضر توقع من الحاضرين وتُحفظ في سجلات الشركة.
-القرارات بالتمرير: جائزة حيثما سمح النظام، مع ما يثبت الاطلاع والموافقة من جميع الشركاء المعنيين.</p>
-<p>5) لائحة عمل مجلس المديرين
-الدورية: اجتماع اعتيادي كل ربع سنة على الأقل، واجتماعات طارئة حسب الحاجة.
-الدعوة والمحاضر: تُرسل الدعوة قبل خمسة أيام عمل مع جدول الأعمال. تُدوّن المناقشات والقرارات والمسؤوليات والجداول الزمنية، وتُحفظ النسخ والتسجيلات.
-الحضور عن بُعد: مسموح باستخدام وسائل الاتصال المرئي وفق الضوابط.
-تضارب المصالح: يُفصح العضو كتابةً مسبقًا ويمتنع عن التصويت في الموضوع المتعارض.
-التقييم السنوي: يشمل المجلس واللجان والإدارة التنفيذية، وتناقش نتائجه وخطط التحسين.</p>
-<p>6) الإطار المالي والرقابي
-القوائم المالية: إعداد ربع سنوي وسنوي وفق معايير التقارير المالية المعتمدة داخل المملكة، ومراجعتها عبر لجنة التدقيق والمخاطر، ثم اعتماد المجلس والشركاء.
-الميزانية والخطة: تُعرض ميزانية وخطة تشغيلية سنوية لاعتماد المجلس قبل بداية السنة المالية.
-المراجع الخارجي: تعيينه/عزله وتحديد أتعابه من صلاحيات الشركاء بناءً على توصية لجنة التدقيق والمخاطر.
-الرقابة الداخلية: وضع مصفوفة ضوابط رئيسية (قبول عميل، فتح مشروع، صرفيات، مطابقة بنكية، جرد أصول، إدارة عُهد نقدية…).</p>
-<p>7) سياسة إدارة المخاطر واستمرارية الأعمال
-إنشاء سجل مخاطر يغطي: مخاطر السوق، السيولة، الائتمان، التنفيذ، الالتزام، السمعة، الأمن السيبراني، الصحة والسلامة.
-اعتماد شهية المخاطر وحدودها، وخطط الاستجابة (تجنب/تقليل/نقل/قبول).
-خطة استمرارية الأعمال والتعافي من الكوارث (نسخ احتياطي، بدائل موقعية، خطة اتصال بالأطراف المعنية).</p>
-<p>8) الامتثال والالتزامات النظامية
-الزكاة والضرائب: التسجيل، الإقرارات، السداد، والفحص.
-التأمينات الاجتماعية والموارد البشرية: عقود العمل، حماية الأجور، السعودة، لوائح العمل.
-التراخيص والسجلات: السجل التجاري، الغرفة التجارية، الدفاع المدني، البلديات، الاتصالات، منصة اعتماد، وما يقتضيه نشاط المقاولات.
-مكافحة الرشوة وغسل الأموال: سياسات «اعرف عميلك/موردك»، الإبلاغ عن أي اشتباه، الضوابط على الهدايا والضيافة والتبرعات.</p>
-<p>9) سياسة الأطراف ذات العلاقة وتضارب المصالح
-تعريف «الطرف ذي العلاقة» (شريك/مدير/قريب من الدرجة الأولى/شركة يملكون فيها تأثيرًا… إلخ).
-لا تُبرم أي معاملة مع طرف ذي علاقة إلا بعد إفصاح مكتوب وتقييم مستقل وتوصية اللجنة المختصة، ثم موافقة المجلس وبما يتوافق مع ما اشترطه عقد التأسيس من إجماع.
-نموذج إفصاح سنوي ومتى دعت الحاجة.</p>
-<p>10) سياسة التعاقد والمشتريات
-المنافسة والشفافية: 3 عروض سعرية كقاعدة، أو تبرير لغير ذلك.
-تقييم الموردين (سجل تجاري ساري، زكاة/ضرائب، تأمينات، تأمينات مخاطر، سوابق، ملاءة).
-شروط تعاقدية قياسية: نطاق العمل، المواصفات، شروط الدفع، غرامات التأخير، جزاءات الجودة، الضمانات، تسليم المرحلي، التحكيم/القضاء المختص.</p>
-<p>11) سياسة الموارد البشرية
-الاستقطاب وفق وصف وظيفي ومقابلات موثقة والتحقق من المراجع.
-عقود عمل وفق نظام العمل السعودي، سياسة دوام وإجازات، ثقافة الانضباط والسلامة.
-تقييم أداء نصف سنوي وسنوي مرتبط بالأهداف KPI.
-قنوات تظلم وتبليغ (سرية وغير انتقامية).</p>
-<p>12) السياسة المصرفية وإدارة الخزينة
-فتح/إغلاق الحسابات البنكية، القروض، الضمانات، الاعتمادات المستندية، إصدار السندات لأمر، التوقيع على الأوراق التجارية: تتطلب موافقة جميع المديرين وفق عقد التأسيس.
-توقيع شيكات وصرفيات التشغيل اليومية بتوقيعين مجتمعين وفق مصفوفة الصلاحيات.
-مطابقة بنكية شهرية واستقلالية وظيفة الخزينة عن وظيفة المحاسبة.</p>
-<p>13) تبني التكنولوجيا وحماية المعلومات
-تعيين مسؤول أمن معلومات.
-سياسات: تصنيف المعلومات، التحكم في الوصول، النسخ الاحتياطي، إدارة كلمات المرور، تشفير الأجهزة، إدارة الحوادث السيبرانية، تدريب توعوي ربع سنوي.</p>
-<p>14) إدارة الوثائق والسجلات
-جدول حفظ واستبقاء: العقود (10 سنوات بعد انتهاء الالتزام)، السجلات المالية (10 سنوات)، سجلات الموظفين (5 سنوات بعد انتهاء الخدمة)، محاضر الاجتماعات (دائم)، المستندات الحكومية (دائم).
-أرشفة إلكترونية مُمكّنة بالبحث، مع نسخ احتياطي في موقع بديل.</p>
-<p>15) أحكام نهائية
-التعديل والمراجعة: يُراجع هذا الدليل سنويًا أو عند أي تغيير جوهري في الأنظمة أو عقد التأسيس.
-النفاذ: يسري من تاريخ اعتماده من الشركاء.
-اللغة المُعتمدة: العربية.</p>
-<p>الملاحق (مواثيق ونماذج)
-الملحق (أ): مصفوفة تفويض الصلاحيات (DoA)
-لا يَسري أي تفويض على الأعمال التي أوجب عقد التأسيس موافقة جميع المديرين عليها؛ وتبقى بيد المجلس مجتمعًا.
-المجال
-الإدارة التنفيذية (CEO)
-رئيس المجلس
-نائب الرئيس
-مجلس المديرين
-الشركاء
-عقود التوريد/الخدمات
-حتى 250,000 ر.س
-اعتماد من 250,001 حتى 750,000 ر.س
-اعتماد من 750,001 حتى 1,000,000 ر.س
-فوق 1,000,000 ر.س أو العقود الاستراتيجية
-عند ترتب التزامات غير عادية أو تأثير رأسمالي جوهري
-أوامر الشراء
-حتى 150,000 ر.س
-حتى 300,000 ر.س
-حتى 500,000 ر.س
-ما يزيد
-—
-صرفيات العمليات
-حتى 100,000 ر.س
-حتى 200,000 ر.س
-حتى 300,000 ر.س
-ما يزيد
-—
-فتح مشاريع/عطاءات
-يوصي
-يعتمد
-يعتمد
-يعتمد للمشاريع الاستراتيجية
-—
-بيع/شراء أصول ثابتة
-حتى 100,000 ر.س
-حتى 300,000 ر.س
-حتى 500,000 ر.س
-ما يزيد/أصول استراتيجية
-—
-توظيف مدير إدارة
-يوصي
-يعتمد
-يعتمد
-—
-—
-توظيف مدير تنفيذي بديل
-يرشح
-—
-—
-يوصي
-يعتمد الشركاء
-حسابات بنكية/قروض/ضمانات/سندات لأمر/اعتمادات
-—
-—
-—
-إجماع المديرين
-—
-تأسيس/الاستثمار في شركات أو دخول شريك/خروج شريك/شراء حصص
-—
-—
-—
-إجماع المديرين
-قد يتطلب قرار شركاء وفق العقد
-تعديل عقد التأسيس/الأغراض/التحول/الاندماج/التصفية
-—
-—
-—
-يوصي
-قرار شركاء</p>
-<p>ملاحظات تطبيقية: جميع العقود تُراجع قانونيًا قبل التوقيع؛ العمليات الحساسة (نقد، مستودع، عُهد) تتطلب فصل مهام وتفويضات مزدوجة.</p>
-<p>الملحق (ب): ميثاق مجلس المديرين (مختصر)
-الغرض والمسؤوليات، صلاحيات الدعوة، آلية إعداد الجلسات، مخرجات كل اجتماع (قرارات، تكليفات، جداول زمنية)، آلية التمرير، السرية.
-الملحق (ج): ميثاق لجنة التدقيق والمخاطر (ACRC)
-المسؤوليات: القوائم، الالتزام، الضوابط، إدارة المخاطر، التحقيق في البلاغات، المراجعة الداخلية، التوصية بتعيين المراجع الخارجي وأتعابه.
-الملحق (د): ميثاق لجنة الترشيحات والمكافآت (NRC)
-المسؤوليات: سياسات التوظيف والتعويضات، الإشراف على تقييم الأداء وخطط التعاقب، المرونة في استقطاب الكفاءات.
-الملحق (هـ): سياسة أخلاقيات العمل والإبلاغ (مختصر)
-قيم النزاهة، منع تضارب المصالح، الإفصاح عن الهدايا والضيافة، قنوات الإبلاغ السرية (بريد/بوابة)، عدم الانتقام.
-الملحق (و): سياسة المشتريات (مختصر)
-متطلبات العطاءات، ضوابط اختيار الموردين، آلية الفسخ والجزاءات، وثائق التسليم والاستلام.
-الملحق (ز): سياسة أمن المعلومات (مختصر)
-تصنيف المعلومات، التحكم في الوصول، إدارة الثغرات والحوادث، النسخ الاحتياطية، تدريب توعوي.
-الملحق (ح): نماذج جاهزة
-نموذج إفصاح تضارب مصالح
-نموذج إقرار التزام بالسلوك المهني
-نموذج طلب موافقة معاملة طرف ذي علاقة
-نموذج جدول أعمال اجتماع مجلس المديرين
-نموذج محضر اجتماع
-روزنامة الحوكمة السنوية (أمثلة للمهام: اعتماد الخطة والميزانية – الربع 4؛ القوائم السنوية – الربع 1؛ تقييم الأداء – الربع 2؛ مراجعة المخاطر – ربع سنوي؛ مراجعة السياسات – سنوي).</p>
-<p>الملاحق التفصيلية لدليل الحوكمة – كانوف (شركة ذات مسؤولية محدودة)
-يُقرأ هذا المستند مع «دليل الحوكمة الشامل – شركة كانوف». عند التعارض تسود أحكام نظام الشركات السعودي وعقد التأسيس. الحدود المالية أدناه قابلة للتعديل بقرار من مجلس المديرين وبما لا يمس الأعمال التي اشترط العقد إجماع المديرين عليها.</p>
-<p>الملحق (أ): مصفوفة تفويض الصلاحيات (DoA) – تفصيلي
-1) مبادئ عامة
-عدم جواز التفويض فيما اشترط العقد إجماع المديرين عليه (القروض، الضمانات، فتح/إغلاق الحسابات البنكية، الأوراق التجارية، تأسيس/الاستثمار في شركات، دخول/خروج شركاء، تعديل العقد… إلخ).
-فصل المهام: لا يجمع شخص واحد بين طلب الشراء، والاعتماد، والاستلام، والدفع.
-التدرّج والتوقيع المزدوج: للعمليات المالية والتزامات العقود فوق حد معيّن.
-إثبات كتابي: جميع الموافقات تحفظ إلكترونيًا مع رقم مرجعي.
-2) مستويات التوقيع والوظائف
-L1: صاحب الطلب/مدير القسم.
-L2: مدير المشتريات/العمليات.
-L3: مدير المالية (Finance Manager/CFO).
-L4: المدير التنفيذي (CEO).
-L5: نائب الرئيس.
-L6: رئيس المجلس.
-BOD: مجلس المديرين.
-Partners: الشركاء.
-3) الحدود المالية والاختصاصات (بالريال السعودي)
-الحدود المقترحة التالية مرجعية ويمكن تعديلها. التوقيعات تشير إلى من يعتمد (مع توقيعين عند الإشارة).
-البند
-حتى 50,000
-50,001–150,000
-150,001–250,000
-250,001–750,000
-750,001–1,000,000
-أكثر من 1,000,000
-أوامر شراء تشغيلي
-L2 + L3
-L3 + L4
-L4
-L4 + L5
-L5 + L6
-BOD
-عقود التوريد/الخدمات
-L3
-L3 + L4
-L4
-L4 + L5
-L5 + L6
-BOD
-صرفيات نقدية/تحويلات تشغيل
-L2 + L3
-L3 + L4
-L4
-L4 + L5
-L5 + L6
-BOD
-شراء أصول ثابتة
-L3
-L3 + L4
-L4
-L4 + L5
-L5 + L6
-BOD
-خصومات/مذكرات ائتمان للعملاء
-L2 + L3
-L3
-L3 + L4
-L4
-L4 + L5
-BOD
-شطب ديون معدومة
-L3 + L4
-L4 + L5
-L5 + L6
-BOD
-BOD
-Partners
-بيع/إتلاف أصل
-L3 + L4
-L4
-L4 + L5
-L5 + L6
-BOD
-BOD
-تسعير العطاءات
-مدير المشروع + L3
-L3 + L4
-L4
-L4 + L5
-L5 + L6
-BOD
-التسويات القانونية
-المستشار + L4
-L4 + L5
-L5 + L6
-BOD
-BOD
-Partners</p>
-<p>ملاحظات:
-توقيع الشيكات ومدفوعات البنك: توقيعان إلزاميان (L3 + L4 كحد أدنى) حتى 750k؛ وما فوقها L4 + L5 أو L5 + L6.
-التغييرات في نطاق العقود (Change Orders) تتبع نفس حدود العقد بعد تجميع قيمة التغيير مع الأصل.
-أي استثناء يتطلب محضر اعتماد مُسبب ومراجعة قانونية.
-4) صلاحيات نوعية (غير مالية)
-إقرار السياسات الداخلية/تعديلها: L4 يوصي، BOD يعتمد.
-الخطة والميزانية السنوية: L4 يقدّم، BOD يعتمد، Partners يُقرّون القوائم السنوية.
-التوظيف:
-مدراء الأقسام: L4 يعتمد بناء على توصية HR.
-مدراء تنفيذيون: BOD يوصي وPartners يعتمدون لتعيين CEO بديل وفق العقد.
-العلاقات البنكية والقروض والضمانات والاعتمادات والسندات لأمر: إجماع المديرين (BOD).
-معاملات الأطراف ذات العلاقة: لجنة NRC توصي، BOD يعتمد، ومع الحالات الجوهرية يُرفع للشركاء.</p>
-<p>الملحق (ب): ميثاق مجلس المديرين – تفصيلي
-الغرض
-الإشراف على الاستراتيجية، الحوكمة، الرقابة على الأداء والمخاطر، وضمان حماية مصالح الشركاء.
-التشكيل والكفاءة
-ثلاثة مديرين على الأقل وفق العقد. يُنتخب رئيس للمجلس ونائب له.
-معايير الكفاءة: خبرة في (القانون/المالية/المقاولات/الاستراتيجية)، نزاهة، تفرغ زمني مناسب.
-الاختصاصات الرئيسة
-اعتماد الرؤية والخطة والميزانية السنوية ومؤشرات الأداء.
-متابعة التقارير المالية والرقابية وتقارير اللجان.
-الموافقة على العقود والاستثمارات الجوهرية، وسياسات الشركة.
-التعيينات التنفيذية العليا وخطط التعاقب.
-إدارة المخاطر وشهية المخاطر والالتزام.
-الاتصالات مع الشركاء واعتماد التوزيعات.
-الاجتماعات
-دورية: ربع سنوي كحد أدنى + اجتماعات طارئة.
-الدعوة: قبل 5 أيام عمل مع جدول الأعمال والمرفقات.
-النصاب: حضور أغلبية الأعضاء؛ وتتخذ القرارات بالأغلبية إلا ما اشترط العقد الإجماع.
-التمرير: كتابيًا/إلكترونيًا حيثما سمح النظام مع إثبات الاطلاع.
-المحاضر: تتضمن الحضور، المواضيع، القرارات، الأصوات، المهل والمسؤوليات.
-تضارب المصالح والسرية
-إفصاح مُسبق وامتناع عن التصويت؛ توقيع إقرار سنوي بالالتزام والسرية.
-الوصول للمعلومات والاستشارة المستقلة
-يحق للمجلس طلب أي معلومات جوهرية والاستعانة بخبراء مستقلين عند الحاجة.
-التقييم والتطوير
-تقييم سنوي لأداء المجلس واللجان والمدير التنفيذي وخطة تطوير.
-أمانة سر المجلس
-تعيين أمين سر مسؤول عن الدعوات، محاضر الاجتماعات، متابعة القرارات، وحفظ السجلات.</p>
-<p>الملحق (ج): ميثاق لجنة التدقيق والمخاطر (ACRC)
-التشكيل والاستقلالية
-تتكون من 2–3 أعضاء يفضّل أن يكونوا غير تنفيذيين؛ حضور المدير التنفيذي بدعوة دون تصويت.
-يجوز دعوة المراجع الخارجي/الداخلي ومسؤول الامتثال وأمن المعلومات.
-الصلاحيات
-الوصول غير المقيّد للمعلومات والموظفين والدفاتر.
-التوصية بتعيين/عزل المراجع الخارجي وأتعابه.
-المسؤوليات
-التقارير المالية: مراجعة القوائم، السياسات المحاسبية، الافتراضات الجوهرية.
-الرقابة الداخلية: اعتماد إطار الضوابط وخطة المراجعة الداخلية، متابعة الملاحظات.
-المخاطر: تحديد وتصنيف المخاطر، اقتراح شهية المخاطر، مراجعة سجل المخاطر ربع سنويًا.
-الامتثال: متابعة الالتزامات النظامية (زكاة/ضرائب/تأمينات/تراخيص)، تقارير الالتزام.
-مكافحة الغش والبلاغات: الرقابة على قنوات الإبلاغ والتحقيقات وعدم الانتقام.
-الأمن السيبراني: مؤشرات الحوادث، اختبارات الاختراق، النسخ الاحتياطي والتعافي.
-استمرارية الأعمال: مراجعة خطط BCP/DR واختبارها سنويًا.
-الاجتماعات والتقارير
-اجتماع ربع سنوي على الأقل؛ تقرير إلى المجلس بعد كل اجتماع وخلاصة سنوية للشركاء.
-سياسة خدمات غير المراجعة
-لا يُسمح للمراجع الخارجي بأعمال قد تهدد الاستقلالية (إعداد الدفاتر، تصميم ضوابط أساسية…)، ويجوز استثناء محدود بموافقة اللجنة.</p>
-<p>الملحق (د): ميثاق لجنة الترشيحات والمكافآت (NRC)
-الغرض
-ضمان حوكمة رأس المال البشري: الترشيح للمناصب العليا، سياسات التعويض، تقييم الأداء، التعاقب.
-المسؤوليات
-وضع سياسة مكافآت عادلة (ثابت + متغير مرتبط بالأداء) مع حدود قصوى ومؤشرات واضحة.
-معايير اختيار وتقييم المديرين والتنفيذيين، وبرامج التهيئة والتطوير.
-مراجعة هيكل الرواتب والحوافز السنوي وتوصية بالتعديلات.
-إدارة تضارب المصالح في التعيينات والمكافآت.
-الإشراف على التقييم السنوي للمجلس والتنفيذيين.
-خطط التعاقب الوظيفي للمناصب الحرجة.
-مبادئ التعويض
-العدالة الداخلية، القدرة على الجذب، الربط بالأداء، الاستدامة المالية، وسياسة استرداد الحوافز (Clawback) عند المخالفات الجسيمة.</p>
-<p>الملحق (هـ): سياسة أخلاقيات العمل والإبلاغ (Code &amp; Whistleblowing)
-المبادئ
-النزاهة، الامتثال، الاحترام، السرية، تجنب تضارب المصالح.
-مجالات السلوك
-مكافحة الرشوة: حظر تقديم/قبول أي منفعة للتأثير على قرار. الإفصاح عن الهدايا والضيافة فوق 500 ر.س أو ذات طبيعة قد تؤثر على الحياد.
-مكافحة غسل الأموال وتمويل الإرهاب: تطبيق ضوابط «اعرف عميلك/موردك»، والتحقق من الأطراف.
-سرية المعلومات وحماية البيانات: استخدام المعلومات للأغراض المشروعة فقط.
-التواصل الإعلامي ووسائل التواصل: المتحدثون المخولون فقط.
-الإبلاغ والتحقيق
-قنوات سرية: بريد مخصص، بوابة داخلية، أو صندوق مغلق.
-إجراءات: استلام – تصنيف – تحقيق – توصية – قرار – إغلاق وتوثيق.
-عدم الانتقام: حظر أي إجراء ضد المُبلِّغ حسن النية.
-جزاءات: حسب لائحة الموارد البشرية ومدونة السلوك.</p>
-<p>الملحق (و): سياسة المشتريات – تفصيلي
-دورة المشتريات
-طلب شراء (PR) من القسم طالب الخدمة.
-طرح RFQ لثلاثة عروض كقاعدة.
-تقييم فني/مالي بنموذج مرجّح (السعر، الجودة، المدة، السجل، الضمانات).
-أمر شراء (PO) بعد موافقات DoA.
-استلام وفحص بإذن استلام (GRN) ومحضر فحص.
-المطابقة الثلاثية: PO + GRN + فاتورة.
-الدفع وفق شروط العقد بعد خصم الجزاءات/الدفعات المقدمة.
-حالات الشراء المباشر/المنافسة المحدودة
-مبررات: احتكار تقني، حالة طارئة، قيمة صغيرة. توثق المبررات ويصدقها L3 + L4 على الأقل.
-إدارة الموردين
-اعتماد مسبق: سجل تجاري، زكاة/ضرائب، تأمينات، تأمين مسؤولية/أداء عند اللزوم.
-تقييم سنوي: جودة، التزام بالمواعيد، معدّل العيوب، السلامة.
-تعارض المصالح: إقرار من جميع المشاركين في التقييم والبت.
-الشروط التعاقدية القياسية
-نطاق واضح، مواصفات، جدول زمني، غرامات تأخير، ضمان جودة، شروط دفع (مثال: 30% مقدّم + 60% عند التسليم + 10% بعد القبول)، بنود تغيير، قوة قاهرة، حل نزاع (تحكيم/قضاء)، قانون واجب التطبيق.</p>
-<p>الملحق (ز): سياسة أمن المعلومات – تفصيلي
-الحوكمة والنطاق
-تعيين مسؤول أمن معلومات (ISO) يرفع للجنة التدقيق والمخاطر.
-النطاق يشمل الأنظمة، الشبكات، الأجهزة، البيانات، البريد، الخدمات السحابية، وموردي التقنية.
-الضوابط الرئيسة
-تصنيف المعلومات: سري للغاية/سري/محدود/عام.
-التحكم بالوصول: مبدأ أقل صلاحية، مراجعة دورية للحقوق كل 6 أشهر.
-إدارة كلمات المرور: طول ≥ 12، تغيير دوري، MFA للحسابات الحساسة.
-التشفير: للأجهزة المحمولة والنسخ الاحتياطية والاتصالات.
-النسخ الاحتياطي والتعافي: يومي وتحقق شهري واستعادة اختبارية ربع سنوية.
-إدارة الثغرات والتحديثات: نافذة شهرية للتحديثات الأمنية.
-الاستجابة للحوادث: فريق CSIRT، مصفوفة تصعيد زمنية، تقرير بعد الحادث (Post-mortem).
-مزوّدو الطرف الثالث: تقييم أمني قبل التعاقد وبنود حماية البيانات.
-العمل عن بُعد: VPN، حظر تخزين البيانات الحساسة محليًا دون تشفير.
-التوعية: تدريب إلزامي ربع سنوي وقياس بالاختبارات.</p>
-<p>الملحق (ح): نماذج جاهزة – نصوص قابلة للتعبئة/الطباعة
-1) نموذج إفصاح تضارب مصالح
-الاسم: …………………  الوظيفة/الصفة: …………………  القسم: …………………
-أُقرّ بوجود/عدم وجود (اختر) تضارب مصالح فيما يلي:
-طبيعة المصلحة/العلاقة: ……………………………………
-الأطراف ذات العلاقة: ……………………………………
-تاريخ بدء المصلحة ومدتها: ………………………………
-تدابير المعالجة المقترحة: ………………………………
-أتعهد بالإفصاح عن أي تغيير فورًا والامتناع عن المشاركة في القرارات ذات الصلة.
-التوقيع: ………………… التاريخ: …/…/20…
-اعتماد اللجنة/المجلس: ………………………
-2) نموذج إقرار التزام بالسلوك المهني
-أنا الموقع أدناه ………………… أقرّ باطلاعي على «سياسة أخلاقيات العمل» والالتزام بأحكامها بما في ذلك السرية، تجنب تضارب المصالح، منع الرشوة، وحماية الأصول. وأوافق على الخضوع للإجراءات التأديبية عند المخالفة.
-الاسم والتوقيع: ………………… التاريخ: …/…/20…
-3) نموذج طلب موافقة معاملة طرف ذي علاقة
-المُقدِّم: …………………  نوع المعاملة: (توريد/تأجير/خدمات/قرض/ضمان/غير ذلك)
-القيمة التقديرية: …………………  شروط الدفع: …………………
-الطرف ذو العلاقة وطبيعة الصلة: …………………
-مذكرة تبريرية + تسعير مقارن/تقييم مستقل: مرفق
-توصية اللجنة المختصة: موافقة/رفض مع الأسباب
-قرار المجلس: …………………  التاريخ: …/…/20…
-4) نموذج جدول أعمال اجتماع مجلس المديرين
-التحقق من النصاب واعتماد جدول الأعمال.
-اعتماد محضر الاجتماع السابق.
-استعراض تقارير: مالية – تشغيل – مخاطر/التزام – مشاريع – موارد بشرية – تقنية.
-بنود للموافقة: (سياسات/عقود/استثمارات/تفويضات).
-بنود للمداولة: (استراتيجية/ميزانية/تعاقب/حوكمة).
-قرارات وتكليفات ومهل تنفيذ.
-ما يستجد من أعمال وتحديد موعد الاجتماع التالي.
-5) نموذج محضر اجتماع
-التاريخ/الوقت/المكان: …………………
-الحضور: ………………… (بيان الأعضاء والغائبين بعذر)
-الموضوعات:
-بند (1): ……… ملخص النقاش ……… القرار: ……… التصويت: ………
-بند (2): ………
-التكليفات والمسؤوليات والمهل: …………………
-اختتام الجلسة: …………………
-التوقيعات: الرئيس/الأعضاء/أمين السر.
-6) روزنامة الحوكمة السنوية (مثال تشغيلي)
-الربع/الشهر
-مهام المجلس
-لجنة التدقيق والمخاطر
-لجنة الترشيحات والمكافآت
-تنفيذ/إدارة
-يناير
-خطة/ميزانية نهائية واعتمادها
-خطة مراجعة داخلية وسجل مخاطر محدث
-خطة تقييم الأداء
-إقفال ميزان المراجعة السنوي
-فبراير–مارس
-اعتماد القوائم ومشروع التوزيعات
-مراجعة القوائم مع المراجع الخارجي
-مراجعة هيكل الرواتب والحوافز
-إقرار الزكاة/الضرائب والرفع
-أبريل
-مراجعة ربع سنوية
-تحديث المخاطر والضوابط
-خطة التعاقب
-تدريب أخلاقيات العمل
-يوليو
-مراجعة ربع سنوية
-اختبار BCP/DR
-مراجعة التوظيف الحرِج
-تقييم موردين نصف سنوي
-أكتوبر
-مراجعة ربع سنوية
-مراجعة الأمن السيبراني والضوابط
-سياسة مكافآت للعام القادم
-إعداد ميزانية العام القادم
-ديسمبر
-اجتماع ختامي/خطة العام القادم
-تقرير التزام سنوي
-تقييم المجلس والتنفيذيين
-جرد الأصول ومطابقات بنكية</p>
-<p>مرفقات إضافية اختيارية – تفصيل ونماذج (كانوف)
-تُستخدم هذه المرفقات لتعزيز تطبيق دليل الحوكمة وسياساته. جميع النماذج قابلة للتعديل بما يلائم واقع الشركة والبنوك/الجهات المعنية.</p>
-<p>(1) مصفوفة التواقيع البنكية الموحّدة (Bank Signature Matrix)
-1.1 المبادئ العامة
-الالتزام بمبدأ توقيعين إلزاميين على الأقل للمدفوعات، وبالأخص الشيكات والتحويلات خارجية.
-تحديد مدير قنوات إلكترونية (e-Channels Admin) مستقل عن منفذي المدفوعات.
-مراجعة المصفوفة سنويًا أو عند تغيير المسميات/الصلاحيات.
-1.2 نموذج مصفوفة التواقيع حسب الشرائح (قابلة للتخصيص)
-الشريحة
-نطاق المبلغ (ر.س)
-التحويلات المحلية
-التحويلات الدولية
-الشيكات
-ملاحظات
-A
-0 – 100,000
-L3 + L4
-L3 + L4
-L3 + L4
-توقيعان إلزاميان
-B
-100,001 – 750,000
-L4 + L5
-L4 + L5
-L4 + L5
-إشعار للمجلس
-C
-750,001 – 1,000,000
-L5 + L6
-L5 + L6
-L5 + L6
-موافقة مُسبقة عبر محضر
-D
-أكبر من 1,000,000
-L5 + L6 + إشعار BOD
-L5 + L6 + إشعار BOD
-L5 + L6 + إشعار BOD
-قد تتطلب اعتماد BOD صريح</p>
-<p>L3: مدير المالية، L4: المدير التنفيذي، L5: نائب الرئيس، L6: رئيس المجلس، BOD: مجلس المديرين.
-1.3 صلاحيات القنوات الإلكترونية
-إنشاء مستفيد: مُنشئ (موظف مالي)، موافق أول (L3)، موافق نهائي (L4/للمبالغ الصغيرة) و(L5/L6 للمبالغ الكبيرة).
-تعديل حدود المستخدمين: فقط e-Channels Admin بموافقة L4 + L5.
-تعليق/إلغاء مستخدم: e-Channels Admin بموجب طلب موقّع من L3 + L4.
-1.4 سجّل تغييرات المصفوفة (Change Log)
-التاريخ
-التغيير
-السبب
-المعتمدون</p>
-<p>(2) إجراءات فتح/إغلاق الحسابات البنكية – SOP + قوائم تحقق
-2.1 فتح حساب بنكي (Checklist)
-قرار/محضر مجلس المديرين بتفويض فتح الحساب وتسمية المخولين بالتوقيع.
-نسخ معتمدة من: السجل التجاري، عقد/نظام التأسيس وأي تعديلات، هوية/إقامات المخولين، سند تفويض بنكي.
-نموذج «تعريف توقيعات» + بصمات توقيع رطبة.
-تعبئة نماذج البنك (KYC، FATCA/CRS إن لزم، نموذج العناوين، نموذج التجارة الإلكترونية إن وجد).
-تفعيل قنوات إلكترونية وتحديد e-Channels Admin.
-إعداد مصفوفة التواقيع البنكية وإيداعها لدى البنك.
-اختبار عملي للتحويلات/الشيكات للتأكد من صلاحيات النظام (UAT داخلي).
-نموذج قرار مجلس (مختصر قابل للتعبئة):
-فتح حساب لدى بنك ……….. بعملة ……….
-تفويض كل من: [الاسم/الصفة] بالتوقيع وفق المصفوفة المرفقة.
-تفويض مسؤول قنوات إلكترونية: [الاسم/الوظيفة].
-2.2 إغلاق حساب بنكي (Checklist)
-تسوية الرصيد والعمولات، وإلغاء شيكات غير مستخدمة.
-إلغاء نقاط البيع/بوابات الدفع المرتبطة إن وجدت.
-سداد أو إلغاء الاعتمادات/الضمانات المرتبطة بالحساب.
-خطاب إغلاق موقع من المخولين + ختم الشركة.
-تأكيد مكتوب من البنك بإغلاق الحساب وإصدار براءة ذمة.
-تحديث السجلات الداخلية وإبلاغ المورّدين/العملاء عند الحاجة.
-نموذج خطاب إغلاق: «نرجو إغلاق حساب رقم … وإلغاء كافة الوسائل المرتبطة به…».</p>
-<p>(3) سجل المخاطر النموذجي + منهجية القياس
-3.1 حقول السجل
-رقم
-الفئة
-وصف الخطر
-السبب الجذري
-الاحتمال (1–5)
-الأثر (1–5)
-درجة الخطر (PxI)
-الضوابط القائمة
-إجراء الاستجابة
-مالك الخطر
-KRI/مؤشر
-تاريخ المراجعة</p>
-<p>3.2 مصفوفة التقييم (Heat Map)
-منخفض: 1–4، متوسط: 5–9، عالٍ: 10–15، حرج: 16–25.
-تُرفع المخاطر الحرجة إلى المجلس مع خطة معالجة زمنية واضحة.
-3.3 أمثلة KRIs (لأنشطة المقاولات)
-تأخر مشاريع &gt; 10% عن الجدول.
-عيوب جودة &gt; 3% من أوامر العمل.
-تجاوز تكلفة المواد &gt; 8% عن المخطط.
-دوران موظفين شهري &gt; 5% في الوظائف الحرِجة.
-3.4 عيّنات مُعبّأة (مثال)
-رقم
-الفئة
-وصف الخطر
-السبب
-L
-I
-PxI
-الضوابط
-استجابة
-المالك
-KRI
-مراجعة
-R-01
-سيولة
-تأخر تحصيل عملاء حكوميين
-تأخيرات اعتماد مستخلصات
-4
-4
-16
-متابعة أسبوعية، خطابات تذكير
-تمويل قصير الأجل مؤقت + تصعيد
-المالية
-DS0&gt;90
-ربعي
-R-02
-تنفيذ
-نقص عمالة ماهرة
-موسمية/إقامات
-3
-3
-9
-تعاقد إطار مع مُورِّدين
-خطة استقدام احتياطية
-العمليات
-إنتاجية/عامل
-شهري</p>
-<p>(4) قائمة تحقق الامتثال السنوي/الدوري
-4.1 نموذج رئيسي
-البند
-الجهة
-التكرار
-الموعد/الاستحقاق
-المالك
-حالة
-دليل/مرجع
-الإقرارات الضريبية/الزكوية
-الهيئة
-سنوي/دوري
-…
-المالية
-☐/☑
-إيصال سداد/إقرار
-اشتراكات التأمينات (GOSI)
-التأمينات
-شهري
-…
-الموارد البشرية
-☐/☑
-إيصال سداد
-حماية الأجور (WPS)
-الموارد البشرية
-شهري
-…
-الموارد البشرية
-☐/☑
-تقرير نظام
-شهادة غرفة التجارة
-الغرفة
-سنوي
-…
-الشؤون الإدارية
-☐/☑
-شهادة سارية
-رخصة البلدية/الدفاع المدني
-البلدية/الدفاع المدني
-سنوي
-…
-العمليات
-☐/☑
-رخصة سارية
-عقود الموظفين وتحديث منصة العمل
-الموارد البشرية
-جاري
-…
-الموارد البشرية
-☐/☑
-عقود/مستند
-مراجعة أمن المعلومات/اختبار اختراق
-تقنية المعلومات
-سنوي/ربع سنوي
-…
-تقنية المعلومات
-☐/☑
-تقرير</p>
-<p>تُخصص التكرارات حسب طبيعة التسجيل الضريبي وحجم النشاط.</p>
-<p>(5) خطة اختبار استمرارية الأعمال والتعافي (BCP/DR) + تقرير نتائج
-5.1 خطة الاختبار (Template)
-السيناريو: فقدان مركز البيانات/انقطاع خدمة سحابية/تعطل ERP.
-الأهداف: التحقق من RTO/RPO وفق السياسة.
-النطاق: الأنظمة/العمليات المشمولة.
-الفريق: CSIRT + تقنية + تشغيل + مالية.
-الجدول: تاريخ/وقت البدء، الأنشطة، مسؤوليات.
-معايير النجاح: زمن الاستعادة، دقة البيانات، خلوّ الأخطاء الحرجة.
-5.2 تقرير ما بعد الاختبار (Post-Exercise Report)
-البند
-النتيجة
-الفجوات
-توصيات
-مالك الإجراء
-موعد الإغلاق</p>
-<p>(6) سجل الهدايا والضيافة (G&amp;H Register)
-التاريخ
-المُقدِّم/المستلم
-الجهة
-الوصف
-القيمة التقديرية
-سبب القبول/الرفض
-المعتمد
-سياسة مرجعية: الإفصاح والاعتماد المسبق لما فوق 500 ر.س أو ما قد يؤثر على الحياد.</p>
-<p>(7) سجل الأطراف ذات العلاقة (Related Parties Register)
-الاسم
-الصفة/العلاقة
-الجهة/الشركة
-نوع المعاملة
-تاريخ/قيمة
-حالة الاعتماد</p>
-<p>(8) نموذج خطة المراجعة الداخلية السنوية
-منهجية: قائمة مستندة إلى المخاطر (Risk-based) وفق درجات PxI.
-النطاق: مالية، مشتريات، مشاريع، خزينة، موارد بشرية، أمن معلومات.
-الخطة: جدول زمني ربع سنوي + ساعات ميدانية + تسليم تقارير.
-متابعة الملاحظات: سجل تصحيحي مع تواريخ إغلاق ومسؤوليات.</p>
-<p>(9) قائمة مراجعة العقود (Contract Review Checklist)
-محور
-أسئلة رئيسة
-حالة
-النطاق والمواصفات
-هل النطاق محدد ويحتوي Deliverables قابلة للقياس؟
-☐/☑
-السعر والدفع
-شروط دفع واضحة، دفعات مرحلية، غرامات تأخير؟
-☐/☑
-المخاطر والضمانات
-حدود المسؤولية، ضمان جودة، تأمينات لازمة؟
-☐/☑
-التغيير والفسخ
-آلية Change Orders، قوة قاهرة، فسخ من طرف واحد؟
-☐/☑
-القانون والاختصاص
-هل القانون الواجب والتسوية محددان؟
-☐/☑
-الامتثال
-التزامات ضرائب/زكاة/توطين/سلامة؟
-☐/☑</p>
-<p>(10) مصفوفة الأدوار RACI – نموذج
-المهمة
-Responsible
-Accountable
-Consulted
-Informed
-إعداد الميزانية
-المالية
-CEO
-العمليات/المشاريع
-BOD
-طرح عطاء مشروع
-المشتريات
-CEO
-المشاريع/القانوني
-BOD
-تحديث سجل المخاطر
-أصحاب المخاطر
-ACRC
-المالية/العمليات
-BOD</p>
-<p>(11) نموذج أمر تغيير (Change Order Request – COR)
-المشروع/العقد: ………  العميل: ………  سبب التغيير: (نطاق/سعر/زمن)
-الوصف التفصيلي للتغيير: ………  الأثر المالي: ………  الأثر الزمني: ………
-مرفقات: مستندات داعمة/تسعير مقارن
-اعتمادات داخلية حسب DoA: ………
-اعتماد العميل: ………  التاريخ: …/…/20…</p>
-<p>(12) مذكرة تبرير شراء مباشر/طارئ
-الوصف: ………  القيمة: ………  مبررات عدم المنافسة: (احتكار/عاجل/قيمة صغيرة)
-بدائل دُرست: ………  تحليل مخاطر: ………
-اعتماد L3 + L4 (كحد أدنى): ………  التاريخ: …/…/20…</p>
-<p>(13) سجل الأصول الثابتة ونموذج الجرد
-رقم الأصل
-الوصف
-الموقع
-تاريخ الشراء
-التكلفة
-مجمّع الإهلاك
-صافي القيمة
-المسؤول
-نموذج جرد: رقم الأصل/الحالة/الفروقات/ملاحظات/اعتماد.</p>
-<p>(14) سياسة العهد النقدية + سجل الصرف
-حد العهدة: ……… ر.س
-مسموح بها: مصاريف صغيرة/طارئة مع فواتير أصلية.
-تسوية شهرية: كشف عهدة + مرفقات + اعتماد L3.
-سجل الصرف:
-التاريخ
-البيان
-المستفيد
-المبلغ
-المستند
-توقيع المستلم
-اعتماد</p>
-<p>(15) تقرير لجنة التدقيق والمخاطر إلى مجلس المديرين – نموذج ربعي
-المحور
-ملخص الأعمال
-حالات عدم الالتزام
-توصيات/قرارات مطلوبة
-القوائم والنتائج
-…
-…
-…
-الضوابط الداخلية
-…
-…
-…
-المخاطر/الامتثال
-…
-…
-…
-الأمن السيبراني/BCP
-…
-…
-…</p>
-<p>(16) نموذج تقييم أداء المجلس والتنفيذيين (مختصر)
-المجلس: فعالية الاجتماعات، جودة المواد، المتابعة، إدارة تضارب المصالح.
-المدير التنفيذي: تحقيق الأهداف (مالية/تشغيلية)، بناء الفريق، إدارة المخاطر، الامتثال.
-المعايرة: درجات 1–5 مع أمثلة أدلة داعمة.</p>
-<p>الهيكلة التنظيمية الشاملة – شركة كانوف (المقاولات وإنشاء المباني)
-وثيقة تصميم هيكلي قابلة للتوسع، مبنية على أفضل ممارسات شركات المقاولات بالمملكة. تُقرأ مع دليل الحوكمة والملاحق.</p>
-<p>1) مبادئ التصميم
-الحوكمة أولًا: تبعية التدقيق الداخلي للجنة التدقيق والمخاطر، واستقلال HSE والجودة عن التنفيذ.
-مصفوفة قيادة ثنائية (وظيفي × مشروع) لضمان سرعة التنفيذ وضبط التكلفة.
-قابلية التوسع: أدوار أساسية ثابتة مع إمكانية مضاعفة فرق المشاريع حسب عدد/حجم المشاريع.
-فصل المهام: مالية/خزينة/مشتريات/مستودعات/استلام/صرف.
-امتثال: نظام الشركات، نظام العمل، الزكاة/الضرائب، التأمينات، الدفاع المدني، البلدية، الأمن السيبراني.</p>
-<p>2) المخطط العام (Organogram)
-الشركاء
-مجلس المديرين (رئيس/نائب/عضو-مدير تنفيذي)
-لجان المجلس: لجنة التدقيق والمخاطر (ACRC) – لجنة الترشيحات والمكافآت (NRC)
-الرئيس التنفيذي (CEO)
-مكتب إدارة المشاريع (PMO)
-مكتب الاستراتيجية وإدارة الأداء (S&amp;OP)
-إدارة الجودة (QA)
-إدارة الصحة والسلامة والبيئة (HSE)
-الشؤون القانونية والامتثال (Legal &amp; Compliance)
-التدقيق الداخلي (Internal Audit) (يرفع للجنة ACRC)
-إدارة المخاطر واستمرارية الأعمال (ERM/BCP)
-الاتصال المؤسسي والعلاقات الحكومية (Corp. Comms &amp; GR)
-التحول الرقمي وتقنية المعلومات/أمن المعلومات (IT/IS)
-القطاعات التنفيذية تحت الـCEO
-قطاع العمليات (Projects &amp; Construction)
-إدارة المشاريع (Project Directors/Managers)
-إدارة التنفيذ المدني/المعماري (Construction)
-إدارة أعمال الـMEP
-إدارة التخطيط والجدولة (Planning/PPM – Primavera)
-إدارة ضبط التكاليف (Cost Control)
-إدارة ضبط الوثائق (Document Control)
-المساحة والاختبارات المعملية (Survey &amp; Lab)
-القطاع التجاري والفني (Commercial &amp; Technical Office)
-المكتب الفني/الرسومات (Technical Office: Shop Drawings, As-Built, BIM)
-الكميات والدفعيات (Quantity Surveying – QS)
-العقود والمطالبات (Contracts &amp; Claims)
-القيمة الهندسية (Value Engineering)
-قطاع سلسلة الإمداد (SCM)
-المشتريات والعقود الفرعية (Procurement &amp; Subcontracting)
-الخدمات اللوجستية (Logistics)
-المستودعات والمخزون (Warehouse &amp; Inventory)
-الموردون والتأهيل (Vendor Management)
-قطاع المعدات والورش (Plant &amp; Equipment)
-ورش الصيانة (Mechanical/Auto/Electrical)
-الأسطول والنقل (Fleet &amp; Transport)
-إدارة مواقع ومعدات الرفع
-القطاع المالي (Finance &amp; Treasury)
-الحسابات العامة (GL)
-الذمم المدينة/الدائنة (AR/AP)
-الخزينة والبنوك (Treasury)
-الضرائب/الزكاة والامتثال المالي
-الأصول الثابتة والتأمين
-محاسبة المشاريع والتقارير
-قطاع الموارد البشرية والشؤون الإدارية (HR &amp; Admin)
-الاستقطاب والتوظيف
-شؤون الموظفين والسعودة/WPS/GOSI
-الرواتب والمزايا
-التعلم والتطوير
-الخدمات الإدارية والمرافق والسفر
-قطاع تطوير الأعمال والتقدير والعطاءات (BD &amp; Estimation &amp; Tendering)
-تطوير الأعمال والعلاقات
-ما قبل التأهيل والتسجيلات
-التقدير والتسعير (مدني/معماري/MEP)
-العروض الفنية والمالية (Proposals)</p>
-<p>3) سلم المسميات والدرجات (نموذج)
-الرمز
-الدرجة
-أمثلة مسميات
-EX
-تنفيذي
-CEO / رئيس تنفيذي للعمليات COO / رئيس تنفيذي مالي CFO
-D
-مدير قطاع
-مدير قطاع العمليات / التجاري / SCM / المعدات / المالي / HR / BD
-SD
-مدير إدارة
-مدير مشاريع / مدير المكتب الفني / مدير العقود / مدير المشتريات / مدير التخطيط / مدير HSE / مدير QA / مدير المالية / مدير HR
-M
-رئيس قسم
-رئيس قسم QS / رئيس قسم مخزون / رئيس ورشة / رئيس أسطول / رئيس تخطيط / رئيس PMO
-S
-أقدم
-مهندس أقدم تخطيط / مهندس أقدم موقع / محاسب أقدم مشاريع
-P
-محترف
-مهندس/محاسب/أخصائي/مراقب
-T
-تقني/فني
-فني ورشة / فني مختبر / مسّاح / رسام أوتوكاد/BIM
-O
-تشغيلي/عمالة
-مراقب عمال / فورمان / عمال مهرة</p>
-<p>4) توصيف الإدارات والأقسام + هيكلة تفصيلية بالأدوار
-4.1 قطاع العمليات (Projects &amp; Construction)
-قيادة القطاع: مدير قطاع العمليات (D) + مكتب دعم المشاريع (PMO).
-فرق المشاريع (لكل مشروع):
-مدير مشروع (SD) → مدير إنشاءات/Construction Manager (M) → مهندسو موقع مدني/معماري (S/P) → فورمان (O) → عمال.
-فريق MEP: مدير MEP (M) → مهندس/مشرف كهرباء/ميكانيكا (S/P) → فنيون.
-تخطيط (Planning) – مهندس تخطيط (S/P) مسؤول عن الجدولة (Primavera P6) وتحديث التقدم.
-ضبط التكاليف (Cost Control) – مهندس/محلل (S/P) لتتبع الربحية والالتزامات.
-QA/QC – مهندس جودة (S/P) ومفتشون.
-HSE – مسؤول/ضابط سلامة (S/P) ومشرفون.
-Document Control – مراقب وثائق (P) ونظام DMS.
-Survey &amp; Lab – مسّاحون وفني مختبر مواد.
-4.2 القطاع التجاري والفني (Commercial &amp; Technical Office)
-المكتب الفني: مدير المكتب الفني (SD) – رسامو Shop Drawings، BIM، تنسيق MEP، As-Built.
-QS: رئيس قسم (M) – مهندسو كميات (S/P) – إعداد المستخلصات وحصر الكميات.
-العقود والمطالبات: مدير عقود (SD) – أخصائي Claims/Change Orders – إدارة المخاطر التعاقدية.
-القيمة الهندسية: مهندسون مختصون بتحسين التصاميم وتخفيض التكلفة.
-4.3 سلسلة الإمداد (SCM)
-المشتريات: مدير مشتريات (SD) – مشترون (S/P) – مناقصات الموردين – عقود الباطن.
-اللوجستيات: رئيس لوجستيات (M) – منسقو شحن ومخازن – التخليص والنقل.
-المستودعات: أمين مستودع رئيسي (M) – أمين مستودع موقع (P) – جرد ومطابقة.
-إدارة الموردين: تأهيل/تقييم سنوي ومراقبة الأداء.
-4.4 المعدات والورش (Plant &amp; Equipment)
-مدير القطاع (D) – ورش (ميكانيكا، كهرباء، هيدروليك)، قطع غيار، صيانة وقائية، تسجيل أصول.
-الأسطول: تخطيط احتياج المعدات، تخصيص لمواقع المشاريع، مراقبة الوقود والتتبّع.
-4.5 القطاع المالي (Finance &amp; Treasury)
-مدير مالي (CFO/SD). أقسام: AP/AR/GL/مشاريع/خزينة/ضرائب/أصول.
-تقارير: مركزية شهرية حسب المشروع، تحليل ربحية، تدفقات نقدية، مؤشرات DSO/DPO.
-4.6 الموارد البشرية والإدارة (HR &amp; Admin)
-توظيف محلي/خارجي، التعاقدات، السعودة، الرواتب، الحضور، التدريب، السكن/النقل/السفر، الصحة المهنية.
-4.7 تطوير الأعمال والتقدير (BD &amp; Estimation)
-مسح السوق والعملاء، التأهيل لدى الجهات، استلام كراسات المناقصات، الاستفسارات RFI، التقدير (مدني/MEP)، إعداد العروض، التسعير النهائي مع الإدارة التنفيذية.
-4.8 الجودة (QA) والسلامة (HSE)
-استقلال تنظيمي عن العمليات؛ تقارير مباشرة للـCEO ولجنة ACRC في القضايا الجوهرية.
-QA: نظام ISO 9001، تدقيقات داخلية، NCR/Corrective Actions.
-HSE: خطط HSE للمشاريع، تدريب، تقارير الحوادث، OSHA/الدفاع المدني.
-4.9 تقنية المعلومات/أمن المعلومات (IT/IS)
-دعم المستخدمين، الشبكات، أجهزة الموقع، ERP (على سبيل المثال: Oracle/ODOO/SAP)، أمن معلومات (MFA/نسخ احتياطي/DR).
-4.10 الشؤون القانونية والامتثال
-مراجعة العقود والتوكيلات، إدارة النزاعات والمطالبات، الامتثال النظامي والضريبي، الأطراف ذات العلاقة.
-4.11 الاستراتيجية وإدارة الأداء/PMO/ERM
-بطاقة أداء متوازن (KPIs)، خارطة المشاريع، إدارة المخاطر المؤسسية، استمرارية الأعمال.</p>
-<p>5) نماذج توزيع القوى العاملة (Headcount Models)
-5.1 حسب حجم الشركة (إرشادي)
-الحجم
-إيراد سنوي تقريبي
-إجمالي موظفين
-ملاحظات
-S
-50–100 مليون ر.س
-120–180
-مشروعان متوسطان متوازيان
-M
-200–400 مليون ر.س
-300–500
-حتى 5 مشاريع متوازية
-L
-500+ مليون ر.س
-700–1200
-عدة مشاريع كبرى ومتعددة المناطق</p>
-<p>5.2 توزيع نموذجي على الإدارات (حجم M كمثال)
-الإدارة
-عدد تقريبي
-العمليات (مواقع)
-200–320
-التجاري/الفني
-25–45
-SCM
-20–35
-المعدات/الورش
-25–40
-المالية
-15–25
-HR &amp; Admin
-15–25
-BD &amp; Estimation
-10–18
-QA
-6–10
-HSE
-10–18
-IT/IS
-6–10
-قانوني/امتثال/ERM/PMO/استراتيجية
-6–10</p>
-<p>5.3 فرق المشاريع حسب حجم المشروع
-مشروع صغير (≤50 مليون ر.س): PM (1) / Eng Site (2–3) / QC (1) / HSE (1) / Planning (0.5–1) / QS (1) / Storekeeper (1) / Survey (1) / Foremen (3–4) / عمالة 60–120.
-مشروع متوسط (50–150 مليون): PM (1) / Construction Mgr (1) / MEP Mgr (1) / Eng Civil/Arch (4–6) / MEP Eng (2–3) / QC (2) / HSE (2–3) / Planning (1) / Cost Control (1) / QS (2) / Doc Control (1) / Storekeeper (1–2) / Survey (2) / Foremen (6–8) / عمالة 150–300.
-مشروع كبير (≥150 مليون): Project Director (1) / Deputies (2) / Functional Leads (QA/HSE/Planning/QS) موسّعة / فرق تنفيذ متعددة المناطق.</p>
-<p>6) تبعية ماتريكس (وظيفي × مشروع)
-مهندو التخطيط والتكلفة وHSE وQA وDoc Control يتبعون وظيفيًا لمديريهم المركزيين وعمليًا لمدير المشروع.
-التقييم السنوي بنسبة 60% مدير الوظيفة + 40% مدير المشروع.</p>
-<p>7) خطوط التقارير الرسمية (ملخّص)
-جميع مديري المشاريع يرفعون لمدير قطاع العمليات.
-المكتب الفني/QS/العقود يرفع لمدير القطاع التجاري والفني، مع ارتباط تشاركي بالمشاريع.
-المشتريات/المستودعات/اللوجستيات ترفع لمدير SCM.
-المالية → CFO؛ HR → مدير HR؛ المعدات → مدير المعدات؛ HSE/QA → CEO مباشرة.
-التدقيق الداخلي → ACRC (مجلس) إداريًا → CEO.</p>
-<p>8) أمثلة توصيف وظيفي موجز (JD Snippets)
-مدير مشروع: قيادة التنفيذ ضمن الوقت/الميزانية/الجودة، إدارة المقاولين الفرعيين، تقارير تقدم، إدارة المخاطر.
-مهندس تخطيط: إعداد الجدول P6، تحديث التقدم، تقارير التأخير، دمج الموارد والكميات.
-مهندس QS: حصر الكميات، إعداد ودعم المستخلصات، تقييم أوامر التغيير.
-مدير مشتريات: استراتيجية الشراء، عقود الباطن، تفاوض، التزام سياسة المشتريات.
-رئيس ورشة: برنامج صيانة وقائية، جاهزية المعدات، قطع الغيار، سجلات الوقود.
-مسؤول HSE: خطط HSE، توعية، تفتيشات، تقارير الحوادث والتصحيحات.
-مهندس جودة: خطط ITP، فحوصات، NCR، إدارة الوثائق الفنية.</p>
-<p>9) مؤشرات أداء رئيسة (KPIs) – مختارة
-عمليات: التقدم مقابل الخطة %، انحراف التكلفة CPI/SPI، زمن الإغلاق Punch List.
-تجاري: نسبة أوامر التغيير المقبولة، DSO، نسبة ربحية المشروع.
-SCM: زمن التوريد OTIF، نسبة التوريد من موردين معتمدين، دوران المخزون.
-HSE: معدل الإصابات LTIFR، الساعات دون حادث، التزام خطط السلامة %.
-QA: معدل العيوب/إعادة العمل، نتائج التدقيقات.
-مالية: التدفق التشغيلي، DPO/DSO، دقة التنبؤ النقدي.
-HR: دوران موظفين، نسبة السعودة، أيام تدريب/موظف.</p>
-<p>10) خارطة ترتيبات الاستلام والتسليم (Handover Map)
-عند فتح مشروع: خطة تعبئة، تعيين فريق، خطة مشتريات أولية، أساسيات السلامة، خطة جودة.
-عند إغلاق مشروع: As-Built، شهادات الاختبار، دليل التشغيل والصيانة، إغلاق العقود والمطالبات، تسليم المخزون.</p>
-<p>11) ملحق بصري (نموذج مخطط هرمي نصي)
-Partners
-└─ Board of Managers (Chair / Vice / CEO)
-   ├─ CEO
-   │  ├─ PMO / Strategy / ERM / Internal Audit
-   │  ├─ QA (independent)      ├─ HSE (independent)
-   │  ├─ Legal &amp; Compliance    ├─ Corp Comms &amp; GR
-   │  └─ IT / IS
-   ├─ Operations (Projects &amp; Construction)
-   ├─ Commercial &amp; Technical Office (QS / Contracts / TO / BIM)
-   ├─ SCM (Procurement / Logistics / Warehouse)
-   ├─ Plant &amp; Equipment (Workshops / Fleet)
-   ├─ Finance &amp; Treasury
-   └─ HR &amp; Administration</p>
-<p>متطلبات تأسيس وتشغيل – شركة كانوف للمقاولات (إنشاء المباني)
-حزمة متطلبات عملية وقابلة للتنفيذ لتأهيل الشركة للتشغيل الكامل والمنافسة على مشاريع القطاعين العام والخاص في المملكة. تُقرأ مع: دليل الحوكمة، الملاحق التفصيلية، والهيكلة التنظيمية.</p>
-<p>1) المتطلبات القانونية والتنظيمية (أساسية)
-السجل التجاري/النشاطات: التأكد من إدراج أنشطة المقاولات وإنشاء المباني وجميع الفروع/الأنشطة المساندة (مكتب فني/مشتريات/تأجير معدات إن وُجد).
-العنوان الوطني والسجل البلدي: ربط المنشأة بالعناوين والمواقع التشغيلية والمخازن.
-الغرفة التجارية: اشتراك ساري وتجديد سنوي.
-الزكاة والضرائب (ZATCA): تسجيل/تحديث ملف الزكاة والضريبة، ضريبة القيمة المضافة 15%، الفوترة الإلكترونية (FATOORA – المرحلة الثانية/الربط)، ضبط دورية الإقرارات.
-التأمينات الاجتماعية (GOSI): تسجيل صاحب العمل، نسب الاشتراكات، مخاطر المِهن، الربط مع منصة مدد/WPS.
-وزارة الموارد البشرية: حسابات قِوى للعقود، نسب نطاقات المستهدفة وخطة السعودة، لوائح تنظيم العمل (معتمدة)، عقود عمل رقمية.
-منصة اعتماد (ETIMAD): تسجيل وتأهيل للمنافسة على المشاريع الحكومية، تفعيل الضمانات البنكية الإلكترونية.
-تصنيف المقاولين (MOMRAH): تقديم ملف التصنيف/التحديث حسب الفئة المستهدفة (ماليات، مشاريع منجزة، كادر فني، معدات).
-الهيئة السعودية للمقاولين (SCA): عضوية سارية وتسجيل الكوادر والمشاريع.
-البلديات/الدفاع المدني (BALADY + CDD): تراخيص مواقع المشاريع، مخطط السلامة، خطة الطوارئ، لوحات الترخيص.
-الهيئة السعودية للمهندسين (SCE): اعتماد المهندسين/الفنيين الوافدين والمحليين وربطهم بالمنشأة.
-الإفصاح عن المالك المستفيد (UBO) وتحديثات السجل التجاري إلكترونيًا.
-عقود واتفاقيات قياسية: نماذج FIDIC/عقود حكومية، نماذج مقاول باطن، شراء، أوامر تغيير.
-الملكية الفكرية/الموقع الإلكتروني: حجز العلامة التجارية/الدومين، سياسة خصوصية ومحتوى تعريفي.
-إن وجد مستثمر أجنبي: رخصة استثمار (MISA) واتساق الأنشطة مع الرخصة.</p>
-<p>2) متطلبات مصرفية وتمويلية
-فتح حسابات تشغيلية بالريال والعملات اللازمة + قنوات إلكترونية مع مصفوفة توقيعات بنكية.
-تسهيلات ضمانات بنكية (Bid/AP/Performance/Retention) وخطابات اعتماد LC (استيراد)، وتمويل فواتير إن لزم.
-إدارة الخزينة: سياسات أرصدة دنيا/عليا، تحكّم في المستفيدين، لوحة تدفق نقدي أسبوعية/شهرية.
-أدوات التحصيل: نقاط بيع/بوابات دفع، ضوابط العهد النقدية.
-خطوط اتصال بنكية للطوارئ وخطط بديلة.</p>
-<p>3) متطلبات التأمين
-Contractors All Risks (CAR) لكل مشروع.
-Third Party/Public Liability للمواقع.
-Workmen’s Compensation/Employer’s Liability (مكمّل لاشتراكات GOSI).
-Fleet &amp; Equipment All Risks للمركبات والمعدات الثقيلة.
-Professional Indemnity (PI) عند عقود التصميم والبناء/الإشراف.
-Medical Insurance للموظفين (CCHI).
-Marine Cargo عند الشحنات.</p>
-<p>4) الأنظمة والتقنية (Digital Stack)
-ERP مشاريع (مالي+تكاليف+مخزون+مشتريات+أصول+رواتب).
-DMS/ضبط الوثائق + قوالب ITP/NCR/RFI/Transmittals.
-Primavera P6 للتخطيط، وPower BI للتقارير.
-BIM/CAD (Autodesk/بدائله) للمكتب الفني.
-تكامل الفوترة الإلكترونية (ZATCA)، وWPS/مدد، وGOSI/قِوى مع الـERP.
-نظام HSE لتسجيل الحوادث وتذاكر السلامة.
-MDM/أمن معلومات: MFA، نسخ احتياطية، DR، VPN للمواقع.</p>
-<p>5) الموارد البشرية والإدارة
-اعتماد هيكلة الدرجات والمسميات + سلم رواتب وفوائد.
-خطة سعودة وفق نطاقات (أهداف ربع سنوية)، وبرنامج تمهير/هدف.
-مصفوفة كفاءات وتدريب (HSE/QA/PM/ERP) + اختبار صلاحية رخص التشغيل للمعدات.
-نُزل/سكن المواقع، النقل، بدلات مواقع/مهمات، رعاية صحية ومياه وغذاء آمن بالمواقع.
-سياسات: سفر/مصاريف/عهد/عمل ميداني/ساعات إضافية/العمل عن بُعد/سلوك مهني.
-آليات التوظيف والاستقدام، التوطين، إنهاء الخدمة، والتقييم السنوي.</p>
-<p>6) العمليات وإدارة المشاريع
-إطار PMO بمراحل: مناقصة → ترسية → تعبئة → تنفيذ → تسليم → إغلاق.
-حزمة تعبئة المشروع (Mobilization Pack): خطة HSE، خطة جودة، خطة مشتريات أولية، جدول أساس (Baseline)، مخطط موقع.
-طرق تنفيذ (Method Statements) وخُطط فحص ITP حسب البنود.
-قياس التقدم (Earned Value/S-Curve)، تقارير أسبوعية وشهرية.
-مطالبات وأوامر تغيير: إدارة Claims/CO وفق الملاحق.
-مختبرات/مساحة: أجهزة معتمدة وشهادات معايرة.
-Temporary Works: تصاميم واعتمادات للشدات والرافعات.
-Handover: As-Built، O&amp;M Manuals، شهادة إتمام بناء، ضمانات/Retention.</p>
-<p>7) سلسلة الإمداد والمستودعات
-قائمة موردين/مقاولي باطن معتمدين (Pre-qualification) وفصل تضارب المصالح.
-سياسة مشتريات: عتبات منافسة، RFQ/PO، عقود باطن قياسية، تقييم أداء ربع سنوي.
-المخازن: مواقع مركزية/مواقع مشاريع، بطاقة صنف، Min/Max، FIFO، جرد دوري، تأمين وحماية من الحريق.
-لوجستيات: خطط توريد، تتبع الشحنات، إدارة الرافعات والمناولة.</p>
-<p>8) الصحة والسلامة والبيئة (HSE)
-سياسة HSE موقعة من الـCEO.
-خطة مواقع: تقييم مخاطر/JSA، تصاريح عمل (Hot/Work at Height/Lifting/Confined Space)، Toolbox Talks يومية.
-PPE إلزامي، تفتيشات دورية، سجلات تدريب، إسعافات أولية ومخارج طوارئ.
-إدارة الحوادث: تبليغ/تحقيق/إجراءات تصحيحية/تقارير LTIFR.
-إدارة بيئية: غبار/ضوضاء/مياه/نفايات، عقود نقل معتمدة.</p>
-<p>9) الحوكمة والمالية والامتثال
-مخطط حسابات Project-based + مراكز تكلفة.
-سياسة الاعتراف بالإيراد (IFRS 15) وطريقة نسبة الإنجاز.
-مصادقات شهرية: Bank Reco/AR/AP/GRN/Accruals.
-مصفوفة تفويض وتوقيع مزدوج، وإغلاق مالي شهري + تقارير مشروع.
-مراجعة داخلية وخطة سنوية + لجنة تدقيق ومخاطر.
-التزامات ZATCA (VAT/Withholding عند التعامل مع غير المقيم)، GOSI/WPS، وSCE/SCA.</p>
-<p>10) تطوير الأعمال والتسويق
-ملف تعريف وشهادة خبرة: قائمة مشاريع/كادر/معدات/ضمانات/شهادات ISO.
-مكتبة عطاءات: نماذج استفسارات RFI، توضيحات، شجرة مخاطرة.
-CRM لإدارة الفرص وخط الأنابيب والإغلاق المتوقع.
-حضور معارض/منصات، وقنوات رقمية (موقع/لينكدإن)، وتواصل مع مطورين واستشاريين.</p>
-<p>11) شهادات ومعايير (اختياري موصى به)
-ISO 9001 (الجودة)، ISO 45001 (السلامة والصحة)، ISO 14001 (البيئة)، ISO 27001 (أمن المعلومات – عند حساسية البيانات).
-شهادات مشغلي المعدات، رخص رافعات، تصاريح كهربائية.</p>
-<p>12) مؤشرات الأداء والتقارير (نموذج)
-عمليات: SPI/CPI، نسبة الإنجاز، زمن الإغلاق.
-تجاري: نسبة قبول CO/Claims، هامش الربح بالمشروع، DSO.
-HSE: LTIFR، حوادث بلا فقد وقت، ساعات تدريب.
-SCM: OTIF، دوران المخزون، نسبة الشراء من موردين معتمدين.
-مالية: تدفق نقدي تشغيلي، DPO/DSO/CCC، التزام الإغلاق في 10 أيام.
-HR: سعودة، دوران، أيام تدريب/موظف.</p>
-<p>13) خطة 100 يوم (Quick Wins)
-0–30 يومًا: حسابات وبنوك ومصفوفة توقيع – تسجيل منصات (ZATCA/GOSI/قِوى/ETIMAD/SCE/SCA) – وثائق HSE/QA – ERP اختيار.
-31–60 يومًا: إطلاق ERP/DMS تجريبي – اعتماد سياسات المشتريات والموارد – عقد تأمينات – اتفاقيات مورّدين أساسيين – تجهيز ملف تصنيف.
-61–100 يومًا: تشغيل مشروع/ين تجريبيين بنظام PMO – لوحات BI شهرية – بدء ISO 9001/45001 – إقفال مالي في 10 أيام – جاهزية مناقصات حكومية.</p>
-<p>14) قوائم تحقق تنفيذية (Templates)
-14.1 منصة واعتماد/تصاريح
-☐ ZATCA (VAT/e-Invoice)
-☐ GOSI + مدد/WPS
-☐ قِوى (عقود، انتقال، توثيق)
-☐ ETIMAD (تسجيل/ضمانات)
-☐ SCE (اعتماد مهندسين)
-☐ SCA (عضوية)
-☐ BALADY + الدفاع المدني (تراخيص مواقع)
-☐ MOMRAH (تصنيف)
-14.2 التشغيل
-☐ ERP + DMS + P6 + BIM
-☐ سياسة مشتريات ومورّدين
-☐ مخازن وجرد أولي/تكويد
-☐ عقود قياسية (باطن/توريد/خدمات)
-☐ حزمة HSE/QA للمشاريع
-14.3 المالية
-☐ فتح تسهيلات ضمانات/LC
-☐ خطة تدفق نقدي ودوْرة مطالبات
-☐ سياسة اعتراف إيراد/تكاليف
-☐ إغلاق شهري منتظم
-14.4 الموارد البشرية
-☐ توصيفات وظيفية وخطة توظيف
-☐ سلم رواتب/درجات
-☐ سعودة وخطة تدريب
-☐ سكن/نقل/تجهيز مواقع</p>
-<p>الهيكل التنظيمي للشركة HTML:</p>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>الهيكل التنظيمي التفاعلي - شركة كانوف</title>
-   <script src="https://cdn.tailwindcss.com"></script>
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-   <!-- Chosen Palette: Calm Neutrals -->
-   <!-- Application Structure Plan: The SPA uses an interactive, top-down collapsible tree structure to visualize the company's organogram. This design was chosen because it directly reflects the hierarchical nature of the source data, allowing users to explore complex relationships without being overwhelmed. Users can expand and collapse nodes to drill down into specific sectors. Special, non-hierarchical reporting lines (e.g., Internal Audit to the Board Committee) are visually highlighted with styled connectors to emphasize key governance principles mentioned in the source document. This version adds bilingual (Arabic/English) text to all nodes. -->
-   <!-- Visualization & Content Choices: Report Info: Hierarchical organizational structure. Goal: Organize & Inform. Viz/Presentation Method: Interactive org chart built with nested HTML divs and styled with Tailwind CSS to form a tree. Interaction: Click to expand/collapse nodes. Special reporting lines are shown with dashed borders. Justification: This method provides a clear, interactive, and easily navigable view of the company structure, which is more effective than a static list or image. Library/Method: Vanilla JS for interactivity, Tailwind CSS for layout and styling. CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-   <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-   <style>
-       body {
-           font-family: 'Tajawal', sans-serif;
-           background-color: #f8f7f4;
-           color: #3d4451;
-       }
-       .subtitle, .note, h1, p {
-           font-family: 'Roboto', 'Tajawal', sans-serif;
-       }
-       .org-chart {
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-       }
-       .org-chart ul {
-           padding-top: 20px;
-           position: relative;
-           transition: all 0.5s;
-           display: flex;
-           justify-content: center;
-           flex-wrap: wrap;
-       }
-       .org-chart li {
-           float: right;
-           text-align: center;
-           list-style-type: none;
-           position: relative;
-           padding: 20px 5px 0 5px;
-           transition: all 0.5s;
-       }
-       .org-chart li::before, .org-chart li::after {
-           content: '';
-           position: absolute;
-           top: 0;
-           right: 50%;
-           border-top: 2px solid #a1a1aa;
-           width: 50%;
-           height: 20px;
-       }
-       .org-chart li::after {
-           right: auto;
-           left: 50%;
-           border-left: 2px solid #a1a1aa;
-       }
-       .org-chart li:only-child::after, .org-chart li:only-child::before {
-           display: none;
-       }
-       .org-chart li:only-child {
-           padding-top: 0;
-       }
-       .org-chart li:first-child::before, .org-chart li:last-child::after {
-           border: 0 none;
-       }
-       .org-chart li:last-child::before {
-           border-right: 2px solid #a1a1aa;
-           border-radius: 0 5px 0 0;
-       }
-       .org-chart li:first-child::after {
-           border-radius: 5px 0 0 0;
-       }
-       .org-chart ul ul::before {
-           content: '';
-           position: absolute;
-           top: 0;
-           right: 50%;
-           border-right: 2px solid #a1a1aa;
-           width: 0;
-           height: 20px;
-       }
-       .org-chart li .node {
-           border: 2px solid #e2e8f0;
-           padding: 12px 16px;
-           text-decoration: none;
-           color: #3d4451;
-           background-color: #ffffff;
-           display: inline-block;
-           min-width: 180px;
-           min-height: 80px;
-           border-radius: 8px;
-           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-           transition: all 0.3s;
-           cursor: pointer;
-           display: flex;
-           flex-direction: column;
-           justify-content: center;
-           align-items: center;
-       }
-       .org-chart li .node:hover, .org-chart li .node:hover+ul li .node {
-           background: #f7fafc;
-           border-color: #4c51bf;
-       }
-       .org-chart li .node .title {
-           font-weight: 700;
-           font-size: 0.9rem;
-       }
-       .org-chart li .node .subtitle {
-           font-size: 0.75rem;
-           color: #718096;
-           direction: ltr;
-       }
-       .node.level-board { background-color: #e3f2fd; border-color: #90caf9; }
-       .node.level-ceo { background-color: #e8f5e9; border-color: #a5d6a7; }
-       .node.level-control { background-color: #fffde7; border-color: #fff176; }
-       .node.level-sector { background-color: #f3e5f5; border-color: #ce93d8; }
-       .node.level-dept { background-color: #e0f2f1; border-color: #80cbc4; }
-
-
-       .node.has-children::after {
-           content: ' ▼';
-           font-size: 10px;
-           display: inline-block;
-           margin-right: 5px;
-           transition: transform 0.3s;
-       }
-       .node.collapsed::after {
-           transform: rotate(-90deg);
-       }
-       .node .note {
-           font-size: 0.65rem;
-           color: #f56565;
-           font-style: italic;
-           margin-top: 4px;
-           direction: ltr;
-       }
-       .independent-line li::before, .independent-line li::after {
-           border-top: 2px dashed #fb923c;
-       }
-       .independent-line li:last-child::before {
-            border-right: 2px dashed #fb923c;
-       }
-       .independent-line ul::before {
-            border-right: 2px dashed #fb923c;
-       }
-
-
-   </style>
-</head>
-<body class="bg-stone-50 text-gray-800">
-
-
-   <div class="container mx-auto p-4 sm:p-6 lg:p-8">
-       <header class="text-center mb-12">
-           <h1 class="text-3xl md:text-4xl font-bold text-gray-900">الهيكل التنظيمي الشامل لشركة كانوف</h1>
-           <p class="text-xl text-gray-700 mt-1" lang="en" dir="ltr">Kanuf Company - Comprehensive Organizational Chart</p>
-           <p class="mt-4 text-md text-gray-600">هذا المخطط التفاعلي يوضح التسلسل الإداري. انقر على أي قسم يحتوي على رمز (▼) لتوسيعه.</p>
-           <p class="mt-1 text-sm text-gray-500" lang="en" dir="ltr">This interactive chart illustrates the reporting lines. Click on any node with a (▼) to expand.</p>
-       </header>
-
-
-       <div class="w-full overflow-x-auto pb-8">
-           <div class="org-chart min-w-[1400px]">
-               <ul>
-                   <li>
-                       <div class="node level-board has-children" data-target="board-children">
-                           <div class="title">الشركاء ومجلس المديرين</div>
-                           <div class="subtitle">Partners & Board of Managers</div>
-                       </div>
-                       <ul id="board-children">
-                           <li>
-                               <div class="node level-ceo has-children" data-target="ceo-children">
-                                   <div class="title">الرئيس التنفيذي</div>
-                                   <div class="subtitle">Chief Executive Officer (CEO)</div>
-                               </div>
-                               <ul id="ceo-children" class="space-x-2">
-                                   <li>
-                                       <div class="node level-control has-children" data-target="control-units">
-                                           <div class="title">الوحدات الرقابية والاستشارية</div>
-                                           <div class="subtitle">Control & Advisory Units</div>
-                                       </div>
-                                       <ul id="control-units" class="independent-line">
-                                           <li><div class="node"><div class="title">التدقيق الداخلي</div><div class="subtitle">Internal Audit</div><div class="note">Reports to ACRC</div></div></li>
-                                           <li><div class="node"><div class="title">إدارة الجودة</div><div class="subtitle">Quality Assurance (QA)</div><div class="note">Independent from Ops.</div></div></li>
-                                           <li><div class="node"><div class="title">إدارة الصحة والسلامة</div><div class="subtitle">HSE</div><div class="note">Independent from Ops.</div></div></li>
-                                           <li><div class="node"><div class="title">مكتب إدارة المشاريع</div><div class="subtitle">PMO</div></div></li>
-                                           <li><div class="node"><div class="title">الاستراتيجية والأداء</div><div class="subtitle">Strategy & Performance</div></div></li>
-                                           <li><div class="node"><div class="title">الشؤون القانونية والامتثال</div><div class="subtitle">Legal & Compliance</div></div></li>
-                                           <li><div class="node"><div class="title">إدارة المخاطر</div><div class="subtitle">Risk Management (ERM)</div></div></li>
-                                           <li><div class="node"><div class="title">الاتصال المؤسسي</div><div class="subtitle">Corporate Comms.</div></div></li>
-                                           <li><div class="node"><div class="title">تقنية وأمن المعلومات</div><div class="subtitle">IT & InfoSec</div></div></li>
-                                       </ul>
-                                   </li>
-                                   <li>
-                                       <div class="node level-sector has-children" data-target="op-sector">
-                                           <div class="title">قطاع العمليات</div>
-                                           <div class="subtitle">Operations Sector</div>
-                                       </div>
-                                       <ul id="op-sector">
-                                           <li><div class="node level-dept"><div class="title">إدارة المشاريع</div><div class="subtitle">Project Management</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">إدارة التنفيذ</div><div class="subtitle">Construction</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">أعمال الكهروميكانيك</div><div class="subtitle">MEP Works</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">التخطيط والجدولة</div><div class="subtitle">Planning & Scheduling</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">ضبط التكاليف</div><div class="subtitle">Cost Control</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">ضبط الوثائق</div><div class="subtitle">Document Control</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">المساحة والمختبر</div><div class="subtitle">Survey & Lab</div></div></li>
-                                       </ul>
-                                   </li>
-                                   <li>
-                                       <div class="node level-sector has-children" data-target="comm-sector">
-                                           <div class="title">القطاع التجاري والفني</div>
-                                           <div class="subtitle">Commercial & Technical</div>
-                                       </div>
-                                       <ul id="comm-sector">
-                                            <li><div class="node level-dept"><div class="title">المكتب الفني</div><div class="subtitle">Technical Office (BIM)</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">إدارة الكميات</div><div class="subtitle">Quantity Surveying (QS)</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">العقود والمطالبات</div><div class="subtitle">Contracts & Claims</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">القيمة الهندسية</div><div class="subtitle">Value Engineering</div></div></li>
-                                       </ul>
-                                   </li>
-                                   <li>
-                                       <div class="node level-sector has-children" data-target="scm-sector">
-                                           <div class="title">قطاع سلسلة الإمداد</div>
-                                           <div class="subtitle">Supply Chain (SCM)</div>
-                                       </div>
-                                       <ul id="scm-sector">
-                                            <li><div class="node level-dept"><div class="title">المشتريات</div><div class="subtitle">Procurement</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">الخدمات اللوجستية</div><div class="subtitle">Logistics</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">المستودعات</div><div class="subtitle">Warehouse</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">إدارة الموردين</div><div class="subtitle">Vendor Management</div></div></li>
-                                       </ul>
-                                   </li>
-                                   <li>
-                                       <div class="node level-sector has-children" data-target="plant-sector">
-                                           <div class="title">قطاع المعدات والورش</div>
-                                           <div class="subtitle">Plant & Equipment</div>
-                                       </div>
-                                       <ul id="plant-sector">
-                                            <li><div class="node level-dept"><div class="title">ورش الصيانة</div><div class="subtitle">Workshops</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">الأسطول والنقل</div><div class="subtitle">Fleet & Transport</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">معدات الرفع</div><div class="subtitle">Lifting Equipment</div></div></li>
-                                       </ul>
-                                   </li>
-                                    <li>
-                                       <div class="node level-sector has-children" data-target="finance-sector">
-                                           <div class="title">القطاع المالي</div>
-                                           <div class="subtitle">Finance & Treasury</div>
-                                       </div>
-                                       <ul id="finance-sector">
-                                           <li><div class="node level-dept"><div class="title">الحسابات العامة</div><div class="subtitle">General Ledger</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">الذمم (AR/AP)</div><div class="subtitle">Receivables/Payables</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">الخزينة والبنوك</div><div class="subtitle">Treasury</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">الضرائب والزكاة</div><div class="subtitle">Tax & Zakat</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">محاسبة المشاريع</div><div class="subtitle">Project Accounting</div></div></li>
-                                       </ul>
-                                   </li>
-                                    <li>
-                                       <div class="node level-sector has-children" data-target="hr-sector">
-                                           <div class="title">الموارد البشرية والإدارية</div>
-                                           <div class="subtitle">HR & Admin</div>
-                                       </div>
-                                       <ul id="hr-sector">
-                                            <li><div class="node level-dept"><div class="title">التوظيف</div><div class="subtitle">Recruitment</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">شؤون الموظفين</div><div class="subtitle">Personnel Affairs</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">الرواتب والمزايا</div><div class="subtitle">Payroll & Benefits</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">التطوير</div><div class="subtitle">Learning & Development</div></div></li>
-                                            <li><div class="node level-dept"><div class="title">الخدمات الإدارية</div><div class="subtitle">Admin Services</div></div></li>
-                                       </ul>
-                                   </li>
-                                    <li>
-                                       <div class="node level-sector has-children" data-target="bd-sector">
-                                           <div class="title">تطوير الأعمال والتقدير</div>
-                                           <div class="subtitle">BD & Estimation</div>
-                                       </div>
-                                       <ul id="bd-sector">
-                                           <li><div class="node level-dept"><div class="title">تطوير الأعمال</div><div class="subtitle">Business Development</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">ما قبل التأهيل</div><div class="subtitle">Pre-qualification</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">التقدير والتسعير</div><div class="subtitle">Estimation & Pricing</div></div></li>
-                                           <li><div class="node level-dept"><div class="title">إعداد العروض</div><div class="subtitle">Proposals</div></div></li>
-                                       </ul>
-                                   </li>
-                               </ul>
-                           </li>
-                       </ul>
-                   </li>
-               </ul>
-           </div>
-       </div>
-   </div>
-
-
-   <script>
-       document.addEventListener('DOMContentLoaded', function () {
-           const toggles = document.querySelectorAll('.has-children');
-
-
-           const collapseAll = (exceptNode) => {
-                toggles.forEach(toggle => {
-                   if (toggle !== exceptNode) {
-                       const targetId = toggle.getAttribute('data-target');
-                       const targetElement = document.getElementById(targetId);
-                       if (targetElement && !targetElement.classList.contains('hidden')) {
-                            targetElement.classList.add('hidden');
-                            toggle.classList.add('collapsed');
-                       }
-                   }
-               });
-           }
-
-
-           toggles.forEach(toggle => {
-               toggle.addEventListener('click', function (event) {
-                   event.stopPropagation();
-
-                   const targetId = this.getAttribute('data-target');
-                   const targetElement = document.getElementById(targetId);
-
-
-                   if (targetElement) {
-                       const isCollapsed = targetElement.classList.toggle('hidden');
-                       this.classList.toggle('collapsed', isCollapsed);
-                   }
-               });
-           });
-
-           collapseAll(null);
-
-           const boardNode = document.querySelector('[data-target="board-children"]');
-           if (boardNode) {
-                document.getElementById('board-children').classList.remove('hidden');
-                boardNode.classList.remove('collapsed');
-           }
-            const ceoNode = document.querySelector('[data-target="ceo-children"]');
-           if (ceoNode) {
-                document.getElementById('ceo-children').classList.remove('hidden');
-                ceoNode.classList.remove('collapsed');
-           }
-
-
-       });
-   </script>
-
-
-</body>
-</html>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>تواصل واستفسارات</h2>
-            <div class="intro-grid">
-                <div class="card">
-                    <h3>دعم الحوكمة</h3>
-                    <p>للملاحظات على الدليل أو لطلب جلسات توعوية داخلية يمكن التواصل مع مكتب الحوكمة والالتزام في الشركة.</p>
-                    <ul>
-                        <li>البريد: governance@kanuf.sa</li>
-                        <li>الهاتف: ‎+966-11-000-0000</li>
-                        <li>الرد خلال يومي عمل.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>طلبات التعاون والشراكات</h3>
-                    <p>ترحّب كانوف بالشراكات التقنية والاستشارية لدعم التحول الرقمي وتطوير الخدمات، مع الالتزام باتفاقيات سرية المعلومات.</p>
-                    <ul>
-                        <li>البريد: partnerships@kanuf.sa</li>
-                        <li>منصة الموحدة للاجتماعات الافتراضية.</li>
-                        <li>توفر عرض تعريفي خلال 72 ساعة.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>الإبلاغ عن المخاطر</h3>
-                    <p>قناة مستقلة للإبلاغ عن المخاطر أو المخالفات مع ضمان السرية والحماية، وتشرف عليها لجنة التدقيق والمخاطر.</p>
-                    <ul>
-                        <li>البريد: risk-alert@kanuf.sa</li>
-                        <li>رقم مجاني: ‎800-000-0000</li>
-                        <li>متاح 24/7 مع متابعة خلال 48 ساعة.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="socials">
-            <a href="#">لينكدإن</a>
-            <a href="#">تويتر</a>
-            <a href="#">يوتيوب</a>
+    <div class='hero'>
+      <h1>
+        <span data-lang='ar'>لوحة تحكم الحوكمة الشاملة لشركة كانوف</span>
+        <span data-lang='en'>Kanuf Integrated Governance Command Center</span>
+      </h1>
+      <p>
+        <span data-lang='ar'>واجهة داخلية موحدة لقراءة السياسات والمواثيق وتفويضات الصلاحيات وضوابط الامتثال، مع توصيات تنفيذية قابلة للتفعيل.</span>
+        <span data-lang='en'>A unified internal workspace capturing policies, charters, delegation limits, and compliance controls, paired with actionable executive recommendations.</span>
+      </p>
+      <div class='quick-cards'>
+        <div class='quick-card'>
+          <span data-lang='ar'>آخر تحديث</span><span data-lang='en'>Last Update</span>
+          <strong data-lang='ar'>يناير 2024</strong>
+          <strong data-lang='en'>January 2024</strong>
+          <span data-lang='ar'>يُراجع سنوياً أو عند التغيير النظامي</span>
+          <span data-lang='en'>Reviewed annually or upon regulatory change</span>
         </div>
-        <p>© {{YEAR}} شركة كانوف. جميع الحقوق محفوظة. هذا الموقع يعرض الدليل المعتمد لأغراض التوعية والامتثال الداخلي.</p>
-    </footer>
+        <div class='quick-card'>
+          <span data-lang='ar'>المرجعية النظامية</span><span data-lang='en'>Regulatory Hierarchy</span>
+          <strong data-lang='ar'>نظام الشركات &amp; عقد التأسيس</strong>
+          <strong data-lang='en'>Companies Law &amp; AoA</strong>
+          <span data-lang='ar'>يسبق هذا الدليل أي حكم أدنى</span>
+          <span data-lang='en'>Supersedes lower-tier policies</span>
+        </div>
+        <div class='quick-card'>
+          <span data-lang='ar'>النطاق التنفيذي</span><span data-lang='en'>Executive Scope</span>
+          <strong data-lang='ar'>مجلس المديرين &amp; الإدارة</strong>
+          <strong data-lang='en'>Board &amp; Executives</strong>
+          <span data-lang='ar'>إشراف، مخاطر، امتثال، وتفويضات</span>
+          <span data-lang='en'>Oversight, risk, compliance, delegations</span>
+        </div>
+        <div class='quick-card'>
+          <span data-lang='ar'>المستندات الداعمة</span><span data-lang='en'>Supporting Docs</span>
+          <strong data-lang='ar'>مواثيق اللجان + مصفوفة DoA</strong>
+          <strong data-lang='en'>Committee Charters + DoA Matrix</strong>
+          <span data-lang='ar'>متوفرة في الملاحق</span>
+          <span data-lang='en'>Accessible in appendices</span>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section id="overview">
+      <h2>
+        <span data-lang="ar">الملف التنفيذي المختصر</span>
+        <span data-lang="en">Executive Brief</span>
+      </h2>
+      <p class="section-subtitle">
+        <span data-lang="ar">ملخص تحليلي للدليل مع توصيات تطويرية لضمان جاهزية الشركة ونضج حوكمتها.</span>
+        <span data-lang="en">Analytical snapshot of the manual plus developmental recommendations to ensure governance maturity and readiness.</span>
+      </p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>
+            <span data-lang="ar">هوية الشركة وإطار العمل</span>
+            <span data-lang="en">Corporate Identity &amp; Framework</span>
+          </h3>
+          <p>
+            <span data-lang="ar">شركة كانوف (ذات مسؤولية محدودة) مركزها الرياض، رأس مالها 500 ألف ريال سعودي، تُدار عبر مجلس مكوّن من ثلاثة مديرين (الرئيس خالد حمود إبراهيم الذياب، نائب الرئيس فوزي حمود إبراهيم الذياب، والمدير التنفيذي نصرت محمد ديلوار محمد). يُعد هذا الدليل ثالث مستوى تشريعي بعد نظام الشركات وعقد التأسيس.</span>
+            <span data-lang="en">Kanuf LLC is headquartered in Riyadh with SAR 500K capital and governed by a three-member board: Chairman Khaled Hamoud Ibrahim Al-Deyab, Vice Chair Fawzi Hamoud Ibrahim Al-Deyab, and CEO/Director Nusrat Muhammad Dilwar Muhammad. This manual ranks third in the legal hierarchy after the Companies Law and the Articles of Association.</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">رسائل تنفيذية عاجلة</span>
+            <span data-lang="en">Immediate Executive Signals</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">تأكيد مواءمة صلاحيات الصرف والتمويل مع مصفوفة التفويض الجديدة واختبار الضوابط.</span>
+              <span data-lang="en">Reconfirm spending and financing authorities against the new delegation matrix and test key controls.</span>
+            </li>
+            <li>
+              <span data-lang="ar">إطلاق تقييم أداء سنوي للمجلس واللجان قبل نهاية الربع الرابع.</span>
+              <span data-lang="en">Launch the annual performance assessment for the Board and committees before end of Q4.</span>
+            </li>
+            <li>
+              <span data-lang="ar">تحديث خطة استمرارية الأعمال لتشمل سيناريو الأمن السيبراني والتعافي خلال 24 ساعة.</span>
+              <span data-lang="en">Update the business continuity plan to include a 24-hour cyber incident recovery scenario.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 1.5rem;">
+        <h3>
+          <span data-lang="ar">مؤشرات النضج المقترحة</span>
+          <span data-lang="en">Recommended Maturity Indicators</span>
+        </h3>
+        <div class="tag-list">
+          <span class="tag" data-lang="ar">تطبيق منصة قرارات المجلس</span>
+          <span class="tag" data-lang="en">Board decision-tracking platform</span>
+          <span class="tag" data-lang="ar">برنامج إبلاغ المخاطر خلال 48 ساعة</span>
+          <span class="tag" data-lang="en">48-hour risk incident reporting SLA</span>
+          <span class="tag" data-lang="ar">لوحة امتثال موحدة</span>
+          <span class="tag" data-lang="en">Unified compliance dashboard</span>
+          <span class="tag" data-lang="ar">تدريب حوكمة للمديرين الجدد</span>
+          <span class="tag" data-lang="en">New director governance onboarding</span>
+        </div>
+      </div>
+    </section>
+    <section id="principles">
+      <h2>
+        <span data-lang="ar">مبادئ الحوكمة</span>
+        <span data-lang="en">Governance Principles</span>
+      </h2>
+      <p class="section-subtitle">
+        <span data-lang="ar">الأطر القيمية التي تنطلق منها جميع السياسات والقرارات.</span>
+        <span data-lang="en">Value pillars anchoring every policy and decision.</span>
+      </p>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>
+            <span data-lang="ar">العدالة والمساواة</span>
+            <span data-lang="en">Fairness &amp; Equality</span>
+          </h3>
+          <p>
+            <span data-lang="ar">معاملة جميع الشركاء وأصحاب المصلحة دون تمييز مع توفير المعلومات ذات الصلة في الوقت المناسب.</span>
+            <span data-lang="en">Treat all partners and stakeholders without discrimination while providing timely, relevant information.</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">النزاهة والشفافية</span>
+            <span data-lang="en">Integrity &amp; Transparency</span>
+          </h3>
+          <p>
+            <span data-lang="ar">إفصاح كافٍ عن القرارات والنتائج المالية والتشغيلية مع الاحتفاظ بسجل إلكتروني قابل للتتبع.</span>
+            <span data-lang="en">Provide sufficient disclosure of decisions, financials, and operations with traceable electronic records.</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">المساءلة والالتزام</span>
+            <span data-lang="en">Accountability &amp; Compliance</span>
+          </h3>
+          <p>
+            <span data-lang="ar">خضوع المجلس والإدارة التنفيذية للمساءلة أمام الشركاء والجهات الرقابية، مع الالتزام بجميع الأنظمة المحلية.</span>
+            <span data-lang="en">Subject the Board and executives to partner and regulator accountability while complying with all local regulations.</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">الكفاءة وإدارة المخاطر</span>
+            <span data-lang="en">Efficiency &amp; Risk Management</span>
+          </h3>
+          <p>
+            <span data-lang="ar">تسريع اتخاذ القرار المبني على بيانات ومؤشرات أداء، مع تقييم مستمر للمخاطر وتخفيف تأثيرها.</span>
+            <span data-lang="en">Accelerate data-driven decision-making while continuously assessing risks and mitigating their impact.</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">الالتزام بالشريعة والأنظمة</span>
+            <span data-lang="en">Sharia &amp; Regulatory Alignment</span>
+          </h3>
+          <p>
+            <span data-lang="ar">تطبيق الأنظمة السعودية ذات الصلة دون تعارض مع أحكام الشريعة الإسلامية.</span>
+            <span data-lang="en">Apply relevant Saudi regulations without conflicting with Islamic Sharia principles.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="structure">
+      <h2>
+        <span data-lang="ar">هيكل الحوكمة والمسؤوليات</span>
+        <span data-lang="en">Governance Structure &amp; Responsibilities</span>
+      </h2>
+      <p class="section-subtitle">
+        <span data-lang="ar">تفصيل لأدوار الشركاء والمجلس واللجان والإدارة التنفيذية.</span>
+        <span data-lang="en">Detailing the roles of partners, the board, committees, and the executive team.</span>
+      </p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>
+            <span data-lang="ar">الشركاء</span>
+            <span data-lang="en">Partners</span>
+          </h3>
+          <p>
+            <span data-lang="ar">يمارس الشركاء حقوقهم عبر الاجتماعات العادية وغير العادية، ويملكون صلاحيات تعيين وعزل المديرين، واعتماد القوائم المالية، وتوزيع الأرباح، وتعديل عقد التأسيس، وتغيير رأس المال، وإقرار الاندماج أو التصفية.</span>
+            <span data-lang="en">Partners exercise their rights through ordinary and extraordinary meetings. They appoint or remove directors, approve financial statements, distribute profits, amend the AoA, change capital, and authorize mergers or liquidation.</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">مجلس المديرين</span>
+            <span data-lang="en">Board of Directors</span>
+          </h3>
+          <p>
+            <span data-lang="ar">يتكون من ثلاثة مديرين كحد أدنى بقيادة الرئيس خالد حمود إبراهيم الذياب. يشرف على الاستراتيجية والميزانية والسياسات ويُمثل الشركة أمام الغير ضمن حدود عقد التأسيس، مع اشتراط إجماع المديرين لقرارات التمويل، التأسيس، الرهن، القروض، وتصفية الشركة.</span>
+            <span data-lang="en">Comprises at least three directors chaired by Khaled Hamoud Ibrahim Al-Deyab. Oversees strategy, budgets, and policies, representing the company within AoA limits. Unanimity is required for financing, incorporations, pledges, loans, and liquidation decisions.</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">اللجان المنبثقة</span>
+            <span data-lang="en">Board Committees</span>
+          </h3>
+          <p>
+            <span data-lang="ar">تشمل لجنة التدقيق والمخاطر (ACRC) المسؤولة عن المراجعة والضوابط والالتزام، ولجنة الترشيحات والمكافآت (NRC) المعنية بالحوكمة البشرية وسياسات التعاقب وتقييم الأداء. تُنشأ اللجان بقرار المجلس وتُعتمد مواثيقها في الملاحق.</span>
+            <span data-lang="en">Includes the Audit &amp; Risk Committee responsible for assurance, controls, and compliance, and the Nomination &amp; Remuneration Committee covering people governance, succession, and evaluations. Committees are formed by board resolution with charters stored in the appendices.</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">الإدارة التنفيذية</span>
+            <span data-lang="en">Executive Management</span>
+          </h3>
+          <p>
+            <span data-lang="ar">يقودها المدير التنفيذي نصرت محمد ديلوار محمد، ويدعمها مديرو الوظائف المالية، المشتريات، المشاريع/العمليات، الموارد البشرية، التقنية والأمن السيبراني، والقانونية والامتثال، لضمان التنفيذ والتقارير المنتظمة للمجلس.</span>
+            <span data-lang="en">Led by CEO Nusrat Muhammad Dilwar Muhammad with functional leaders in finance, procurement, projects/operations, HR, technology &amp; cybersecurity, and legal &amp; compliance, ensuring execution and routine reporting to the board.</span>
+          </p>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 1.5rem;">
+        <h3>
+          <span data-lang="ar">سير عمل الاجتماعات الرئيسية</span>
+          <span data-lang="en">Core Meeting Workflow</span>
+        </h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="badge" data-lang="ar">اجتماعات الشركاء</div>
+            <div class="badge" data-lang="en">Partners' Meetings</div>
+            <p>
+              <span data-lang="ar">دعوة رسمية قبل الموعد بوقت كافٍ مع جدول أعمال ومرفقات، وتوثيق المحاضر وتوقيع الحاضرين وحفظ السجلات.</span>
+              <span data-lang="en">Issue formal notice with agenda and enclosures ahead of time, document minutes with signatures, and archive records securely.</span>
+            </p>
+          </div>
+          <div class="timeline-item">
+            <div class="badge" data-lang="ar">اجتماعات المجلس</div>
+            <div class="badge" data-lang="en">Board Meetings</div>
+            <p>
+              <span data-lang="ar">اجتماع ربع سنوي على الأقل، دعوة قبل خمسة أيام عمل، توثيق المناقشات والقرارات والمسؤوليات، والسماح بالحضور عن بُعد وفق الضوابط.</span>
+              <span data-lang="en">Hold at least quarterly, circulate pack five business days prior, document deliberations, decisions, accountabilities, and enable remote attendance per policy.</span>
+            </p>
+          </div>
+          <div class="timeline-item">
+            <div class="badge" data-lang="ar">التقييم السنوي</div>
+            <div class="badge" data-lang="en">Annual Evaluation</div>
+            <p>
+              <span data-lang="ar">إجراء تقييم أداء للمجلس واللجان والإدارة التنفيذية، ومناقشة النتائج وخطط التحسين خلال الربع الأخير.</span>
+              <span data-lang="en">Conduct performance assessments for the board, committees, and executives, discuss findings, and adopt improvement plans in Q4.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="processes">
+      <h2>
+        <span data-lang="ar">السياسات والإجراءات الرئيسية</span>
+        <span data-lang="en">Key Policies &amp; Procedures</span>
+      </h2>
+      <p class="section-subtitle">
+        <span data-lang="ar">حزمة الإرشادات التشغيلية التي تنظّم العمل اليومي وتضبط المسؤوليات.</span>
+        <span data-lang="en">Operational guidance governing day-to-day execution and accountability.</span>
+      </p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>
+            <span data-lang="ar">الإطار المالي والرقابي</span>
+            <span data-lang="en">Financial &amp; Control Framework</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">إعداد قوائم مالية ربع سنوية وسنوية وفق المعايير السعودية، مراجعتها عبر لجنة التدقيق والمخاطر ثم اعتماد المجلس والشركاء.</span>
+              <span data-lang="en">Prepare quarterly and annual financial statements per Saudi GAAP, review via the Audit &amp; Risk Committee, then approve by the Board and partners.</span>
+            </li>
+            <li>
+              <span data-lang="ar">عرض الميزانية والخطة التشغيلية لاعتماد المجلس قبل بداية السنة المالية.</span>
+              <span data-lang="en">Submit annual budget and operating plan for board approval before the fiscal year begins.</span>
+            </li>
+            <li>
+              <span data-lang="ar">تعيين أو عزل المراجع الخارجي بقرار الشركاء بناءً على توصية لجنة التدقيق والمخاطر.</span>
+              <span data-lang="en">Appoint or dismiss the external auditor by partner resolution following Audit &amp; Risk Committee recommendation.</span>
+            </li>
+            <li>
+              <span data-lang="ar">بناء مصفوفة ضوابط داخلية تشمل قبول العملاء، فتح المشاريع، الصرفيات، المطابقة البنكية، الجرد، وإدارة العهد.</span>
+              <span data-lang="en">Maintain an internal control matrix covering client onboarding, project initiation, disbursements, bank reconciliations, inventory counts, and petty cash custody.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">إدارة المخاطر واستمرارية الأعمال</span>
+            <span data-lang="en">Risk Management &amp; Business Continuity</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">إعداد سجل مخاطر يشمل السوق، السيولة، الائتمان، التنفيذ، الالتزام، السمعة، الأمن السيبراني، الصحة والسلامة.</span>
+              <span data-lang="en">Maintain a risk register spanning market, liquidity, credit, execution, compliance, reputation, cybersecurity, and HSE.</span>
+            </li>
+            <li>
+              <span data-lang="ar">اعتماد شهية المخاطر وحدودها وخطط الاستجابة المناسبة.</span>
+              <span data-lang="en">Approve risk appetite thresholds and appropriate response plans.</span>
+            </li>
+            <li>
+              <span data-lang="ar">تفعيل خطة استمرارية الأعمال والتعافي من الكوارث (نسخ احتياطي، موقع بديل، خطة اتصال).</span>
+              <span data-lang="en">Activate business continuity and disaster recovery plans (backups, alternate site, stakeholder communication plan).</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">الامتثال والالتزامات النظامية</span>
+            <span data-lang="en">Regulatory Compliance</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">إدارة الزكاة والضرائب: التسجيل، الإقرارات، السداد، والتعامل مع الفحص.</span>
+              <span data-lang="en">Handle zakat and tax registrations, filings, payments, and audits.</span>
+            </li>
+            <li>
+              <span data-lang="ar">الالتزام بأنظمة التأمينات والموارد البشرية بما في ذلك حماية الأجور والسعودة ولوائح العمل.</span>
+              <span data-lang="en">Comply with GOSI and HR regulations including wage protection, Saudization, and labor bylaws.</span>
+            </li>
+            <li>
+              <span data-lang="ar">تجديد التراخيص والسجلات (التجاري، الغرفة، الدفاع المدني، البلديات، الاتصالات، منصة اعتماد، متطلبات نشاط المقاولات).</span>
+              <span data-lang="en">Renew licenses and registrations (commercial, chamber, civil defense, municipalities, communications, Etimad, and contracting-specific permits).</span>
+            </li>
+            <li>
+              <span data-lang="ar">تطبيق سياسات مكافحة الرشوة وغسل الأموال وضوابط الهدايا والضيافة والتبرعات.</span>
+              <span data-lang="en">Apply anti-bribery and AML policies with strict controls over gifts, hospitality, and donations.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">الأطراف ذات العلاقة وتضارب المصالح</span>
+            <span data-lang="en">Related Parties &amp; Conflicts</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">تعريف الطرف ذي العلاقة يشمل الشركاء والمديرين وذويهم من الدرجة الأولى والشركات ذات التأثير.</span>
+              <span data-lang="en">Related parties include partners, directors, first-degree relatives, and entities they significantly influence.</span>
+            </li>
+            <li>
+              <span data-lang="ar">لا تُبرم معاملات مع طرف ذي علاقة دون إفصاح مكتوب، تقييم مستقل، توصية اللجنة المختصة، وموافقة المجلس بما يتسق مع العقد.</span>
+              <span data-lang="en">No related party transaction proceeds without written disclosure, independent assessment, committee recommendation, and board approval per the AoA.</span>
+            </li>
+            <li>
+              <span data-lang="ar">نموذج إفصاح سنوي وإفصاح فوري عند أي حالة جديدة.</span>
+              <span data-lang="en">Maintain an annual disclosure template with ad-hoc declarations for new cases.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">سياسة التعاقد والمشتريات</span>
+            <span data-lang="en">Procurement &amp; Contracting Policy</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">الالتزام بالمنافسة والشفافية عبر ثلاثة عروض سعرية أو توثيق المبرر خلاف ذلك.</span>
+              <span data-lang="en">Ensure competition and transparency with three quotations or documented justification otherwise.</span>
+            </li>
+            <li>
+              <span data-lang="ar">تقييم الموردين يشمل السجلات النظامية، الملاءة، التأمينات، والسوابق.</span>
+              <span data-lang="en">Supplier due diligence covers valid registrations, financial standing, insurance, and track record.</span>
+            </li>
+            <li>
+              <span data-lang="ar">تطبيق شروط تعاقد قياسية: نطاق العمل، المواصفات، الدفع، غرامات التأخير، ضمانات الجودة، التسليم المرحلي، وآلية التحكيم/القضاء المختص.</span>
+              <span data-lang="en">Apply standard contractual clauses: scope, specifications, payment terms, delay penalties, quality guarantees, phased delivery, and arbitration/jurisdiction provisions.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">سياسة الموارد البشرية</span>
+            <span data-lang="en">Human Resources Policy</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">استقطاب وفق وصف وظيفي، مقابلات موثقة، والتحقق من المراجع.</span>
+              <span data-lang="en">Recruit against job descriptions with documented interviews and reference checks.</span>
+            </li>
+            <li>
+              <span data-lang="ar">عقود عمل متوافقة مع نظام العمل، سياسات دوام وإجازات واضحة، وتعزيز ثقافة الانضباط والسلامة.</span>
+              <span data-lang="en">Issue employment contracts compliant with Saudi Labor Law, clarify attendance and leave policies, and promote a culture of discipline and safety.</span>
+            </li>
+            <li>
+              <span data-lang="ar">تقييم أداء نصف سنوي وسنوي مرتبط بمؤشرات الأداء الرئيسية.</span>
+              <span data-lang="en">Run semiannual and annual performance reviews linked to KPIs.</span>
+            </li>
+            <li>
+              <span data-lang="ar">قنوات تظلم وتبليغ سرية تمنع الانتقام.</span>
+              <span data-lang="en">Maintain confidential grievance and whistleblowing channels with zero retaliation.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">السياسة المصرفية والخزينة</span>
+            <span data-lang="en">Treasury &amp; Banking Policy</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">فتح الحسابات البنكية، القروض، الضمانات، الاعتمادات، والسندات لأمر تتطلب إجماع المديرين.</span>
+              <span data-lang="en">Opening bank accounts, loans, guarantees, letters of credit, and promissory notes require unanimous board approval.</span>
+            </li>
+            <li>
+              <span data-lang="ar">صرفيات التشغيل اليومية تتم بتوقيعين مجتمعين حسب مصفوفة الصلاحيات.</span>
+              <span data-lang="en">Daily operating disbursements need dual signatures per the delegation matrix.</span>
+            </li>
+            <li>
+              <span data-lang="ar">مطابقة بنكية شهرية واستقلال وظيفة الخزينة عن المحاسبة.</span>
+              <span data-lang="en">Perform monthly bank reconciliations and separate treasury from accounting duties.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">التقنية وحماية المعلومات</span>
+            <span data-lang="en">Technology &amp; Information Security</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">تعيين مسؤول أمن معلومات وتحديد صلاحياته.</span>
+              <span data-lang="en">Appoint an Information Security Officer with defined authority.</span>
+            </li>
+            <li>
+              <span data-lang="ar">تطبيق سياسات تصنيف المعلومات، التحكم في الوصول، النسخ الاحتياطي، إدارة كلمات المرور، تشفير الأجهزة، وإدارة الحوادث.</span>
+              <span data-lang="en">Implement policies for information classification, access control, backups, password management, device encryption, and incident handling.</span>
+            </li>
+            <li>
+              <span data-lang="ar">تنفيذ تدريب توعوي ربع سنوي على الأمن السيبراني.</span>
+              <span data-lang="en">Deliver quarterly cybersecurity awareness training.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">إدارة الوثائق والسجلات</span>
+            <span data-lang="en">Records Management</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">اتباع جدول حفظ: العقود (10 سنوات بعد الانتهاء)، السجلات المالية (10 سنوات)، سجلات الموظفين (5 سنوات بعد انتهاء الخدمة)، محاضر الاجتماعات والمستندات الحكومية تحفظ دائماً.</span>
+              <span data-lang="en">Follow retention schedule: contracts (10 years post completion), financial records (10 years), employee files (5 years post exit), minutes and government documents (permanent).</span>
+            </li>
+            <li>
+              <span data-lang="ar">أرشفة إلكترونية قابلة للبحث مع نسخ احتياطي في موقع بديل.</span>
+              <span data-lang="en">Maintain searchable electronic archives with offsite backups.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section id="risk">
+      <h2>
+        <span data-lang="ar">إدارة المخاطر والامتثال</span>
+        <span data-lang="en">Risk Oversight &amp; Compliance</span>
+      </h2>
+      <p class="section-subtitle">
+        <span data-lang="ar">ضوابط تنفيذيّة لضمان الاستجابة للسيناريوهات العالية الأثر.</span>
+        <span data-lang="en">Executive controls ensuring readiness for high-impact scenarios.</span>
+      </p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>
+            <span data-lang="ar">مصفوفة أولويات المخاطر</span>
+            <span data-lang="en">Risk Priority Matrix</span>
+          </h3>
+          <table>
+            <thead>
+              <tr>
+                <th data-lang="ar">الفئة</th>
+                <th data-lang="en">Category</th>
+                <th data-lang="ar">الاستجابة المطلوبة</th>
+                <th data-lang="en">Required Response</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-lang="ar">التمويل والسيولة</td>
+                <td data-lang="en">Funding &amp; Liquidity</td>
+                <td data-lang="ar">تحديث توقعات التدفق النقدي أسبوعياً، وخطة تمويل بديلة خلال 30 يوماً.</td>
+                <td data-lang="en">Refresh cash flow forecasts weekly with a 30-day contingency financing plan.</td>
+              </tr>
+              <tr>
+                <td data-lang="ar">الالتزام والضرائب</td>
+                <td data-lang="en">Compliance &amp; Tax</td>
+                <td data-lang="ar">لوحة متابعة شهرية، وتدقيق ذاتي نصف سنوي لمطابقة الأنظمة.</td>
+                <td data-lang="en">Monthly compliance dashboard plus semiannual self-audits against regulations.</td>
+              </tr>
+              <tr>
+                <td data-lang="ar">المشاريع والعمليات</td>
+                <td data-lang="en">Projects &amp; Operations</td>
+                <td data-lang="ar">مراجعة مخاطر المشروع قبل الإسناد، ونقاط توقف إلزامية عند تجاوز التكلفة 10%.</td>
+                <td data-lang="en">Pre-award project risk reviews with mandatory stage gates at 10% cost variance.</td>
+              </tr>
+              <tr>
+                <td data-lang="ar">الأمن السيبراني</td>
+                <td data-lang="en">Cybersecurity</td>
+                <td data-lang="ar">تدريب ربع سنوي، اختبار اختراق سنوي، وخطة استجابة للحوادث مع محاكاة سنوية.</td>
+                <td data-lang="en">Quarterly training, annual penetration test, and incident response drills every year.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">ضوابط الامتثال المقترحة</span>
+            <span data-lang="en">Suggested Compliance Controls</span>
+          </h3>
+          <ul class="list">
+            <li>
+              <span data-lang="ar">إنشاء تقويم التزامات رقمي يرسل تنبيهات قبل الاستحقاق بـ 10 أيام.</span>
+              <span data-lang="en">Deploy a digital obligation calendar issuing reminders 10 days prior to due dates.</span>
+            </li>
+            <li>
+              <span data-lang="ar">تفعيل نظام إبلاغ إلكتروني للحوادث التشغيلية خلال 24 ساعة.</span>
+              <span data-lang="en">Activate a 24-hour electronic incident reporting workflow for operational events.</span>
+            </li>
+            <li>
+              <span data-lang="ar">ربط نتائج التدقيق الداخلي بخطط عمل محددة المسؤوليات والجدول الزمني.</span>
+              <span data-lang="en">Link internal audit findings to action plans with owners and target dates.</span>
+            </li>
+            <li>
+              <span data-lang="ar">مراجعة صلاحيات الوصول للأنظمة الحساسة كل ثلاثة أشهر.</span>
+              <span data-lang="en">Review access rights to critical systems every three months.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section id="appendix">
+      <h2>
+        <span data-lang="ar">الملحق (أ): مصفوفة تفويض الصلاحيات</span>
+        <span data-lang="en">Appendix (A): Delegation of Authority Matrix</span>
+      </h2>
+      <p class="section-subtitle">
+        <span data-lang="ar">يعكس الحدود المالية والإجرائية، مع التذكير بأن بعض الصلاحيات تظل حصرياً للمجلس مجتمعاً أو للشركاء حسب عقد التأسيس.</span>
+        <span data-lang="en">Shows financial and procedural thresholds; certain powers remain reserved for the full Board or partners per the AoA.</span>
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th class="matrix-head" data-lang="ar">المجال</th>
+            <th class="matrix-head" data-lang="en">Area</th>
+            <th class="matrix-head" data-lang="ar">الإدارة التنفيذية</th>
+            <th class="matrix-head" data-lang="en">Executive Management</th>
+            <th class="matrix-head" data-lang="ar">رئيس المجلس</th>
+            <th class="matrix-head" data-lang="en">Board Chair</th>
+            <th class="matrix-head" data-lang="ar">نائب الرئيس</th>
+            <th class="matrix-head" data-lang="en">Vice Chair</th>
+            <th class="matrix-head" data-lang="ar">مجلس المديرين</th>
+            <th class="matrix-head" data-lang="en">Board of Directors</th>
+            <th class="matrix-head" data-lang="ar">الشركاء</th>
+            <th class="matrix-head" data-lang="en">Partners</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-lang="ar">عقود التوريد/الخدمات</td>
+            <td data-lang="en">Supply/Service Contracts</td>
+            <td data-lang="ar">حتى 250,000 ر.س</td>
+            <td data-lang="en">Up to SAR 250,000</td>
+            <td data-lang="ar">250,001 – 750,000 ر.س</td>
+            <td data-lang="en">SAR 250,001 – 750,000</td>
+            <td data-lang="ar">750,001 – 1,000,000 ر.س</td>
+            <td data-lang="en">SAR 750,001 – 1,000,000</td>
+            <td data-lang="ar">فوق 1,000,000 ر.س أو العقود الاستراتيجية</td>
+            <td data-lang="en">Above SAR 1,000,000 or strategic deals</td>
+            <td data-lang="ar">عند الالتزامات غير العادية أو التأثير الرأسمالي الجوهري</td>
+            <td data-lang="en">When extraordinary liabilities or material capital impact exist</td>
+          </tr>
+          <tr>
+            <td data-lang="ar">أوامر الشراء</td>
+            <td data-lang="en">Purchase Orders</td>
+            <td data-lang="ar">حتى 150,000 ر.س</td>
+            <td data-lang="en">Up to SAR 150,000</td>
+            <td data-lang="ar">حتى 300,000 ر.س</td>
+            <td data-lang="en">Up to SAR 300,000</td>
+            <td data-lang="ar">حتى 500,000 ر.س</td>
+            <td data-lang="en">Up to SAR 500,000</td>
+            <td data-lang="ar">ما يزيد</td>
+            <td data-lang="en">Beyond</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+          </tr>
+          <tr>
+            <td data-lang="ar">صرفيات العمليات</td>
+            <td data-lang="en">Operational Disbursements</td>
+            <td data-lang="ar">حتى 100,000 ر.س</td>
+            <td data-lang="en">Up to SAR 100,000</td>
+            <td data-lang="ar">حتى 200,000 ر.س</td>
+            <td data-lang="en">Up to SAR 200,000</td>
+            <td data-lang="ar">حتى 300,000 ر.س</td>
+            <td data-lang="en">Up to SAR 300,000</td>
+            <td data-lang="ar">ما يزيد</td>
+            <td data-lang="en">Beyond</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+          </tr>
+          <tr>
+            <td data-lang="ar">فتح المشاريع/العطاءات</td>
+            <td data-lang="en">Project/Bid Launch</td>
+            <td data-lang="ar">يوصي</td>
+            <td data-lang="en">Recommends</td>
+            <td data-lang="ar">يعتمد</td>
+            <td data-lang="en">Approves</td>
+            <td data-lang="ar">يعتمد</td>
+            <td data-lang="en">Approves</td>
+            <td data-lang="ar">يعتمد للمشاريع الاستراتيجية</td>
+            <td data-lang="en">Approves strategic bids</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+          </tr>
+          <tr>
+            <td data-lang="ar">بيع/شراء أصول ثابتة</td>
+            <td data-lang="en">Fixed Asset Transactions</td>
+            <td data-lang="ar">حتى 100,000 ر.س</td>
+            <td data-lang="en">Up to SAR 100,000</td>
+            <td data-lang="ar">حتى 300,000 ر.س</td>
+            <td data-lang="en">Up to SAR 300,000</td>
+            <td data-lang="ar">حتى 500,000 ر.س</td>
+            <td data-lang="en">Up to SAR 500,000</td>
+            <td data-lang="ar">ما يزيد / الأصول الاستراتيجية</td>
+            <td data-lang="en">Beyond / strategic assets</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+          </tr>
+          <tr>
+            <td data-lang="ar">توظيف مدير إدارة</td>
+            <td data-lang="en">Hiring a Department Director</td>
+            <td data-lang="ar">يوصي</td>
+            <td data-lang="en">Recommends</td>
+            <td data-lang="ar">يعتمد</td>
+            <td data-lang="en">Approves</td>
+            <td data-lang="ar">يعتمد</td>
+            <td data-lang="en">Approves</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+          </tr>
+          <tr>
+            <td data-lang="ar">تعيين مدير تنفيذي بديل</td>
+            <td data-lang="en">Appointing a New CEO</td>
+            <td data-lang="ar">يرشح</td>
+            <td data-lang="en">Nominates</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+            <td data-lang="ar">يوصي</td>
+            <td data-lang="en">Recommends</td>
+            <td data-lang="ar">يعتمد</td>
+            <td data-lang="en">Approves</td>
+          </tr>
+          <tr>
+            <td data-lang="ar">الحسابات البنكية، القروض، الضمانات</td>
+            <td data-lang="en">Bank Accounts, Loans, Guarantees</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+            <td data-lang="ar">إجماع المديرين</td>
+            <td data-lang="en">Board unanimity</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+          </tr>
+          <tr>
+            <td data-lang="ar">تأسيس/الاستثمار في شركات أو دخول/خروج شريك</td>
+            <td data-lang="en">Establish/Invest or Partner Entry/Exit</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+            <td data-lang="ar">—</td>
+            <td data-lang="en">—</td>
+            <td data-lang="ar">إجماع المديرين</td>
+            <td data-lang="en">Board unanimity</td>
+            <td data-lang="ar">قد يتطلب قرار شركاء وفق العقد</td>
+            <td data-lang="en">May need partner resolution per AoA</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="footer-note">
+        <span data-lang="ar">لا يسري أي تفويض على البنود التي أوجب عقد التأسيس موافقة جميع المديرين عليها؛ وتبقى بيد المجلس مجتمعاً، مع عرض المستجدات على الشركاء في أول اجتماع دوري.</span>
+        <span data-lang="en">Delegations do not apply where the AoA mandates unanimous board approval; such matters remain collective and are reported to partners at the next ordinary meeting.</span>
+      </p>
+    </section>
+    <section id="contacts">
+      <h2>
+        <span data-lang="ar">قنوات التواصل والمسؤوليات</span>
+        <span data-lang="en">Contacts &amp; Accountability Channels</span>
+      </h2>
+      <p class="section-subtitle">
+        <span data-lang="ar">جهات التصعيد وخيارات الدعم لضمان تطبيق الدليل.</span>
+        <span data-lang="en">Escalation routes and support options to enforce the manual.</span>
+      </p>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>
+            <span data-lang="ar">رئيس المجلس</span>
+            <span data-lang="en">Board Chair</span>
+          </h3>
+          <p>
+            <span data-lang="ar">خالد حمود إبراهيم الذياب</span>
+            <span data-lang="en">Khaled Hamoud Ibrahim Al-Deyab</span>
+          </p>
+          <p>
+            <span data-lang="ar">مسؤول عن توحيد قرارات المجلس واعتماد الخطط الاستراتيجية.</span>
+            <span data-lang="en">Accountable for consolidating board decisions and approving strategic plans.</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">نائب الرئيس</span>
+            <span data-lang="en">Vice Chair</span>
+          </h3>
+          <p>
+            <span data-lang="ar">فوزي حمود إبراهيم الذياب</span>
+            <span data-lang="en">Fawzi Hamoud Ibrahim Al-Deyab</span>
+          </p>
+          <p>
+            <span data-lang="ar">يدعم متابعة التنفيذ ويقود لجان المجلس عند الحاجة.</span>
+            <span data-lang="en">Supports execution follow-up and leads board committees when required.</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>
+            <span data-lang="ar">المدير التنفيذي</span>
+            <span data-lang="en">Chief Executive Officer</span>
+          </h3>
+          <p>
+            <span data-lang="ar">نصرت محمد ديلوار محمد</span>
+            <span data-lang="en">Nusrat Muhammad Dilwar Muhammad</span>
+          </p>
+          <p>
+            <span data-lang="ar">مسؤول عن تنفيذ السياسات وتقديم التقارير الدورية ومراقبة مؤشرات الأداء.</span>
+            <span data-lang="en">Responsible for policy execution, periodic reporting, and KPI monitoring.</span>
+          </p>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 1.5rem;">
+        <h3>
+          <span data-lang="ar">قنوات الدعم</span>
+          <span data-lang="en">Support Channels</span>
+        </h3>
+        <ul class="list">
+          <li>
+            <span data-lang="ar">مكتب أمانة المجلس: استقبال جداول الأعمال، المحاضر، والمتابعة على القرارات.</span>
+            <span data-lang="en">Board Secretariat: intake for agendas, minutes, and tracking of resolutions.</span>
+          </li>
+          <li>
+            <span data-lang="ar">وحدة الحوكمة والامتثال: مراجعة السياسات، مراقبة الالتزامات، إدارة الإفصاحات.</span>
+            <span data-lang="en">Governance &amp; Compliance Unit: policy review, obligation monitoring, and disclosure management.</span>
+          </li>
+          <li>
+            <span data-lang="ar">المراجعة الداخلية: تقييم الضوابط، إعداد خطط التدقيق، ورفع الملاحظات للمجلس.</span>
+            <span data-lang="en">Internal Audit: assess controls, build audit plans, and escalate observations to the Board.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script>
+    const toggleButtons = document.querySelectorAll('.lang-toggle button');
+    const body = document.body;
+    const html = document.documentElement;
 
-    <button class="scroll-top" id="scroll-top">أعلى</button>
+    function setLanguage(lang) {
+      body.classList.remove('lang-ar', 'lang-en');
+      body.classList.add(`lang-${lang}`);
+      html.lang = lang === 'ar' ? 'ar' : 'en';
+      html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      toggleButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.switch === lang);
+      });
+    }
 
-    <script>
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = [...navLinks].map(link => document.querySelector(link.getAttribute('href')));
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const id = entry.target.getAttribute('id');
-                const navLink = document.querySelector(`.nav-link[href="#${id}"]`);
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => link.classList.remove('active'));
-                    if (navLink) navLink.classList.add('active');
-                }
-            });
-        }, { threshold: 0.4 });
-        sections.forEach(section => observer.observe(section));
+    toggleButtons.forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.switch));
+    });
 
-        const manualBody = document.getElementById('manual-body');
-        const tocList = document.getElementById('toc-list');
-        const headings = manualBody.querySelectorAll('h1, h2, h3');
-        headings.forEach((heading, index) => {
-            const anchorId = heading.textContent.trim().replace(/\s+/g, '-').replace(/[^\w\u0600-\u06FF-]/g, '').toLowerCase() + '-' + index;
-            heading.setAttribute('id', anchorId);
-            const li = document.createElement('li');
-            li.style.marginRight = heading.tagName === 'H3' ? '14px' : heading.tagName === 'H2' ? '8px' : '0';
-            const link = document.createElement('a');
-            link.href = `#${anchorId}`;
-            link.textContent = heading.textContent.trim();
-            link.className = heading.tagName === 'H1' ? 'level-1' : heading.tagName === 'H2' ? 'level-2' : 'level-3';
-            li.appendChild(link);
-            tocList.appendChild(li);
-        });
-
-        const tocLinks = tocList.querySelectorAll('a');
-        const tocObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    tocLinks.forEach(link => link.classList.remove('active'));
-                    const active = tocList.querySelector(`a[href="#${entry.target.id}"]`);
-                    if (active) active.classList.add('active');
-                }
-            });
-        }, { root: manualBody, threshold: 0.3 });
-        headings.forEach(heading => tocObserver.observe(heading));
-
-        const searchInput = document.getElementById('manual-search');
-        const clearSearch = document.getElementById('clear-search');
-        const originalHTML = manualBody.innerHTML;
-
-        const highlightMatches = (term) => {
-            if (!term) {
-                manualBody.innerHTML = originalHTML;
-                return;
-            }
-            const regex = new RegExp(`(${term})`, 'gi');
-            manualBody.innerHTML = originalHTML.replace(regex, '<mark>$1</mark>');
-        };
-
-        searchInput.addEventListener('input', (event) => {
-            highlightMatches(event.target.value.trim());
-        });
-
-        clearSearch.addEventListener('click', () => {
-            searchInput.value = '';
-            highlightMatches('');
-            searchInput.focus();
-        });
-
-        const scrollTopBtn = document.getElementById('scroll-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 600) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
-        });
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        document.querySelector('footer p').innerHTML = document.querySelector('footer p').innerHTML.replace('{{YEAR}}', new Date().getFullYear());
-    </script>
+    setLanguage('ar');
+  </script>
 </body>
 </html>
