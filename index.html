@@ -49,9 +49,6 @@
       background-position: center;
       color: #fff;
       padding: 2.5rem 0 3.5rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     }
 
@@ -196,6 +193,57 @@
 
     .section-card li {
       margin-bottom: 0.4rem;
+    }
+
+    .resource-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .resource-card {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(16, 42, 67, 0.08);
+      border-radius: 14px;
+      padding: 1.4rem;
+      box-shadow: 0 10px 20px rgba(15, 36, 58, 0.06);
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .resource-card h4 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--primary-light);
+    }
+
+    .resource-card p {
+      margin: 0;
+    }
+
+    .resource-card ul {
+      margin: 0;
+      padding-inline-start: 1.1rem;
+    }
+
+    .resource-card li {
+      margin-bottom: 0.35rem;
+    }
+
+    .resource-card dl {
+      margin: 0;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .resource-card dt {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .resource-card dd {
+      margin: 0;
+      color: var(--muted);
     }
 
     .inline-table {
@@ -2781,247 +2829,204 @@
         <h2 class="lang lang-en">Section VII – Additional Resources</h2>
         <div class="lang lang-ar" dir="rtl">
           <article>
-            <h3>عارض الهيكل التنظيمي التفاعلي (HTML)</h3>
-            <p>الشيفرة التالية تعكس النموذج الوارد في الدليل الأصلي باستخدام Tailwind CSS وJavaScript بسيط لعرض الهيكل الهرمي القابل للطي.</p>
-            <details>
-              <summary>عرض الشيفرة</summary>
-              <pre class="code-block" dir="ltr"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="ar" dir="rtl"&gt;
-&lt;head&gt;
-   &lt;meta charset="UTF-8"&gt;
-   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-   &lt;title&gt;الهيكل التنظيمي التفاعلي - شركة كانوف&lt;/title&gt;
-   &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
-   &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
-   &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-   &lt;link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"&gt;
-   &lt;!-- Chosen Palette: Calm Neutrals --&gt;
-   &lt;!-- Application Structure Plan ... (كما في الدليل) --&gt;
-   &lt;style&gt;
-       body {
-           font-family: 'Tajawal', sans-serif;
-           background-color: #f8f7f4;
-           color: #3d4451;
-       }
-       .subtitle, .note, h1, p {
-           font-family: 'Roboto', 'Tajawal', sans-serif;
-       }
-       .org-chart {
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-       }
-       .org-chart ul {
-           padding-top: 20px;
-           position: relative;
-           transition: all 0.5s;
-           display: flex;
-           justify-content: center;
-           flex-wrap: wrap;
-       }
-       .org-chart li {
-           float: right;
-           text-align: center;
-           list-style-type: none;
-           position: relative;
-           padding: 20px 5px 0 5px;
-           transition: all 0.5s;
-       }
-       .org-chart li::before, .org-chart li::after {
-           content: '';
-           position: absolute;
-           top: 0;
-           right: 50%;
-           border-top: 2px solid #a1a1aa;
-           width: 50%;
-           height: 20px;
-       }
-       .org-chart li::after {
-           right: auto;
-           left: 50%;
-           border-left: 2px solid #a1a1aa;
-       }
-       .org-chart li:only-child::after, .org-chart li:only-child::before {
-           display: none;
-       }
-       .org-chart li:only-child {
-           padding-top: 0;
-       }
-       .org-chart li:first-child::before, .org-chart li:last-child::after {
-           border: 0 none;
-       }
-       .org-chart li:last-child::before {
-           border-right: 2px solid #a1a1aa;
-           border-radius: 0 5px 0 0;
-       }
-       .org-chart li:first-child::after {
-           border-radius: 5px 0 0 0;
-       }
-       .org-chart ul ul::before {
-           content: '';
-           position: absolute;
-           top: 0;
-           right: 50%;
-           border-right: 2px solid #a1a1aa;
-           width: 0;
-           height: 20px;
-       }
-       .org-chart li .node {
-           border: 2px solid #e2e8f0;
-           padding: 12px 16px;
-           text-decoration: none;
-           color: #3d4451;
-           background-color: #ffffff;
-           display: inline-block;
-           min-width: 180px;
-           min-height: 80px;
-           border-radius: 8px;
-           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-           transition: all 0.3s;
-           cursor: pointer;
-           display: flex;
-           flex-direction: column;
-           justify-content: center;
-           align-items: center;
-       }
-       .org-chart li .node:hover, .org-chart li .node:hover+ul li .node {
-           background: #f7fafc;
-           border-color: #4c51bf;
-       }
-       .org-chart li .node .title {
-           font-weight: 700;
-           font-size: 0.9rem;
-       }
-       .org-chart li .node .subtitle {
-           font-size: 0.75rem;
-           color: #718096;
-           direction: ltr;
-       }
-       .node.level-board { background-color: #e3f2fd; border-color: #90caf9; }
-       .node.level-ceo { background-color: #e8f5e9; border-color: #a5d6a7; }
-       .node.level-control { background-color: #fffde7; border-color: #fff176; }
-       .node.level-sector { background-color: #f3e5f5; border-color: #ce93d8; }
-       .node.level-dept { background-color: #e0f2f1; border-color: #80cbc4; }
-       .node.has-children::after {
-           content: ' ▼';
-           font-size: 10px;
-           display: inline-block;
-           margin-right: 5px;
-           transition: transform 0.3s;
-       }
-       .node.collapsed::after {
-           transform: rotate(-90deg);
-       }
-       .node .note {
-           font-size: 0.65rem;
-           color: #f56565;
-           font-style: italic;
-           margin-top: 4px;
-           direction: ltr;
-       }
-       .independent-line li::before, .independent-line li::after {
-           border-top: 2px dashed #fb923c;
-       }
-       .independent-line li:last-child::before {
-            border-right: 2px dashed #fb923c;
-       }
-       .independent-line ul::before {
-            border-right: 2px dashed #fb923c;
-       }
-   &lt;/style&gt;
-&lt;/head&gt;
-&lt;body class="bg-stone-50 text-gray-800"&gt;
-   &lt;div class="container mx-auto p-4 sm:p-6 lg:p-8"&gt;
-       &lt;header class="text-center mb-12"&gt;
-           &lt;h1 class="text-3xl md:text-4xl font-bold text-gray-900"&gt;الهيكل التنظيمي الشامل لشركة كانوف&lt;/h1&gt;
-           &lt;p class="text-xl text-gray-700 mt-1" lang="en" dir="ltr"&gt;Kanuf Company - Comprehensive Organizational Chart&lt;/p&gt;
-           &lt;p class="mt-4 text-md text-gray-600"&gt;هذا المخطط التفاعلي يوضح التسلسل الإداري. انقر على أي قسم يحتوي على رمز (▼) لتوسيعه.&lt;/p&gt;
-           &lt;p class="mt-1 text-sm text-gray-500" lang="en" dir="ltr"&gt;This interactive chart illustrates the reporting lines. Click on any node with a (▼) to expand.&lt;/p&gt;
-       &lt;/header&gt;
-       &lt;!-- (يستكمل النموذج بنفس البنية كما ورد في الدليل) --&gt;
-   &lt;/div&gt;
-&lt;script&gt;
-   document.addEventListener('DOMContentLoaded', function () {
-       const toggles = document.querySelectorAll('.has-children');
-       const collapseAll = (exceptNode) =&gt; {
-            toggles.forEach(toggle =&gt; {
-               if (toggle !== exceptNode) {
-                   const targetId = toggle.getAttribute('data-target');
-                   const targetElement = document.getElementById(targetId);
-                   if (targetElement &amp;&amp; !targetElement.classList.contains('hidden')) {
-                        targetElement.classList.add('hidden');
-                        toggle.classList.add('collapsed');
-                   }
-               }
-           });
-       }
-       toggles.forEach(toggle =&gt; {
-           toggle.addEventListener('click', function (event) {
-               event.stopPropagation();
-               const targetId = this.getAttribute('data-target');
-               const targetElement = document.getElementById(targetId);
-               if (targetElement) {
-                   const isCollapsed = targetElement.classList.toggle('hidden');
-                   this.classList.toggle('collapsed', isCollapsed);
-               }
-           });
-       });
-       collapseAll(null);
-       const boardNode = document.querySelector('[data-target="board-children"]');
-       if (boardNode) {
-            document.getElementById('board-children').classList.remove('hidden');
-            boardNode.classList.remove('collapsed');
-       }
-       const ceoNode = document.querySelector('[data-target="ceo-children"]');
-       if (ceoNode) {
-            document.getElementById('ceo-children').classList.remove('hidden');
-            ceoNode.classList.remove('collapsed');
-       }
-   });
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-            </details>
+            <h3>عارض الهيكل التنظيمي التفاعلي</h3>
+            <p>يوفّر العارض التفاعلي رؤية شاملة للحوكمة وطبقات القيادة داخل كانوف مع تجربة مستخدم ثنائية اللغة تعزز اتخاذ القرار السريع وتوضّح خطوط المسؤولية.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>الميزات الرئيسية</h4>
+                <ul>
+                  <li>عرض هرمي متدرج يبدأ من مجلس الإدارة وينتهي بالفرق الميدانية مع ألوان مميّزة لكل مستوى.</li>
+                  <li>خاصية الطيّ والتوسّع لعقد الاجتماعات أو عمليات النقل السريعة بين القطاعات.</li>
+                  <li>بحث فوري عن المسميات الوظيفية أو أصحاب الصلاحيات مع إبراز نتائج البحث.</li>
+                  <li>مؤشرات حالة تظهر إن كان المنصب شاغراً، بالإنابة، أو يعمل عن بُعد.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>طبقات المخطط</h4>
+                <dl>
+                  <dt>مجلس الإدارة</dt>
+                  <dd>الإشراف الاستراتيجي، لجان التدقيق والمخاطر، اعتماد الخطط السنوية.</dd>
+                  <dt>الرئيس التنفيذي</dt>
+                  <dd>إدارة التنفيذ الشامل، قيادة مكتب التحول، وقياس الأداء.</dd>
+                  <dt>المستشارون والرقابة</dt>
+                  <dd>المراجعة الداخلية، الالتزام، وإدارة المخاطر المؤسسية.</dd>
+                  <dt>القطاعات الرئيسية</dt>
+                  <dd>الهندسة والمشاريع، الدعم المؤسسي، الأعمال التجارية، وتقنية المعلومات.</dd>
+                  <dt>الإدارات التنفيذية</dt>
+                  <dd>المالية، الموارد البشرية، المشتريات، الصحة والسلامة، إدارة الأسطول والمستودعات.</dd>
+                </dl>
+              </div>
+              <div class="resource-card">
+                <h4>حوكمة البيانات والتكامل</h4>
+                <ul>
+                  <li>تكامل مع دليل تفويض الصلاحيات لإظهار مستويات الموافقة المطلوبة.</li>
+                  <li>ربط بخارطة الأدوار والمسؤوليات (RASCI) لمواءمة أصحاب المخرجات.</li>
+                  <li>تدفق بيانات يومي من نظام الموارد البشرية لضمان تحديث المسميات.</li>
+                  <li>تصدير PDF وPowerPoint لمشاركتها في اجتماعات اللجان أو العروض التنفيذية.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article>
+            <h3>إرشادات تصميم واجهة المستخدم وتجربة المستخدم</h3>
+            <p>تم إعداد واجهة العارض وفق مبادئ التصميم المعتمد في كانوف لضمان وضوح الهوية الرقمية وسهولة الاستخدام عبر الأجهزة المختلفة.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>مبادئ التصميم</h4>
+                <ul>
+                  <li>استخدام ألوان العلامة (الأزرق العميق والبرتقالي) مع تباين مرتفع للنصوص.</li>
+                  <li>ترميز مستويات الهيكل باستخدام ألوان ثانوية متجانسة لتسهيل التمييز البصري.</li>
+                  <li>مساحات بيضاء سخية بين العقد لضمان قراءة مريحة خلال العروض.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>تجربة المستخدم</h4>
+                <ul>
+                  <li>تجاوب كامل مع الهواتف والأجهزة اللوحية مع الحفاظ على اتجاه اللغة المختار.</li>
+                  <li>تلميحات تفاعلية (Tooltips) تعرض نطاق المسؤوليات ومقاييس الأداء لكل منصب.</li>
+                  <li>تسلسل حركي خفيف عند التوسّع/الطي يقلل العبء الإدراكي.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>إمكانية الوصول</h4>
+                <ul>
+                  <li>دعم لوحة المفاتيح بالكامل عبر مفاتيح التاب والمسافة.</li>
+                  <li>توافق مع قارئات الشاشة بإضافة أوصاف بديلة للعقد.</li>
+                  <li>خيارات تكبير الخط وحفظ التفضيلات على مستوى المستخدم.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article>
+            <h3>مواد التفعيل والدعم</h3>
+            <p>تتوافر الحزمة التشغيلية للعارض لدعم إدارات الموارد البشرية والحَوْكَمة في جلسات التعريف أو ورش العمل.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>حزمة الإطلاق</h4>
+                <ul>
+                  <li>دليل إعداد خطوة بخطوة يتضمن لقطات شاشة وإرشادات التخصيص.</li>
+                  <li>قالب عرض تقديمي لاستخدامه في اجتماعات اللجان التنفيذية.</li>
+                  <li>رسائل جاهزة للتواصل الداخلي تعلن عن توفر الأداة.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>مسارات الاتصال</h4>
+                <ul>
+                  <li>نقطة اتصال رئيسية: مكتب الحوكمة المؤسسية (governance@kanuf.sa).</li>
+                  <li>دعم تقني: فريق المنتجات الرقمية، طلبات Jira فئة "Org-Tools".</li>
+                  <li>تحديثات المحتوى: الموارد البشرية الاستراتيجية بالتنسيق مع مكتب التحول.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>مقاييس النجاح</h4>
+                <ul>
+                  <li>نسبة المستخدمين النشطين شهرياً مقارنةً بإجمالي المديرين.</li>
+                  <li>متوسط زمن العثور على صاحب الصلاحية خلال الاجتماعات.</li>
+                  <li>عدد التعديلات المعتمدة التي تمت مزامنتها خلال الربع.</li>
+                </ul>
+              </div>
+            </div>
           </article>
         </div>
         <div class="lang lang-en" dir="ltr">
           <article>
-            <h3>Interactive Org Chart HTML</h3>
-            <p>The following code reproduces the Tailwind CSS-based interactive organogram shipped with the original guidance.</p>
-            <details>
-              <summary>Show code</summary>
-              <pre class="code-block"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="ar" dir="rtl"&gt;
-&lt;head&gt;
-   &lt;meta charset="UTF-8"&gt;
-   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-   &lt;title&gt;الهيكل التنظيمي التفاعلي - شركة كانوف&lt;/title&gt;
-   &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
-   &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
-   &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-   &lt;link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"&gt;
-   &lt;!-- Chosen Palette: Calm Neutrals --&gt;
-   &lt;!-- Application Structure Plan ... (as documented) --&gt;
-   &lt;style&gt;
-       /* Styles identical to the Arabic block above */
-   &lt;/style&gt;
-&lt;/head&gt;
-&lt;body class="bg-stone-50 text-gray-800"&gt;
-   &lt;div class="container mx-auto p-4 sm:p-6 lg:p-8"&gt;
-       &lt;header class="text-center mb-12"&gt;
-           &lt;h1 class="text-3xl md:text-4xl font-bold text-gray-900"&gt;الهيكل التنظيمي الشامل لشركة كانوف&lt;/h1&gt;
-           &lt;p class="text-xl text-gray-700 mt-1" lang="en" dir="ltr"&gt;Kanuf Company - Comprehensive Organizational Chart&lt;/p&gt;
-           &lt;p class="mt-4 text-md text-gray-600"&gt;هذا المخطط التفاعلي يوضح التسلسل الإداري. انقر على أي قسم يحتوي على رمز (▼) لتوسيعه.&lt;/p&gt;
-           &lt;p class="mt-1 text-sm text-gray-500" lang="en" dir="ltr"&gt;This interactive chart illustrates the reporting lines. Click on any node with a (▼) to expand.&lt;/p&gt;
-       &lt;/header&gt;
-       &lt;!-- Remaining structure matches the source document --&gt;
-   &lt;/div&gt;
-&lt;script&gt;
-   // Same JavaScript as shown in the Arabic block
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-            </details>
+            <h3>Interactive Org Chart</h3>
+            <p>The interactive viewer provides full governance transparency for Kanuf’s leadership layers, pairing bilingual content with intuitive navigation to accelerate decision-making.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>Key Features</h4>
+                <ul>
+                  <li>Tiered hierarchy from Board level down to field crews with colour accents per layer.</li>
+                  <li>Expand/collapse controls that support leadership huddles and rapid cross-functional reviews.</li>
+                  <li>Instant search across job titles and mandate owners with highlighted hits.</li>
+                  <li>Status chips calling out acting roles, vacancies, or remote assignments.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>Chart Layers</h4>
+                <dl>
+                  <dt>Board of Directors</dt>
+                  <dd>Strategic oversight, Audit &amp; Risk Committee stewardship, annual plan approvals.</dd>
+                  <dt>Chief Executive Officer</dt>
+                  <dd>Enterprise delivery leadership, Transformation Office sponsorship, performance cadence.</dd>
+                  <dt>Advisory &amp; Control</dt>
+                  <dd>Internal audit, compliance, and enterprise risk management partners.</dd>
+                  <dt>Core Sectors</dt>
+                  <dd>Engineering &amp; Projects, Corporate Enablement, Commercial, and Digital Technology.</dd>
+                  <dt>Delivery Departments</dt>
+                  <dd>Finance, People, Procurement, HSE, Fleet &amp; Warehousing operations.</dd>
+                </dl>
+              </div>
+              <div class="resource-card">
+                <h4>Data &amp; Integration</h4>
+                <ul>
+                  <li>Synchronised with the Delegation of Authority matrix to expose approval thresholds.</li>
+                  <li>RASCI mapping overlay to align accountable/consulted stakeholders per initiative.</li>
+                  <li>Nightly feed from the HRIS to keep job titles and reporting lines current.</li>
+                  <li>Export to PDF and PowerPoint for committee packs and executive briefings.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article>
+            <h3>UI &amp; UX Guidance</h3>
+            <p>The viewer follows Kanuf’s digital design system, ensuring a consistent internal brand experience and usability across desktop and mobile form factors.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>Design Principles</h4>
+                <ul>
+                  <li>Corporate blue and accent orange palette with accessible contrast ratios.</li>
+                  <li>Secondary colour tagging per hierarchy level to reinforce visual parsing.</li>
+                  <li>Generous whitespace and modular spacing to support on-screen presentations.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>User Experience</h4>
+                <ul>
+                  <li>Responsive breakpoints tuned for tablets and mobiles while respecting language direction.</li>
+                  <li>Hover and tooltip microcopy surfacing remit, KPIs, and current initiatives.</li>
+                  <li>Subtle motion when expanding/collapsing nodes to maintain cognitive flow.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>Accessibility</h4>
+                <ul>
+                  <li>Full keyboard navigation with tab/space controls.</li>
+                  <li>Screen-reader friendly labels and role descriptions on each node.</li>
+                  <li>Font scaling options with persisted user preferences.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article>
+            <h3>Enablement &amp; Support Assets</h3>
+            <p>A dedicated rollout package equips Governance and People teams to embed the tool during onboarding, leadership forums, and compliance reviews.</p>
+            <div class="resource-grid">
+              <div class="resource-card">
+                <h4>Launch Kit</h4>
+                <ul>
+                  <li>Step-by-step configuration guide with annotated screenshots.</li>
+                  <li>Executive presentation template for committee briefings.</li>
+                  <li>Pre-drafted internal communications announcing availability.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>Support Channels</h4>
+                <ul>
+                  <li>Primary contact: Corporate Governance Office (governance@kanuf.sa).</li>
+                  <li>Technical support: Digital Products squad via Jira &ldquo;Org-Tools&rdquo; queue.</li>
+                  <li>Content upkeep: Strategic HR partnering with the Transformation Office.</li>
+                </ul>
+              </div>
+              <div class="resource-card">
+                <h4>Success Metrics</h4>
+                <ul>
+                  <li>Monthly active user ratio versus total people leaders.</li>
+                  <li>Average time-to-locate mandate owner during governance meetings.</li>
+                  <li>Count of approved structural updates synchronised each quarter.</li>
+                </ul>
+              </div>
+            </div>
           </article>
         </div>
       </section>
