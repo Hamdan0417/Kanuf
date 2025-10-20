@@ -1,0 +1,3049 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل حوكمة كانوف الداخلي | Kanuf Internal Governance Manual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0a4d68;
+      --primary-light: #0f7396;
+      --accent: #f5a623;
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --border: #d9e2ec;
+      --text: #102a43;
+      --muted: #486581;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: direction 0.3s ease, font-family 0.3s ease;
+    }
+
+    body.lang-en {
+      direction: ltr;
+      font-family: 'Inter', 'Cairo', sans-serif;
+    }
+
+    body.lang-en header,
+    body.lang-en nav ul,
+    body.lang-en .hero,
+    body.lang-en .content-wrapper {
+      direction: ltr;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(10, 77, 104, 0.94), rgba(15, 115, 150, 0.85)), url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 2.5rem 0 3.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0 2rem 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.12);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      padding: 0.35rem;
+      gap: 0.35rem;
+    }
+
+    .lang-toggle button {
+      border: none;
+      background: transparent;
+      color: #fff;
+      padding: 0.4rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .lang-toggle button.active {
+      background: #fff;
+      color: var(--primary);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.2rem;
+      padding: 0;
+      margin: 0;
+      flex-wrap: wrap;
+      padding-inline: 2rem;
+    }
+
+    nav a {
+      color: rgba(255, 255, 255, 0.88);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .hero {
+      padding: 0 2rem;
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin: 0;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 60rem;
+    }
+
+    main {
+      padding: 2.5rem 2rem 4rem;
+    }
+
+    .content-wrapper {
+      display: grid;
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(15, 36, 58, 0.08);
+      border: 1px solid rgba(16, 42, 67, 0.05);
+      display: grid;
+      gap: 1.6rem;
+    }
+
+    .section-card h2 {
+      margin: 0;
+      font-size: 1.75rem;
+      color: var(--primary);
+    }
+
+    .section-card h3 {
+      margin: 1.6rem 0 0.6rem;
+      font-size: 1.25rem;
+      color: var(--primary-light);
+    }
+
+    .section-card p {
+      margin: 0 0 0.8rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .section-card ul {
+      margin: 0 0 1.2rem;
+      padding-inline-start: 1.4rem;
+      line-height: 1.7;
+    }
+
+    .section-card li {
+      margin-bottom: 0.4rem;
+    }
+
+    .inline-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .inline-table th,
+    .inline-table td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.8rem;
+      text-align: start;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .inline-table th {
+      background: #eef3f8;
+      color: var(--primary);
+    }
+
+    .lang {
+      display: none;
+    }
+
+    body.lang-ar .lang.lang-ar,
+    body.lang-en .lang.lang-en {
+      display: block;
+    }
+
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .badge {
+      background: rgba(10, 77, 104, 0.08);
+      color: var(--primary);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    details {
+      border: 1px solid rgba(10, 77, 104, 0.15);
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .code-block {
+      background: #0f1c2f;
+      color: #e0f2ff;
+      padding: 1.2rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem 3rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        position: static;
+      }
+
+      .topbar,
+      nav ul,
+      .hero,
+      main {
+        padding-inline: 1.25rem;
+      }
+
+      .section-card {
+        padding: 1.5rem;
+      }
+
+      .inline-table {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body class="lang-ar">
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-logo">K</div>
+        <div>
+          <div class="lang lang-ar" dir="rtl"><strong>منصة الحوكمة الداخلية</strong><br>شركة كانوف للمقاولات</div>
+          <div class="lang lang-en" dir="ltr"><strong>Internal Governance Portal</strong><br>Kanuf Contracting Company</div>
+        </div>
+      </div>
+      <div class="lang-toggle" role="group" aria-label="Language toggle">
+        <button type="button" data-lang="ar" class="active">العربية</button>
+        <button type="button" data-lang="en">English</button>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#overview">الرؤية / Overview</a></li>
+        <li><a href="#governance-manual">دليل الحوكمة / Governance Manual</a></li>
+        <li><a href="#appendices">الملاحق / Appendices</a></li>
+        <li><a href="#detailed-appendices">تفاصيل الملاحق</a></li>
+        <li><a href="#tools">نماذج وأدوات</a></li>
+        <li><a href="#org-design">الهيكل التنظيمي</a></li>
+        <li><a href="#operational-readiness">متطلبات التشغيل</a></li>
+        <li><a href="#resources">موارد إضافية</a></li>
+      </ul>
+    </nav>
+    <div class="hero">
+      <h1 class="lang lang-ar">بوابة كانوف الداخلية للحوكمة والهيكلة التشغيلية</h1>
+      <h1 class="lang lang-en">Kanuf Internal Governance & Operating Blueprint Portal</h1>
+      <p class="lang lang-ar">منصة مرجعية مخصصة لقيادات كانوف تجمع دليل الحوكمة الكامل، الملاحق التفصيلية، النماذج التشغيلية، والهيكلة التنظيمية مع دعم كامل باللغتين العربية والإنجليزية.</p>
+      <p class="lang lang-en">A dedicated internal reference for Kanuf leadership consolidating the full governance handbook, appendices, operational templates, and organizational architecture with complete Arabic and English coverage.</p>
+    </div>
+  </header>
+  <main>
+    <div class="content-wrapper">
+      <section id="overview" class="section-card">
+        <h2 class="lang lang-ar">نظرة شاملة</h2>
+        <h2 class="lang lang-en">Executive Overview</h2>
+        <div class="lang lang-ar" dir="rtl">
+          <p>يغطي هذا الدليل الداخلي كل ما ورد في المستند الأصلي من تعريفات حوكمة، مواثيق، سياسات، ملاحق، نماذج تشغيلية، متطلبات تنظيمية، وهيكلة تفصيلية لشركة كانوف. تم ترتيب المحتوى في أقسام واضحة مع جداول قابلة للقراءة ونماذج قابلة للتنفيذ.</p>
+          <div class="badge-grid">
+            <div class="badge">حوكمة</div>
+            <div class="badge">التزامات نظامية</div>
+            <div class="badge">إدارة مخاطر</div>
+            <div class="badge">سلسلة الإمداد</div>
+            <div class="badge">هيكلة تنظيمية</div>
+            <div class="badge">تشغيل المشاريع</div>
+          </div>
+        </div>
+        <div class="lang lang-en" dir="ltr">
+          <p>This internal portal reproduces every element from the source document: governance definitions, charters, policies, appendices, operational templates, regulatory requirements, and the detailed Kanuf organizational blueprint. Content is arranged into structured sections with readable tables and actionable forms.</p>
+          <div class="badge-grid">
+            <div class="badge">Governance</div>
+            <div class="badge">Regulatory Compliance</div>
+            <div class="badge">Risk Management</div>
+            <div class="badge">Supply Chain</div>
+            <div class="badge">Org Design</div>
+            <div class="badge">Project Delivery</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="governance-manual" class="section-card">
+        <h2 class="lang lang-ar">القسم الأول: دليل الحوكمة الشامل</h2>
+        <h2 class="lang lang-en">Section I – Comprehensive Governance Manual</h2>
+        <div class="lang lang-ar" dir="rtl">
+          <article>
+            <h3>1) التعاريف والترتيب النظامي</h3>
+            <p>الترتيب النظامي للوثائق يبدأ بنظام الشركات ولوائحه، يليها عقد تأسيس الشركة وأي ملاحق تعديل، ثم هذا الدليل وسياساته وملاحقه، وأخيرًا الإجراءات التنفيذية الداخلية.</p>
+            <ul>
+              <li><strong>المجلس:</strong> مجلس المديرين.</li>
+              <li><strong>الشركاء:</strong> مالكو حصص الشركة.</li>
+              <li><strong>اللجان:</strong> اللجان المنبثقة من المجلس مثل لجنة التدقيق والمخاطر ولجنة الترشيحات والمكافآت.</li>
+              <li><strong>الإدارة التنفيذية:</strong> المدير التنفيذي وكبار التنفيذيين في المالية والقانونية والموارد البشرية والعمليات وغيرها.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>2) مبادئ الحوكمة</h3>
+            <ul>
+              <li>العدالة والمساواة بين الشركاء.</li>
+              <li>النزاهة والشفافية والإفصاح في الوقت المناسب.</li>
+              <li>المساءلة والمسؤولية أمام الشركاء والجهات الرقابية.</li>
+              <li>الكفاءة في اتخاذ القرار وإدارة المخاطر.</li>
+              <li>الالتزام بجميع الأنظمة واللوائح ذات الصلة داخل المملكة، بما يتوافق مع أحكام الشريعة الإسلامية.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>3) هيكل الحوكمة</h3>
+            <h4>3.1 الشركاء</h4>
+            <p>يمارس الشركاء حقوقهم عبر الاجتماعات العادية وغير العادية، ويختصون بتعيين وعزل المديرين واعتماد القوائم المالية وتوزيع الأرباح وتعديل عقد التأسيس والقرارات الكبرى.</p>
+            <h4>3.2 مجلس المديرين</h4>
+            <p>يتكون من ثلاثة مديرين على الأقل: الرئيس خالد حمود إبراهيم الذياب، نائب الرئيس فوزي حمود إبراهيم الذياب، وعضو ومدير تنفيذي نصرت محمد ديلوار محمد. يشرف المجلس على الاستراتيجية والميزانية والسياسات ويمثل الشركة ضمن حدود العقد.</p>
+            <p>تتطلب بعض الأعمال إجماع المديرين مثل التمويل والاقتراض والضمانات وفتح الحسابات وتغيير الشركاء وتأسيس الشركات وتصفية الشركة.</p>
+            <h4>3.3 اللجان المنبثقة</h4>
+            <ul>
+              <li><strong>لجنة التدقيق والمخاطر (ACRC):</strong> مسؤولة عن التدقيق والضوابط وإدارة المخاطر والالتزام والمراجع الخارجي.</li>
+              <li><strong>لجنة الترشيحات والمكافآت (NRC):</strong> معنية بالحوكمة البشرية وسياسات الأجور والتعاقب الوظيفي وتقييم الأداء وتضارب المصالح.</li>
+            </ul>
+            <h4>3.4 الإدارة التنفيذية</h4>
+            <p>يقودها المدير التنفيذي نصرت محمد ديلوار محمد بمساندة مديري المالية والمشتريات والمشاريع والموارد البشرية والتقنية والقانون والامتثال.</p>
+          </article>
+          <article>
+            <h3>4) اجتماعات الشركاء</h3>
+            <ul>
+              <li>تصدر الدعوة من المجلس أو من يحدده العقد، مع جدول أعمال ومرفقات بوقت كافٍ.</li>
+              <li>القرارات تتخذ وفق عقد التأسيس والنظام وتوثق بمحاضر رسمية.</li>
+              <li>يجوز التمرير إذا سمح النظام مع إثبات الاطلاع والموافقة.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>5) لائحة عمل مجلس المديرين</h3>
+            <ul>
+              <li>اجتماع ربع سنوي على الأقل مع اجتماعات طارئة عند الحاجة.</li>
+              <li>الدعوة قبل خمسة أيام عمل وتشمل جدول الأعمال.</li>
+              <li>السماح بالحضور عن بُعد وفق الضوابط.</li>
+              <li>إفصاح تضارب المصالح والامتناع عن التصويت عند التعارض.</li>
+              <li>تقييم سنوي للمجلس واللجان والإدارة التنفيذية.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>6) الإطار المالي والرقابي</h3>
+            <ul>
+              <li>إعداد القوائم المالية ربع سنوي وسنوي وفق المعايير المعتمدة ومراجعتها من لجنة التدقيق.</li>
+              <li>عرض الميزانية والخطة التشغيلية لاعتماد المجلس سنويًا.</li>
+              <li>تعيين المراجع الخارجي بقرار الشركاء بناءً على توصية اللجنة.</li>
+              <li>إنشاء مصفوفة ضوابط للعمليات الرئيسة كقبول العملاء والمطابقات البنكية.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>7) سياسة إدارة المخاطر واستمرارية الأعمال</h3>
+            <ul>
+              <li>إنشاء سجل مخاطر يغطي جميع الفئات بما فيها الأمن السيبراني والصحة والسلامة.</li>
+              <li>اعتماد شهية المخاطر وحدودها وخطط الاستجابة.</li>
+              <li>وضع خطة استمرارية أعمال وتعافي من الكوارث مع نسخ احتياطي وقنوات اتصال بديلة.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>8) الامتثال والالتزامات النظامية</h3>
+            <ul>
+              <li>إدارة الزكاة والضرائب من التسجيل إلى السداد والفحص.</li>
+              <li>الامتثال لمتطلبات التأمينات والموارد البشرية وحماية الأجور والسعودة.</li>
+              <li>متابعة التراخيص والسجلات الحكومية لجميع الأنشطة.</li>
+              <li>تنفيذ سياسات مكافحة الرشوة وغسل الأموال وضوابط الهدايا.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>9) سياسة الأطراف ذات العلاقة وتضارب المصالح</h3>
+            <p>تعريف شامل للطرف ذي العلاقة، واشتراط الإفصاح والتقييم المستقل وتوصية اللجنة المختصة قبل الموافقة على أي معاملة، مع نموذج إفصاح سنوي.</p>
+          </article>
+          <article>
+            <h3>10) سياسة التعاقد والمشتريات</h3>
+            <ul>
+              <li>المنافسة والشفافية عبر ثلاثة عروض سعرية كقاعدة عامة.</li>
+              <li>تقييم الموردين من حيث السجلات والملاءة والسوابق.</li>
+              <li>شروط تعاقدية قياسية تشمل النطاق والدفع والجزاءات والتحكيم.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>11) سياسة الموارد البشرية</h3>
+            <ul>
+              <li>الاستقطاب عبر أوصاف وظيفية ومقابلات موثقة والتحقق من المراجع.</li>
+              <li>عقود عمل متوافقة مع النظام السعودي وسياسات دوام وإجازات وثقافة سلامة.</li>
+              <li>تقييم أداء نصف سنوي وسنوي مرتبط بمؤشرات.</li>
+              <li>قنوات تظلم وتبليغ سرية مع حماية من الانتقام.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>12) السياسة المصرفية وإدارة الخزينة</h3>
+            <ul>
+              <li>اشتراط موافقة جميع المديرين على الحسابات البنكية والقروض والضمانات.</li>
+              <li>توقيع مزدوج على الشيكات والصرفيات وفق مصفوفة الصلاحيات.</li>
+              <li>مطابقة بنكية شهرية واستقلال الخزينة عن المحاسبة.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>13) تبني التكنولوجيا وحماية المعلومات</h3>
+            <ul>
+              <li>تعيين مسؤول أمن معلومات.</li>
+              <li>سياسات للتصنيف والتحكم في الوصول والنسخ الاحتياطي وكلمات المرور والتشفير وإدارة الحوادث.</li>
+              <li>تدريب توعوي ربع سنوي.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>14) إدارة الوثائق والسجلات</h3>
+            <ul>
+              <li>جدول حفظ واستبقاء يشمل العقود والسجلات المالية وسجلات الموظفين والمحاضر والمستندات الحكومية.</li>
+              <li>أرشفة إلكترونية قابلة للبحث مع نسخ احتياطي في موقع بديل.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>15) أحكام نهائية</h3>
+            <ul>
+              <li>مراجعة سنوية للدليل أو عند أي تغيير جوهري.</li>
+              <li>سريان الدليل من تاريخ اعتماد الشركاء.</li>
+              <li>اللغة العربية هي اللغة المعتمدة مع توفير ترجمة داخلية داعمة.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="lang lang-en" dir="ltr">
+          <article>
+            <h3>1) Definitions and Document Hierarchy</h3>
+            <p>The normative order begins with the Companies Law and regulations, followed by the Articles of Association and amendments, this manual with its policies and annexes, and finally the internal executive procedures.</p>
+            <ul>
+              <li><strong>The Board:</strong> Board of Managers.</li>
+              <li><strong>Partners:</strong> Holders of the company&apos;s shares.</li>
+              <li><strong>Committees:</strong> Board-established committees including the Audit & Risk Committee and the Nomination & Remuneration Committee.</li>
+              <li><strong>Executive Management:</strong> The CEO and senior executives across finance, legal, HR, operations, and related functions.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>2) Governance Principles</h3>
+            <ul>
+              <li>Fairness and equality among partners.</li>
+              <li>Integrity, transparency, and timely disclosure.</li>
+              <li>Accountability to partners and regulators.</li>
+              <li>Decision-making efficiency and disciplined risk management.</li>
+              <li>Compliance with all applicable Saudi regulations and Sharia principles.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>3) Governance Structure</h3>
+            <h4>3.1 Partners</h4>
+            <p>Partners exercise their rights through ordinary and extraordinary meetings, appoint and remove managers, approve financial statements, distribute profits, amend the articles, and authorize major transformations.</p>
+            <h4>3.2 Board of Managers</h4>
+            <p>At least three managers: Chair Khalid Hamoud Ibrahim Al-Dheyab, Vice Chair Fawzi Hamoud Ibrahim Al-Dheyab, and Managing Director & CEO Nusrat Mohammed Dilwar Mohammed. The Board supervises strategy, budgets, policies, and represents the company within the contractual limits.</p>
+            <p>Unanimous board approval is required for financing, guarantees, bank account changes, partner admissions or exits, establishing companies, liquidations, and similar matters.</p>
+            <h4>3.3 Board Committees</h4>
+            <ul>
+              <li><strong>Audit & Risk Committee (ACRC):</strong> Oversees audit, internal controls, risk management, compliance, and the external auditor.</li>
+              <li><strong>Nomination & Remuneration Committee (NRC):</strong> Governs human capital, compensation policies, succession planning, performance reviews, and conflict oversight.</li>
+            </ul>
+            <h4>3.4 Executive Management</h4>
+            <p>Led by CEO Nusrat Mohammed Dilwar Mohammed with functional directors for finance, procurement, projects/operations, HR, technology/cybersecurity, legal, and compliance.</p>
+          </article>
+          <article>
+            <h3>4) Partners&apos; Meetings</h3>
+            <ul>
+              <li>Notices issued by the Board or as defined in the articles, including agenda and materials in advance.</li>
+              <li>Quorum and voting follow the Companies Law and the Articles of Association, and resolutions are documented.</li>
+              <li>Written circular resolutions are permitted where the law allows with documented acknowledgements.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>5) Board Operating Regulation</h3>
+            <ul>
+              <li>Regular quarterly meetings with emergency sessions as needed.</li>
+              <li>Invitations sent five business days in advance with agendas.</li>
+              <li>Remote participation allowed under controlled conditions.</li>
+              <li>Members disclose conflicts in writing and abstain from voting on related items.</li>
+              <li>Annual evaluation covering the Board, committees, and executive management.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>6) Financial and Control Framework</h3>
+            <ul>
+              <li>Quarterly and annual financial statements prepared under Saudi-adopted IFRS and reviewed by the Audit & Risk Committee.</li>
+              <li>Annual budgets and operating plans presented to the Board for approval.</li>
+              <li>External auditor appointed and compensated by the partners upon committee recommendation.</li>
+              <li>Internal control matrix covering client onboarding, project opening, disbursements, bank reconciliations, asset counts, and petty cash.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>7) Risk Management and Business Continuity</h3>
+            <ul>
+              <li>Maintain a comprehensive risk register covering market, liquidity, credit, execution, compliance, reputation, cybersecurity, and HSE risks.</li>
+              <li>Define risk appetite thresholds and response plans (avoid, mitigate, transfer, accept).</li>
+              <li>Establish business continuity and disaster recovery plans with backups and communication alternatives.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>8) Compliance and Regulatory Obligations</h3>
+            <ul>
+              <li>Manage zakat and tax registration, filing, payment, and audit.</li>
+              <li>Ensure labor law, GOSI, wage protection, and Saudization compliance.</li>
+              <li>Track all operating licenses including commercial registry, chamber, civil defense, municipalities, telecoms, and Etimad platform.</li>
+              <li>Implement anti-bribery and AML policies with gift and hospitality controls.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>9) Related Party and Conflict Policy</h3>
+            <p>Defines related parties (partners, managers, first-degree relatives, controlled entities) and mandates written disclosures, independent evaluation, committee recommendation, and Board approval per the Articles, with annual and ad-hoc declarations.</p>
+          </article>
+          <article>
+            <h3>10) Contracting and Procurement Policy</h3>
+            <ul>
+              <li>Competitive sourcing with three bids as the default or documented justification otherwise.</li>
+              <li>Supplier due diligence covering legal standing, taxes, insurance, history, and financial strength.</li>
+              <li>Standard contract clauses on scope, specifications, payments, penalties, warranties, phased delivery, and dispute resolution.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>11) Human Resources Policy</h3>
+            <ul>
+              <li>Recruitment based on job descriptions, documented interviews, and reference checks.</li>
+              <li>Employment contracts aligned with Saudi labor law, attendance and leave policies, and a culture of discipline and safety.</li>
+              <li>Mid-year and annual performance reviews tied to KPIs.</li>
+              <li>Confidential grievance and whistleblowing channels with non-retaliation.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>12) Banking and Treasury Policy</h3>
+            <ul>
+              <li>Board unanimity required for bank accounts, loans, guarantees, LCs, promissory notes, and similar obligations.</li>
+              <li>Dual signatures on checks and operational disbursements according to the delegation matrix.</li>
+              <li>Monthly bank reconciliations and segregation between treasury and accounting.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>13) Technology Adoption & Information Security</h3>
+            <ul>
+              <li>Appoint an Information Security Officer.</li>
+              <li>Policies for classification, access control, backups, password hygiene, encryption, incident management, and security awareness.</li>
+              <li>Quarterly awareness training.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>14) Document and Record Management</h3>
+            <ul>
+              <li>Retention schedule covering contracts (10 years post expiry), financial records (10 years), employee files (5 years post exit), meeting minutes (permanent), and government documents (permanent).</li>
+              <li>Searchable electronic archiving with off-site backups.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>15) Final Provisions</h3>
+            <ul>
+              <li>Manual reviewed annually or upon material regulatory or contractual changes.</li>
+              <li>Effective upon partner approval.</li>
+              <li>Arabic remains the legal reference; English is provided for internal guidance.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="appendices" class="section-card">
+        <h2 class="lang lang-ar">القسم الثاني: الملاحق المختصرة</h2>
+        <h2 class="lang lang-en">Section II – Summary Appendices</h2>
+        <div class="lang lang-ar" dir="rtl">
+          <article>
+            <h3>الملحق (أ): مصفوفة تفويض الصلاحيات (DoA)</h3>
+            <p>لا ينطبق التفويض على الأعمال التي يشترط عقد التأسيس إجماع المديرين عليها. تشمل المصفوفة مجالات العقود وأوامر الشراء والصرفيات وفتح المشاريع وبيع الأصول والتوظيف والتعاملات البنكية وتأسيس الشركات والتعديلات الجوهرية.</p>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>المجال</th>
+                  <th>الإدارة التنفيذية (CEO)</th>
+                  <th>رئيس المجلس</th>
+                  <th>نائب الرئيس</th>
+                  <th>مجلس المديرين</th>
+                  <th>الشركاء</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>عقود التوريد/الخدمات</td>
+                  <td>حتى 250,000 ر.س</td>
+                  <td>250,001 – 750,000 ر.س</td>
+                  <td>750,001 – 1,000,000 ر.س</td>
+                  <td>فوق 1,000,000 ر.س أو العقود الاستراتيجية</td>
+                  <td>عند الالتزامات غير العادية أو الأثر الرأسمالي</td>
+                </tr>
+                <tr>
+                  <td>أوامر الشراء</td>
+                  <td>حتى 150,000 ر.س</td>
+                  <td>حتى 300,000 ر.س</td>
+                  <td>حتى 500,000 ر.س</td>
+                  <td>ما يزيد</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>صرفيات العمليات</td>
+                  <td>حتى 100,000 ر.س</td>
+                  <td>حتى 200,000 ر.س</td>
+                  <td>حتى 300,000 ر.س</td>
+                  <td>ما يزيد</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>فتح مشاريع/عطاءات</td>
+                  <td>يوصي</td>
+                  <td>يعتمد</td>
+                  <td>يعتمد</td>
+                  <td>يعتمد للمشاريع الاستراتيجية</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>بيع/شراء أصول ثابتة</td>
+                  <td>حتى 100,000 ر.س</td>
+                  <td>حتى 300,000 ر.س</td>
+                  <td>حتى 500,000 ر.س</td>
+                  <td>ما يزيد/أصول استراتيجية</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>توظيف مدير إدارة</td>
+                  <td>يوصي</td>
+                  <td>يعتمد</td>
+                  <td>يعتمد</td>
+                  <td>—</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>توظيف مدير تنفيذي بديل</td>
+                  <td>يرشح</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>يوصي</td>
+                  <td>يعتمد</td>
+                </tr>
+                <tr>
+                  <td>حسابات بنكية/قروض/ضمانات</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>إجماع المديرين</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>تأسيس/استثمار في شركات أو تغيير الشركاء</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>إجماع المديرين</td>
+                  <td>قد يتطلب قرار شركاء</td>
+                </tr>
+                <tr>
+                  <td>تعديل عقد التأسيس أو التصفية</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>يوصي</td>
+                  <td>قرار شركاء</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><strong>ملاحظات:</strong> مراجعة قانونية قبل توقيع العقود الحساسة، وفصل مهام للعمليات النقدية والمستودعات.</p>
+          </article>
+          <article>
+            <h3>الملحق (ب): ميثاق مجلس المديرين (مختصر)</h3>
+            <p>يغطي الغرض والتشكيل والكفاءة والاختصاصات الرئيسة والاجتماعات وتضارب المصالح والوصول للمعلومات والتقييم وأمانة السر.</p>
+          </article>
+          <article>
+            <h3>الملحق (ج): ميثاق لجنة التدقيق والمخاطر</h3>
+            <p>ينظم التشكيل والاستقلالية والصلاحيات والمسؤوليات المتعلقة بالتقارير المالية والضوابط الداخلية والمخاطر والامتثال ومكافحة الغش والأمن السيبراني واستمرارية الأعمال والتقارير إلى المجلس.</p>
+          </article>
+          <article>
+            <h3>الملحق (د): ميثاق لجنة الترشيحات والمكافآت</h3>
+            <p>يحدد غرض اللجنة ومسؤولياتها ومبادئ التعويض لضمان حوكمة رأس المال البشري والتعاقب الوظيفي.</p>
+          </article>
+          <article>
+            <h3>الملحق (هـ): سياسة أخلاقيات العمل والإبلاغ</h3>
+            <p>يشمل مبادئ النزاهة والامتثال والاحترام والسرية، وضوابط مكافحة الرشوة وغسل الأموال، والتواصل الإعلامي، وآليات الإبلاغ والتحقيق وعدم الانتقام.</p>
+          </article>
+          <article>
+            <h3>الملحق (و): سياسة المشتريات (مختصر)</h3>
+            <p>يوضح دورة الشراء من طلب الشراء حتى الدفع، وإجراءات الشراء المباشر، وإدارة الموردين، والشروط التعاقدية القياسية.</p>
+          </article>
+          <article>
+            <h3>الملحق (ز): سياسة أمن المعلومات (مختصر)</h3>
+            <p>يتناول الحوكمة والنطاق والتصنيف والتحكم بالوصول وكلمات المرور والتشفير والنسخ الاحتياطي وإدارة الثغرات والاستجابة للحوادث وموردي الطرف الثالث.</p>
+          </article>
+          <article>
+            <h3>الملحق (ح): نماذج جاهزة</h3>
+            <ul>
+              <li>نموذج إفصاح تضارب مصالح.</li>
+              <li>نموذج إقرار الالتزام بالسلوك المهني.</li>
+              <li>نموذج طلب موافقة معاملة طرف ذي علاقة.</li>
+              <li>نموذج جدول أعمال اجتماع مجلس المديرين.</li>
+              <li>نموذج محضر اجتماع.</li>
+              <li>روزنامة الحوكمة السنوية مع أبرز المهام ربع السنوية والسنوية.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="lang lang-en" dir="ltr">
+          <article>
+            <h3>Appendix (A): Delegation of Authority Matrix</h3>
+            <p>Delegations exclude any matters requiring unanimous Board approval under the Articles. The matrix covers contracting, purchase orders, disbursements, project bids, asset sales, senior hiring, banking, and corporate structural changes.</p>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>Domain</th>
+                  <th>CEO</th>
+                  <th>Board Chair</th>
+                  <th>Vice Chair</th>
+                  <th>Board of Managers</th>
+                  <th>Partners</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Supply / Service Contracts</td>
+                  <td>Up to SAR 250K</td>
+                  <td>SAR 250,001 – 750,000</td>
+                  <td>SAR 750,001 – 1,000,000</td>
+                  <td>Above SAR 1,000,000 or strategic deals</td>
+                  <td>Extraordinary liabilities or capital impact</td>
+                </tr>
+                <tr>
+                  <td>Purchase Orders</td>
+                  <td>Up to SAR 150K</td>
+                  <td>Up to SAR 300K</td>
+                  <td>Up to SAR 500K</td>
+                  <td>Above threshold</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Operational Disbursements</td>
+                  <td>Up to SAR 100K</td>
+                  <td>Up to SAR 200K</td>
+                  <td>Up to SAR 300K</td>
+                  <td>Above threshold</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Project / Bid Launch</td>
+                  <td>Recommends</td>
+                  <td>Approves</td>
+                  <td>Approves</td>
+                  <td>Approves strategic bids</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Asset Sale / Purchase</td>
+                  <td>Up to SAR 100K</td>
+                  <td>Up to SAR 300K</td>
+                  <td>Up to SAR 500K</td>
+                  <td>Above or strategic assets</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Department Director Hiring</td>
+                  <td>Recommends</td>
+                  <td>Approves</td>
+                  <td>Approves</td>
+                  <td>—</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Replacement CEO Hiring</td>
+                  <td>Nominates</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>Recommends</td>
+                  <td>Partners approve</td>
+                </tr>
+                <tr>
+                  <td>Banking / Loans / Guarantees</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>Board unanimity</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Founding / Investing / Partner Changes</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>Board unanimity</td>
+                  <td>May require partner resolution</td>
+                </tr>
+                <tr>
+                  <td>Articles Amendments / Liquidation</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>Recommends</td>
+                  <td>Partners resolve</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><strong>Notes:</strong> All high-impact contracts undergo legal review; sensitive operations such as cash, warehouses, and petty cash require segregation of duties and dual authorizations.</p>
+          </article>
+          <article>
+            <h3>Appendix (B): Board Charter (Summary)</h3>
+            <p>Covers purpose, composition, competency standards, core responsibilities, meeting cadence, conflict management, access to information, evaluations, and board secretariat duties.</p>
+          </article>
+          <article>
+            <h3>Appendix (C): Audit & Risk Committee Charter</h3>
+            <p>Defines composition, independence, powers, and responsibilities across financial reporting, internal controls, risk oversight, compliance, fraud reporting, cybersecurity, business continuity, and reporting back to the Board.</p>
+          </article>
+          <article>
+            <h3>Appendix (D): Nomination & Remuneration Committee Charter</h3>
+            <p>Sets the committee purpose, responsibilities, and compensation principles to steward human capital governance and succession planning.</p>
+          </article>
+          <article>
+            <h3>Appendix (E): Code of Ethics & Whistleblowing Policy</h3>
+            <p>Articulates integrity, compliance, respect, confidentiality, anti-bribery, AML, media protocols, reporting channels, investigation steps, and non-retaliation safeguards.</p>
+          </article>
+          <article>
+            <h3>Appendix (F): Procurement Policy (Summary)</h3>
+            <p>Describes the procurement cycle from requisition to payment, direct purchasing justifications, supplier management, and standard contractual clauses.</p>
+          </article>
+          <article>
+            <h3>Appendix (G): Information Security Policy (Summary)</h3>
+            <p>Addresses governance scope, classification, access controls, password hygiene, encryption, backups, vulnerability management, incident response, and third-party security.</p>
+          </article>
+          <article>
+            <h3>Appendix (H): Ready-to-Use Templates</h3>
+            <ul>
+              <li>Conflict of Interest Disclosure.</li>
+              <li>Professional Conduct Acknowledgment.</li>
+              <li>Related Party Transaction Approval Request.</li>
+              <li>Board Meeting Agenda template.</li>
+              <li>Meeting Minutes template.</li>
+              <li>Annual governance calendar covering quarterly and annual milestones.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="detailed-appendices" class="section-card">
+        <h2 class="lang lang-ar">القسم الثالث: الملاحق التفصيلية</h2>
+        <h2 class="lang lang-en">Section III – Detailed Annexes</h2>
+        <div class="lang lang-ar" dir="rtl">
+          <article>
+            <h3>1) مبادئ عامة للتفويض</h3>
+            <ul>
+              <li>عدم جواز التفويض في البنود التي يشترط عقد التأسيس إجماع المديرين عليها (القروض والضمانات وفتح الحسابات البنكية وتأسيس الشركات ودخول أو خروج الشركاء وتعديل العقد).</li>
+              <li>فصل المهام بحيث لا يجمع شخص واحد بين طلب الشراء والاعتماد والاستلام والدفع.</li>
+              <li>التدرّج والتوقيع المزدوج في العمليات المالية والالتزامات فوق حدود معينة.</li>
+              <li>الالتزام بإثبات كتابي وحفظ الموافقات إلكترونيًا برقم مرجعي.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>2) مستويات التوقيع والوظائف</h3>
+            <ul>
+              <li>L1: مشرف أو مسؤول أول.</li>
+              <li>L2: مدير قسم.</li>
+              <li>L3: مدير المالية أو المدير المالي.</li>
+              <li>L4: المدير التنفيذي.</li>
+              <li>L5: نائب رئيس المجلس.</li>
+              <li>L6: رئيس المجلس.</li>
+              <li>BOD: مجلس المديرين.</li>
+              <li>Partners: الشركاء.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>3) الحدود المالية التفصيلية</h3>
+            <p>الحدود التالية مرجعية قابلة للتعديل بقرار المجلس، مع الالتزام بوجود توقيعين حيثما ذُكر.</p>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>البند</th>
+                  <th>حتى 50,000</th>
+                  <th>50,001 – 150,000</th>
+                  <th>150,001 – 250,000</th>
+                  <th>250,001 – 750,000</th>
+                  <th>750,001 – 1,000,000</th>
+                  <th>أكثر من 1,000,000</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>أوامر شراء تشغيلي</td>
+                  <td>L2 + L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>عقود التوريد/الخدمات</td>
+                  <td>L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>صرفيات نقدية/تحويلات</td>
+                  <td>L2 + L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>شراء أصول ثابتة</td>
+                  <td>L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>خصومات/مذكرات ائتمان</td>
+                  <td>L2 + L3</td>
+                  <td>L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>شطب ديون معدومة</td>
+                  <td>L3 + L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                  <td>BOD</td>
+                  <td>Partners</td>
+                </tr>
+                <tr>
+                  <td>بيع/إتلاف أصل</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>تسعير العطاءات</td>
+                  <td>مدير المشروع + L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>التسويات القانونية</td>
+                  <td>المستشار + L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                  <td>BOD</td>
+                  <td>Partners</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><strong>ملاحظات تشغيلية:</strong> توقيعان إلزاميان على الشيكات حتى 750 ألف ر.س (L3 + L4 كحد أدنى)، وما فوقها L4 + L5 أو L5 + L6. أوامر التغيير تتبع قيمة العقد الأصلية بعد احتساب التغيرات. أي استثناء يتطلب محضرًا مسببًا ومراجعة قانونية.</p>
+          </article>
+          <article>
+            <h3>4) صلاحيات نوعية</h3>
+            <ul>
+              <li>إقرار السياسات الداخلية: يوصي بها المدير التنفيذي ويعتمدها مجلس المديرين.</li>
+              <li>الخطة والميزانية السنوية: يقدمها المدير التنفيذي، يعتمدها المجلس، وتقر القوائم المالية من الشركاء.</li>
+              <li>توظيف مديري الأقسام: اعتماد المدير التنفيذي بناءً على توصية الموارد البشرية.</li>
+              <li>تعيينات تنفيذية عليا: المجلس يوصي والشركاء يعتمدون في حالة تعيين مدير تنفيذي بديل.</li>
+              <li>العلاقات البنكية والقروض والضمانات والاعتمادات والسندات لأمر: تتطلب إجماع مجلس المديرين.</li>
+              <li>معاملات الأطراف ذات العلاقة: توصية لجنة الترشيحات والمكافآت، واعتماد المجلس، ومع الحالات الجوهرية يُرفع الموضوع للشركاء.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>الملحق (ب): ميثاق مجلس المديرين – تفصيلي</h3>
+            <ul>
+              <li><strong>الغرض:</strong> الإشراف على الاستراتيجية والحوكمة والأداء والمخاطر وحماية مصالح الشركاء.</li>
+              <li><strong>التشكيل:</strong> ثلاثة مديرين على الأقل مع انتخاب رئيس ونائب.</li>
+              <li><strong>معايير الكفاءة:</strong> خبرة قانونية أو مالية أو في المقاولات أو الاستراتيجية، نزاهة، وتفرغ مناسب.</li>
+              <li><strong>الاختصاصات:</strong> اعتماد الرؤية والخطة والميزانية ومؤشرات الأداء، متابعة التقارير المالية والرقابية وتقارير اللجان، الموافقة على العقود الجوهرية والسياسات، التعيينات التنفيذية، إدارة المخاطر، والتواصل مع الشركاء.</li>
+              <li><strong>الاجتماعات:</strong> دورية ربع سنوية على الأقل، الدعوة قبل خمسة أيام، النصاب بالأغلبية، قرارات الأغلبية باستثناء ما يتطلب إجماعًا، التمرير كتابيًا أو إلكترونيًا مع إثبات.</li>
+              <li><strong>المحاضر:</strong> تتضمن الحضور والمواضيع والقرارات والأصوات والمواعيد النهائية.</li>
+              <li><strong>تضارب المصالح:</strong> إفصاح مسبق وامتناع عن التصويت وتوقيع إقرارات سنوية بالسرية.</li>
+              <li><strong>الوصول للمعلومات:</strong> حق طلب أي معلومات أو الاستعانة بخبراء مستقلين.</li>
+              <li><strong>التقييم:</strong> تقييم سنوي للمجلس واللجان والمدير التنفيذي مع خطة تطوير.</li>
+              <li><strong>أمانة السر:</strong> تعيين أمين سر مسؤول عن الدعوات والمحاضر والمتابعة وحفظ السجلات.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>الملحق (ج): ميثاق لجنة التدقيق والمخاطر</h3>
+            <ul>
+              <li><strong>التشكيل:</strong> 2–3 أعضاء ويفضل الاستقلالية عن الإدارة التنفيذية.</li>
+              <li><strong>الحضور:</strong> يجوز دعوة المراجع الخارجي والداخلي ومسؤول الامتثال وأمن المعلومات.</li>
+              <li><strong>الصلاحيات:</strong> الوصول الكامل للمعلومات والتوصية بتعيين أو عزل المراجع الخارجي وأتعابه.</li>
+              <li><strong>المسؤوليات:</strong> مراجعة القوائم والسياسات المحاسبية، اعتماد إطار الضوابط، متابعة خطة المراجعة الداخلية، تصنيف المخاطر ومراجعة السجل ربع سنويًا، متابعة الالتزامات النظامية، مراقبة قنوات البلاغات والتحقيقات وعدم الانتقام، متابعة الأمن السيبراني واختبارات الاختراق والنسخ الاحتياطي، واستعراض خطط الاستمرارية واختبارها سنويًا.</li>
+              <li><strong>الاجتماعات:</strong> اجتماع ربع سنوي على الأقل مع تقرير للمجلس بعد كل اجتماع وتقرير سنوي للشركاء.</li>
+              <li><strong>الخدمات غير المراجعية:</strong> حظر الخدمات التي تهدد استقلالية المراجع، مع استثناءات محدودة بموافقة اللجنة.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>الملحق (د): ميثاق لجنة الترشيحات والمكافآت</h3>
+            <ul>
+              <li><strong>الغرض:</strong> حوكمة رأس المال البشري والترشيحات للمناصب العليا وسياسات التعويض والتعاقب.</li>
+              <li><strong>المسؤوليات:</strong> وضع سياسة مكافآت عادلة، تحديد معايير اختيار وتقييم المديرين والتنفيذيين وبرامج التهيئة، مراجعة هيكل الرواتب سنويًا، إدارة تضارب المصالح، الإشراف على تقييم المجلس والتنفيذيين، إعداد خطط التعاقب للمناصب الحرجة.</li>
+              <li><strong>مبادئ التعويض:</strong> العدالة الداخلية، الجاذبية، الربط بالأداء، الاستدامة المالية، وسياسة استرداد الحوافز عند المخالفات الجسيمة.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>الملحق (هـ): سياسة أخلاقيات العمل والإبلاغ</h3>
+            <ul>
+              <li><strong>المبادئ:</strong> النزاهة والامتثال والاحترام والسرية وتجنب تضارب المصالح.</li>
+              <li><strong>مجالات السلوك:</strong> مكافحة الرشوة مع الإفصاح عن الهدايا فوق 500 ر.س، مكافحة غسل الأموال وتمويل الإرهاب عبر ضوابط اعرف عميلك وموردك، حماية سرية المعلومات، وضبط التواصل الإعلامي.</li>
+              <li><strong>الإبلاغ:</strong> قنوات سرية (بريد، بوابة داخلية، صندوق مغلق) مع إجراءات مصنفة للاستلام والتحقيق والقرار.</li>
+              <li><strong>عدم الانتقام:</strong> حظر أي إجراء ضد المُبلِّغ حسن النية وتطبيق جزاءات وفق لائحة الموارد البشرية.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>الملحق (و): سياسة المشتريات – تفصيلي</h3>
+            <p><strong>دورة المشتريات:</strong> طلب شراء، طرح RFQ لثلاثة عروض، تقييم فني ومالي بنموذج مرجّح، إصدار أمر شراء بعد موافقات DoA، استلام وفحص بإذن استلام ومحضر فحص، مطابقة ثلاثية بين PO وGRN والفاتورة، ودفع بعد خصم الجزاءات.</p>
+            <p><strong>حالات الشراء المباشر:</strong> احتكار تقني أو حالات طارئة أو قيمة صغيرة مع توثيق المبررات واعتماد L3 + L4.</p>
+            <p><strong>إدارة الموردين:</strong> اعتماد مسبق للمستندات، تقييم سنوي للأداء والجودة والالتزام، إقرارات تضارب المصالح.</p>
+            <p><strong>الشروط القياسية:</strong> نطاق واضح، مواصفات، جدول زمني، غرامات، ضمانات، شروط دفع، بنود تغيير وفسخ، قوة قاهرة، وحل نزاع (تحكيم/قضاء) وتحديد القانون الواجب.</p>
+          </article>
+          <article>
+            <h3>الملحق (ز): سياسة أمن المعلومات – تفصيلي</h3>
+            <ul>
+              <li>تعيين مسؤول أمن معلومات يرفع للجنة التدقيق والمخاطر.</li>
+              <li>تصنيف المعلومات إلى سري للغاية وسري ومحدود وعام.</li>
+              <li>التحكم في الوصول وفق مبدأ أقل صلاحية ومراجعة نصف سنوية للحقوق.</li>
+              <li>متطلبات كلمات المرور: 12 خانة على الأقل وتغيير دوري وتفعيل المصادقة المتعددة.</li>
+              <li>تشفير الأجهزة المحمولة والنسخ الاحتياطية والاتصالات الحساسة.</li>
+              <li>نسخ احتياطي يومي مع تحقق شهري واختبارات استعادة ربع سنوية.</li>
+              <li>إدارة الثغرات عبر تحديثات أمنية شهرية.</li>
+              <li>خطة استجابة للحوادث مع فريق CSIRT ومصفوفة تصعيد وتقارير ما بعد الحادث.</li>
+              <li>تقييم أمني لموردي الطرف الثالث وتضمين بنود حماية البيانات بالعقود.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="lang lang-en" dir="ltr">
+          <article>
+            <h3>1) Delegation Principles</h3>
+            <ul>
+              <li>No delegation for matters that the Articles require unanimous Board approval (loans, guarantees, bank accounts, company formations, partner changes, charter amendments).</li>
+              <li>Segregate duties so that no individual requests, approves, receives, and pays for the same transaction.</li>
+              <li>Apply tiered and dual signatures for financial operations and commitments beyond defined limits.</li>
+              <li>Capture written evidence for all approvals and store digitally with reference numbers.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>2) Signing Levels</h3>
+            <ul>
+              <li>L1: Senior Officer / Supervisor.</li>
+              <li>L2: Department Manager.</li>
+              <li>L3: Finance Manager / CFO.</li>
+              <li>L4: Chief Executive Officer.</li>
+              <li>L5: Vice Chair.</li>
+              <li>L6: Board Chair.</li>
+              <li>BOD: Board of Managers.</li>
+              <li>Partners: Shareholders.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>3) Financial Thresholds</h3>
+            <p>Reference limits adjustable by Board resolution with mandatory dual sign-off where indicated.</p>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>≤ 50,000</th>
+                  <th>50,001 – 150,000</th>
+                  <th>150,001 – 250,000</th>
+                  <th>250,001 – 750,000</th>
+                  <th>750,001 – 1,000,000</th>
+                  <th>> 1,000,000</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Operational Purchase Orders</td>
+                  <td>L2 + L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>Supply / Service Contracts</td>
+                  <td>L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>Cash / Transfer Disbursements</td>
+                  <td>L2 + L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>Fixed Asset Purchases</td>
+                  <td>L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>Customer Discounts / Credit Notes</td>
+                  <td>L2 + L3</td>
+                  <td>L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>Bad Debt Write-offs</td>
+                  <td>L3 + L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                  <td>BOD</td>
+                  <td>Partners</td>
+                </tr>
+                <tr>
+                  <td>Asset Disposal / Damage</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>Bid Pricing</td>
+                  <td>Project Manager + L3</td>
+                  <td>L3 + L4</td>
+                  <td>L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                </tr>
+                <tr>
+                  <td>Legal Settlements</td>
+                  <td>Legal Counsel + L4</td>
+                  <td>L4 + L5</td>
+                  <td>L5 + L6</td>
+                  <td>BOD</td>
+                  <td>BOD</td>
+                  <td>Partners</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><strong>Operational notes:</strong> Dual signatures mandatory on checks up to SAR 750K (minimum L3 + L4) and L4 + L5 or L5 + L6 thereafter; contract change orders follow aggregated values; any exception demands a justified resolution and legal review.</p>
+          </article>
+          <article>
+            <h3>4) Qualitative Authorities</h3>
+            <ul>
+              <li>Policies: CEO recommends, Board approves.</li>
+              <li>Annual plan and budget: CEO submits, Board approves, partners endorse financial statements.</li>
+              <li>Department director hiring: CEO approves based on HR recommendation.</li>
+              <li>Executive appointments: Board recommends, partners approve for CEO replacement.</li>
+              <li>Banking, loans, guarantees, LCs, promissory notes: unanimous Board consent.</li>
+              <li>Related party transactions: NRC recommends, Board approves, material cases escalated to partners.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Appendix (B) Detailed – Board Charter</h3>
+            <ul>
+              <li><strong>Purpose:</strong> Oversee strategy, governance, performance, risk, and shareholder value protection.</li>
+              <li><strong>Composition:</strong> Minimum three managers with elected chair and vice chair.</li>
+              <li><strong>Competency:</strong> Expertise in law, finance, contracting, or strategy; integrity; adequate availability.</li>
+              <li><strong>Responsibilities:</strong> Approve vision, plan, budget, KPIs, review reports, approve major contracts and policies, manage executive appointments, define risk appetite, and manage partner communications.</li>
+              <li><strong>Meetings:</strong> Quarterly at minimum; notices five business days ahead; quorum by majority; majority voting except for unanimous matters; written or electronic circulars with evidence.</li>
+              <li><strong>Minutes:</strong> Record attendees, topics, resolutions, votes, deadlines.</li>
+              <li><strong>Conflicts:</strong> Advance disclosure, abstention, annual confidentiality declarations.</li>
+              <li><strong>Information access:</strong> Right to request information or engage independent advisors.</li>
+              <li><strong>Evaluation:</strong> Annual assessment of the Board, committees, and CEO with development plans.</li>
+              <li><strong>Secretariat:</strong> Board secretary manages invites, minutes, action tracking, and records.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Appendix (C) Detailed – Audit & Risk Committee</h3>
+            <ul>
+              <li><strong>Composition:</strong> Two to three members, preferably non-executive.</li>
+              <li><strong>Attendance:</strong> External/internal auditors, compliance, and information security can be invited.</li>
+              <li><strong>Powers:</strong> Unrestricted access to information; recommend external auditor appointment/dismissal and fees.</li>
+              <li><strong>Responsibilities:</strong> Review financial statements and accounting policies, approve control frameworks, oversee internal audit plan and findings, classify risks and review register quarterly, monitor regulatory obligations, supervise whistleblowing channels and investigations, monitor cybersecurity metrics, penetration testing, backups, and review business continuity plans.</li>
+              <li><strong>Meetings:</strong> At least quarterly with reports to the Board and an annual summary for partners.</li>
+              <li><strong>Non-audit services:</strong> Prohibit services threatening independence with only limited exceptions approved by the committee.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Appendix (D) Detailed – Nomination & Remuneration Committee</h3>
+            <ul>
+              <li><strong>Purpose:</strong> Govern human capital, senior nominations, compensation, and succession.</li>
+              <li><strong>Responsibilities:</strong> Design fair reward policies, set selection and evaluation criteria, run onboarding and development programs, review pay structures annually, manage conflicts in hiring, oversee Board and executive evaluations, build succession plans for critical roles.</li>
+              <li><strong>Compensation principles:</strong> Internal equity, market competitiveness, performance linkage, financial sustainability, and clawback for gross misconduct.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Appendix (E) Detailed – Ethics & Whistleblowing</h3>
+            <ul>
+              <li><strong>Principles:</strong> Integrity, compliance, respect, confidentiality, avoidance of conflicts.</li>
+              <li><strong>Behavioural scope:</strong> Anti-bribery with disclosure for gifts above SAR 500 or that may impair neutrality, AML/CFT through KYC for customers and suppliers, confidentiality of information, media and social media protocols.</li>
+              <li><strong>Reporting:</strong> Confidential email, internal portal, or locked drop boxes with intake, classification, investigation, recommendation, decision, and closure steps.</li>
+              <li><strong>Non-retaliation:</strong> Zero tolerance for retaliation and enforcement via HR disciplinary procedures.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Appendix (F) Detailed – Procurement Policy</h3>
+            <p><strong>Procurement cycle:</strong> Purchase requisition, RFQ with three bids, weighted technical and commercial evaluation, purchase order post-DoA approvals, receiving and inspection with GRN, three-way match (PO/GRN/Invoice), payment after deductions.</p>
+            <p><strong>Direct / limited sourcing:</strong> Allowed for technical monopoly, emergencies, or low value with documented justification and approval by L3 + L4.</p>
+            <p><strong>Supplier management:</strong> Pre-qualification (CR, tax, GOSI, insurance), annual performance review (quality, timeliness, defect rate, safety), conflict-of-interest declarations from evaluators.</p>
+            <p><strong>Standard terms:</strong> Clear scope, specifications, schedule, delay penalties, warranties, payment milestones, change order clauses, force majeure, dispute resolution (arbitration/courts), governing law.</p>
+          </article>
+          <article>
+            <h3>Appendix (G) Detailed – Information Security</h3>
+            <ul>
+              <li>Appoint an Information Security Officer reporting to the Audit & Risk Committee.</li>
+              <li>Classify data as Top Secret, Confidential, Restricted, or Public.</li>
+              <li>Enforce least-privilege access with semi-annual rights reviews.</li>
+              <li>Password policy: minimum 12 characters, periodic changes, MFA for sensitive accounts.</li>
+              <li>Encrypt mobile devices, backups, and sensitive communications.</li>
+              <li>Daily backups with monthly validation and quarterly restore tests.</li>
+              <li>Monthly security patch window.</li>
+              <li>Incident response with CSIRT, escalation matrix, and post-incident reports.</li>
+              <li>Third-party security assessments and contractual data protection clauses.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+        <div class="lang lang-ar" dir="rtl">
+          <article>
+            <h3>الملحق (ح): نماذج جاهزة – تفصيل</h3>
+            <details>
+              <summary>1) نموذج إفصاح تضارب مصالح</summary>
+              <p>الاسم: .................................................................</p>
+              <p>الصفة/المسمى: ........................................................</p>
+              <p>وصف المصلحة أو العلاقة: .................................................</p>
+              <p>تاريخ بدء المصلحة ومدتها: ..............................................</p>
+              <p>تدابير المعالجة المقترحة: .............................................</p>
+              <p>أتعهد بالإفصاح عن أي تغيير فورًا والامتناع عن المشاركة في القرارات ذات الصلة.</p>
+              <p>التوقيع: ............... التاريخ: .. / .. / 20..</p>
+              <p>اعتماد اللجنة/المجلس: ..................................................</p>
+            </details>
+            <details>
+              <summary>2) نموذج إقرار التزام بالسلوك المهني</summary>
+              <p>أنا الموقع أدناه ................................................. أقرّ باطلاعي على «سياسة أخلاقيات العمل» والالتزام بأحكامها بما في ذلك السرية وتجنب تضارب المصالح ومنع الرشوة وحماية الأصول.</p>
+              <p>الاسم والتوقيع: ............................. التاريخ: .. / .. / 20..</p>
+            </details>
+            <details>
+              <summary>3) نموذج طلب موافقة معاملة طرف ذي علاقة</summary>
+              <p>المقدِّم: ..............................................</p>
+              <p>نوع المعاملة: (توريد / تأجير / خدمات / قرض / ضمان / أخرى)</p>
+              <p>القيمة التقديرية: ............................. شروط الدفع: ................</p>
+              <p>الطرف ذو العلاقة وطبيعة الصلة: ........................................</p>
+              <p>مذكرة تبريرية + تسعير مقارن/تقييم مستقل: مرفق.</p>
+              <p>توصية اللجنة المختصة: موافقة / رفض (مع الأسباب).</p>
+              <p>قرار المجلس: .............................. التاريخ: .. / .. / 20..</p>
+            </details>
+            <details>
+              <summary>4) نموذج جدول أعمال اجتماع مجلس المديرين</summary>
+              <ul>
+                <li>التحقق من النصاب واعتماد جدول الأعمال.</li>
+                <li>اعتماد محضر الاجتماع السابق.</li>
+                <li>استعراض التقارير: مالية – تشغيل – مخاطر/التزام – مشاريع – موارد بشرية – تقنية.</li>
+                <li>بنود للموافقة (سياسات/عقود/استثمارات/تفويضات).</li>
+                <li>بنود للمداولة (استراتيجية/ميزانية/تعاقب/حوكمة).</li>
+                <li>قرارات وتكليفات ومهل تنفيذ.</li>
+                <li>ما يستجد من أعمال وتحديد موعد الاجتماع التالي.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>5) نموذج محضر اجتماع</summary>
+              <p>التاريخ / الوقت / المكان: ..............................................</p>
+              <p>الحضور: .............................................. (بيان الأعضاء والغائبين بعذر)</p>
+              <p>الموضوعات:</p>
+              <p>بند (1): ........ ملخص النقاش ........ القرار: ........ التصويت: ........</p>
+              <p>بند (2): ........</p>
+              <p>التكليفات والمسؤوليات والمهل: ..........................................</p>
+              <p>اختتام الجلسة: ...........................................................</p>
+              <p>التوقيعات: الرئيس / الأعضاء / أمين السر.</p>
+            </details>
+            <details>
+              <summary>6) روزنامة الحوكمة السنوية (مثال)</summary>
+              <table class="inline-table">
+                <thead>
+                  <tr>
+                    <th>الربع/الشهر</th>
+                    <th>مهام المجلس</th>
+                    <th>لجنة التدقيق والمخاطر</th>
+                    <th>لجنة الترشيحات والمكافآت</th>
+                    <th>التنفيذ/الإدارة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>يناير</td>
+                    <td>خطة وميزانية نهائية واعتمادها</td>
+                    <td>خطة مراجعة داخلية وسجل مخاطر محدث</td>
+                    <td>خطة تقييم الأداء</td>
+                    <td>إقفال ميزان المراجعة السنوي</td>
+                  </tr>
+                  <tr>
+                    <td>فبراير – مارس</td>
+                    <td>اعتماد القوائم ومشروع التوزيعات</td>
+                    <td>مراجعة القوائم مع المراجع الخارجي</td>
+                    <td>مراجعة هيكل الرواتب والحوافز</td>
+                    <td>إقرار الزكاة والضرائب والرفع</td>
+                  </tr>
+                  <tr>
+                    <td>أبريل</td>
+                    <td>مراجعة ربع سنوية</td>
+                    <td>تحديث المخاطر والضوابط</td>
+                    <td>خطة التعاقب</td>
+                    <td>تدريب أخلاقيات العمل</td>
+                  </tr>
+                  <tr>
+                    <td>يوليو</td>
+                    <td>مراجعة ربع سنوية</td>
+                    <td>اختبار BCP/DR</td>
+                    <td>مراجعة التوظيف الحرِج</td>
+                    <td>تقييم موردين نصف سنوي</td>
+                  </tr>
+                  <tr>
+                    <td>أكتوبر</td>
+                    <td>مراجعة ربع سنوية</td>
+                    <td>مراجعة الأمن السيبراني والضوابط</td>
+                    <td>سياسة مكافآت للعام القادم</td>
+                    <td>إعداد ميزانية العام القادم</td>
+                  </tr>
+                  <tr>
+                    <td>ديسمبر</td>
+                    <td>اجتماع ختامي وخطة العام القادم</td>
+                    <td>تقرير التزام سنوي</td>
+                    <td>تقييم المجلس والتنفيذيين</td>
+                    <td>جرد الأصول ومطابقات بنكية</td>
+                  </tr>
+                </tbody>
+              </table>
+            </details>
+          </article>
+        </div>
+        <div class="lang lang-en" dir="ltr">
+          <article>
+            <h3>Appendix (H): Detailed Templates</h3>
+            <details>
+              <summary>1) Conflict of Interest Disclosure</summary>
+              <p>Name: .................................................................</p>
+              <p>Title: .................................................................</p>
+              <p>Description of interest/relationship: ...................................</p>
+              <p>Start date and duration: ..............................................</p>
+              <p>Proposed mitigation: ..................................................</p>
+              <p>I undertake to report any change immediately and abstain from related decisions.</p>
+              <p>Signature: ............... Date: .. / .. / 20..</p>
+              <p>Committee/Board endorsement: ...........................................</p>
+            </details>
+            <details>
+              <summary>2) Professional Conduct Acknowledgment</summary>
+              <p>I, ................................................, confirm that I have read the Code of Ethics and will abide by confidentiality, conflict avoidance, anti-bribery, and asset protection requirements.</p>
+              <p>Name & Signature: ............................. Date: .. / .. / 20..</p>
+            </details>
+            <details>
+              <summary>3) Related Party Transaction Approval Request</summary>
+              <p>Applicant: ..............................................</p>
+              <p>Transaction type: (Supply / Lease / Services / Loan / Guarantee / Other)</p>
+              <p>Estimated value: ............................. Payment terms: ..............</p>
+              <p>Related party & relationship nature: .....................................</p>
+              <p>Justification memo + benchmark pricing / independent assessment attached.</p>
+              <p>Committee recommendation: Approve / Reject with reasons.</p>
+              <p>Board decision: .............................. Date: .. / .. / 20..</p>
+            </details>
+            <details>
+              <summary>4) Board Meeting Agenda Template</summary>
+              <ul>
+                <li>Confirm quorum and approve agenda.</li>
+                <li>Approve minutes of the previous meeting.</li>
+                <li>Review reports: Finance, Operations, Risk/Compliance, Projects, HR, Technology.</li>
+                <li>Approval items (policies, contracts, investments, delegations).</li>
+                <li>Discussion items (strategy, budget, succession, governance).</li>
+                <li>Resolutions, assignments, and timelines.</li>
+                <li>Any other business and next meeting date.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>5) Meeting Minutes Template</summary>
+              <p>Date / time / venue: ...................................................</p>
+              <p>Attendance: .............................................. (members and excused absences)</p>
+              <p>Topics:</p>
+              <p>Item (1): ........ discussion summary ........ decision: ........ vote: ........</p>
+              <p>Item (2): ........</p>
+              <p>Assignments / owners / deadlines: .........................................</p>
+              <p>Adjournment: .............................................................</p>
+              <p>Signatures: Chair / Members / Secretary.</p>
+            </details>
+            <details>
+              <summary>6) Annual Governance Calendar (Sample)</summary>
+              <table class="inline-table">
+                <thead>
+                  <tr>
+                    <th>Quarter / Month</th>
+                    <th>Board Activities</th>
+                    <th>Audit & Risk Committee</th>
+                    <th>Nomination & Remuneration Committee</th>
+                    <th>Execution / Management</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>January</td>
+                    <td>Finalize and approve plan & budget</td>
+                    <td>Internal audit plan and updated risk register</td>
+                    <td>Performance evaluation plan</td>
+                    <td>Close prior year trial balance</td>
+                  </tr>
+                  <tr>
+                    <td>February – March</td>
+                    <td>Approve financial statements and distributions</td>
+                    <td>Review statements with external auditor</td>
+                    <td>Review salary and incentive structure</td>
+                    <td>Submit zakat/tax filings</td>
+                  </tr>
+                  <tr>
+                    <td>April</td>
+                    <td>Quarterly review</td>
+                    <td>Update risks and controls</td>
+                    <td>Succession planning</td>
+                    <td>Ethics training</td>
+                  </tr>
+                  <tr>
+                    <td>July</td>
+                    <td>Quarterly review</td>
+                    <td>BCP/DR test</td>
+                    <td>Critical hiring review</td>
+                    <td>Mid-year supplier evaluation</td>
+                  </tr>
+                  <tr>
+                    <td>October</td>
+                    <td>Quarterly review</td>
+                    <td>Cybersecurity & controls assessment</td>
+                    <td>Next year compensation policy</td>
+                    <td>Prepare next year budget</td>
+                  </tr>
+                  <tr>
+                    <td>December</td>
+                    <td>Year-end meeting & next year plan</td>
+                    <td>Annual compliance report</td>
+                    <td>Board & executive evaluation</td>
+                    <td>Asset inventory & bank reconciliations</td>
+                  </tr>
+                </tbody>
+              </table>
+            </details>
+          </article>
+        </div>
+      </section>
+      <section id="tools" class="section-card">
+        <h2 class="lang lang-ar">القسم الرابع: السجلات والنماذج التشغيلية</h2>
+        <h2 class="lang lang-en">Section IV – Operational Registers & Templates</h2>
+        <div class="lang lang-ar" dir="rtl">
+          <article>
+            <h3>(1) مصفوفة التواقيع البنكية الموحدة</h3>
+            <p><strong>المبادئ:</strong> توقيعان إلزاميان على المدفوعات، تعيين مسؤول قنوات إلكترونية مستقل، مراجعة سنوية للمصفوفة.</p>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>الشريحة</th>
+                  <th>نطاق المبلغ (ر.س)</th>
+                  <th>التحويلات المحلية</th>
+                  <th>التحويلات الدولية</th>
+                  <th>الشيكات</th>
+                  <th>ملاحظات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>A</td>
+                  <td>0 – 100,000</td>
+                  <td>L3 + L4</td>
+                  <td>L3 + L4</td>
+                  <td>L3 + L4</td>
+                  <td>توقيعان إلزاميان</td>
+                </tr>
+                <tr>
+                  <td>B</td>
+                  <td>100,001 – 750,000</td>
+                  <td>L4 + L5</td>
+                  <td>L4 + L5</td>
+                  <td>L4 + L5</td>
+                  <td>إشعار للمجلس</td>
+                </tr>
+                <tr>
+                  <td>C</td>
+                  <td>750,001 – 1,000,000</td>
+                  <td>L5 + L6</td>
+                  <td>L5 + L6</td>
+                  <td>L5 + L6</td>
+                  <td>موافقة مسبقة عبر محضر</td>
+                </tr>
+                <tr>
+                  <td>D</td>
+                  <td>> 1,000,000</td>
+                  <td>L5 + L6 + إشعار BOD</td>
+                  <td>L5 + L6 + إشعار BOD</td>
+                  <td>L5 + L6 + إشعار BOD</td>
+                  <td>قد يتطلب اعتماد مجلس صريح</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><strong>صلاحيات القنوات الإلكترونية:</strong> إنشاء مستفيد بواسطة موظف مالي مع موافقة L3 ثم موافقة نهائية (L4 للمبالغ الصغيرة وL5/L6 للكبير)، تعديل حدود المستخدمين عبر مسؤول القنوات بموافقة L4 + L5، وتعليق المستخدمين بطلب موقع من L3 + L4.</p>
+            <p><strong>سجل تغييرات المصفوفة:</strong> يتضمن التاريخ والتغيير والسبب والمعتمدين.</p>
+          </article>
+          <article>
+            <h3>(2) إجراءات فتح/إغلاق الحسابات البنكية</h3>
+            <p><strong>فتح حساب:</strong> قرار مجلس، نسخ معتمدة من المستندات النظامية، نماذج تعريف توقيعات، تفعيل القنوات الإلكترونية، إعداد مصفوفة التوقيع وإجراء اختبار تشغيلي.</p>
+            <p><strong>إغلاق حساب:</strong> تسوية الأرصدة، إلغاء الوسائل المرتبطة، سداد أو إلغاء الاعتمادات، خطاب إغلاق موقع، تأكيد من البنك، تحديث السجلات وإبلاغ الأطراف ذات العلاقة.</p>
+            <p><strong>نموذج قرار:</strong> «فتح حساب لدى بنك ....... بعملة ....... وتفويض الأسماء المحددة وفق المصفوفة، وتعيين مسؤول قنوات إلكترونية».</p>
+          </article>
+          <article>
+            <h3>(3) سجل المخاطر النموذجي ومنهجية القياس</h3>
+            <p><strong>حقول السجل:</strong> رقم، الفئة، وصف الخطر، السبب الجذري، الاحتمال (1–5)، الأثر (1–5)، درجة الخطر (PxI)، الضوابط القائمة، إجراء الاستجابة، مالك الخطر، مؤشر رئيسي، تاريخ المراجعة.</p>
+            <p><strong>مصفوفة التقييم:</strong> منخفض (1–4)، متوسط (5–9)، عالي (10–15)، حرج (16–25) مع رفع المخاطر الحرجة للمجلس بخطة معالجة.</p>
+            <p><strong>أمثلة KRIs:</strong> تأخر مشاريع أكثر من 10% عن الجدول، عيوب جودة أعلى من 3%، تجاوز تكلفة المواد 8%، دوران موظفين شهريًا فوق 5% للوظائف الحرجة.</p>
+            <p><strong>عينة:</strong> خطر تأخر تحصيل عملاء حكوميين (4 × 4 = 16) مع ضوابط متابعة أسبوعية وخطة تمويل قصير الأجل.</p>
+          </article>
+          <article>
+            <h3>(4) مصفوفة الالتزامات والامتثال</h3>
+            <p>نموذج لتتبع الالتزامات النظامية يشمل الجهة، التكرار، الموعد، المالك، الحالة، والمستند الداعم.</p>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>البند</th>
+                  <th>الجهة</th>
+                  <th>التكرار</th>
+                  <th>الموعد</th>
+                  <th>المالك</th>
+                  <th>الحالة</th>
+                  <th>المرجع</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>الإقرارات الضريبية والزكوية</td>
+                  <td>هيئة الزكاة والضرائب</td>
+                  <td>سنوي/دوري</td>
+                  <td>حسب التسجيل</td>
+                  <td>المالية</td>
+                  <td>☐/☑</td>
+                  <td>إيصال سداد/إقرار</td>
+                </tr>
+                <tr>
+                  <td>اشتراكات التأمينات (GOSI)</td>
+                  <td>المؤسسة العامة للتأمينات</td>
+                  <td>شهري</td>
+                  <td>آخر كل شهر</td>
+                  <td>الموارد البشرية</td>
+                  <td>☐/☑</td>
+                  <td>إيصال سداد</td>
+                </tr>
+                <tr>
+                  <td>حماية الأجور (WPS)</td>
+                  <td>وزارة الموارد البشرية</td>
+                  <td>شهري</td>
+                  <td>حسب الدورة</td>
+                  <td>الموارد البشرية</td>
+                  <td>☐/☑</td>
+                  <td>تقرير نظام</td>
+                </tr>
+                <tr>
+                  <td>شهادة الغرفة التجارية</td>
+                  <td>الغرفة التجارية</td>
+                  <td>سنوي</td>
+                  <td>تاريخ الانتهاء</td>
+                  <td>الشؤون الإدارية</td>
+                  <td>☐/☑</td>
+                  <td>شهادة سارية</td>
+                </tr>
+                <tr>
+                  <td>رخصة البلدية/الدفاع المدني</td>
+                  <td>البلدية/الدفاع المدني</td>
+                  <td>سنوي</td>
+                  <td>تاريخ الانتهاء</td>
+                  <td>العمليات</td>
+                  <td>☐/☑</td>
+                  <td>رخصة سارية</td>
+                </tr>
+                <tr>
+                  <td>عقود الموظفين ومنصة العمل</td>
+                  <td>وزارة الموارد البشرية</td>
+                  <td>جاري</td>
+                  <td>مستمر</td>
+                  <td>الموارد البشرية</td>
+                  <td>☐/☑</td>
+                  <td>عقود/مستند</td>
+                </tr>
+                <tr>
+                  <td>مراجعة أمن المعلومات / اختبار اختراق</td>
+                  <td>تقنية المعلومات</td>
+                  <td>سنوي/ربع سنوي</td>
+                  <td>حسب خطة الأمن</td>
+                  <td>تقنية المعلومات</td>
+                  <td>☐/☑</td>
+                  <td>تقرير</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>يتم تخصيص التكرار حسب طبيعة التسجيل الضريبي وحجم النشاط.</p>
+          </article>
+          <article>
+            <h3>(5) خطة اختبار استمرارية الأعمال والتعافي</h3>
+            <p><strong>خطة الاختبار:</strong> تحديد سيناريو (فقدان مركز البيانات أو انقطاع خدمة سحابية أو تعطل ERP)، أهداف (RTO/RPO)، نطاق الأنظمة، فرق العمل (CSIRT + تقنية + تشغيل + مالية)، جدول الأنشطة ومعايير النجاح.</p>
+            <p><strong>تقرير ما بعد الاختبار:</strong> جدول يحتوي على البنود والنتائج والفجوات والتوصيات ومالك الإجراء وموعد الإغلاق.</p>
+          </article>
+          <article>
+            <h3>(6) سجل الهدايا والضيافة</h3>
+            <p>يتضمن التاريخ، المقدم/المستلم، الجهة، الوصف، القيمة التقديرية، سبب القبول أو الرفض، المعتمد، مع الإشارة إلى سياسة الإفصاح والاعتماد لما فوق 500 ر.س أو ما يؤثر على الحياد.</p>
+          </article>
+          <article>
+            <h3>(7) سجل الأطراف ذات العلاقة</h3>
+            <p>حقول تشمل الاسم، الصفة أو العلاقة، الجهة، نوع المعاملة، تاريخ/قيمة، وحالة الاعتماد.</p>
+          </article>
+          <article>
+            <h3>(8) خطة المراجعة الداخلية السنوية</h3>
+            <p>منهجية قائمة على المخاطر وفق درجات PxI، نطاق يشمل المالية والمشتريات والمشاريع والخزينة والموارد البشرية وأمن المعلومات، جدول زمني ربع سنوي مع ساعات ميدانية وتسليم تقارير، وسجل متابعة للملاحظات.</p>
+          </article>
+          <article>
+            <h3>(9) قائمة مراجعة العقود</h3>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>المحور</th>
+                  <th>أسئلة رئيسة</th>
+                  <th>الحالة</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>النطاق والمواصفات</td>
+                  <td>هل النطاق محدد ويحتوي مخرجات قابلة للقياس؟</td>
+                  <td>☐/☑</td>
+                </tr>
+                <tr>
+                  <td>السعر والدفع</td>
+                  <td>هل شروط الدفع واضحة وتوجد دفعات مرحلية وغرامات تأخير؟</td>
+                  <td>☐/☑</td>
+                </tr>
+                <tr>
+                  <td>المخاطر والضمانات</td>
+                  <td>هل توجد حدود مسؤولية وضمان جودة وتأمينات لازمة؟</td>
+                  <td>☐/☑</td>
+                </tr>
+                <tr>
+                  <td>التغيير والفسخ</td>
+                  <td>هل تم تحديد آلية أوامر التغيير والقوة القاهرة وحقوق الفسخ؟</td>
+                  <td>☐/☑</td>
+                </tr>
+                <tr>
+                  <td>القانون والاختصاص</td>
+                  <td>هل تم تحديد القانون الواجب والتسوية؟</td>
+                  <td>☐/☑</td>
+                </tr>
+                <tr>
+                  <td>الامتثال</td>
+                  <td>هل تم تضمين التزامات الضرائب والتوطين والسلامة؟</td>
+                  <td>☐/☑</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+          <article>
+            <h3>(10) مصفوفة الأدوار RACI</h3>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>المهمة</th>
+                  <th>Responsible</th>
+                  <th>Accountable</th>
+                  <th>Consulted</th>
+                  <th>Informed</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>إعداد الميزانية</td>
+                  <td>المالية</td>
+                  <td>المدير التنفيذي</td>
+                  <td>العمليات/المشاريع</td>
+                  <td>مجلس المديرين</td>
+                </tr>
+                <tr>
+                  <td>طرح عطاء مشروع</td>
+                  <td>المشتريات</td>
+                  <td>المدير التنفيذي</td>
+                  <td>المشاريع/القانوني</td>
+                  <td>مجلس المديرين</td>
+                </tr>
+                <tr>
+                  <td>تحديث سجل المخاطر</td>
+                  <td>أصحاب المخاطر</td>
+                  <td>لجنة التدقيق والمخاطر</td>
+                  <td>المالية/العمليات</td>
+                  <td>مجلس المديرين</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+          <article>
+            <h3>(11) نموذج أمر تغيير</h3>
+            <p>يشمل بيانات المشروع، العميل، سبب التغيير (نطاق/سعر/زمن)، وصف تفصيلي، الأثر المالي والزمني، المرفقات، اعتمادات داخلية حسب DoA، واعتماد العميل.</p>
+          </article>
+          <article>
+            <h3>(12) مذكرة تبرير شراء مباشر/طارئ</h3>
+            <p>تتضمن الوصف والقيمة ومبررات عدم المنافسة والبدائل المدروسة وتحليل المخاطر واعتماد L3 + L4 مع التاريخ.</p>
+          </article>
+          <article>
+            <h3>(13) سجل الأصول الثابتة ونموذج الجرد</h3>
+            <p>حقول تشمل رقم الأصل والوصف والموقع وتاريخ الشراء والتكلفة ومجمع الإهلاك وصافي القيمة والمسؤول والتوقيع والمستند واعتماد الجرد.</p>
+          </article>
+          <article>
+            <h3>(15) تقرير لجنة التدقيق والمخاطر الربعي</h3>
+            <p>جدول يلخص المحاور (القوائم والنتائج، الضوابط الداخلية، المخاطر/الامتثال، الأمن السيبراني/BCP) مع الأعمدة الخاصة بملخص الأعمال وحالات عدم الالتزام والتوصيات المطلوبة.</p>
+          </article>
+          <article>
+            <h3>(16) نموذج تقييم أداء المجلس والتنفيذيين</h3>
+            <p>يتضمن معايير لفعالية الاجتماعات وجودة المواد والمتابعة وإدارة تضارب المصالح، إضافة إلى تقييم المدير التنفيذي في تحقيق الأهداف وبناء الفريق وإدارة المخاطر والامتثال مع درجات 1–5 وأمثلة أدلة داعمة.</p>
+          </article>
+        </div>
+        <div class="lang lang-en" dir="ltr">
+          <article>
+            <h3>(1) Unified Bank Signature Matrix</h3>
+            <p><strong>Principles:</strong> Dual signatures for all payments, independent e-channels administrator, annual review.</p>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>Tier</th>
+                  <th>Amount Range (SAR)</th>
+                  <th>Domestic Transfers</th>
+                  <th>International Transfers</th>
+                  <th>Cheques</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>A</td>
+                  <td>0 – 100,000</td>
+                  <td>L3 + L4</td>
+                  <td>L3 + L4</td>
+                  <td>L3 + L4</td>
+                  <td>Dual signatures mandatory</td>
+                </tr>
+                <tr>
+                  <td>B</td>
+                  <td>100,001 – 750,000</td>
+                  <td>L4 + L5</td>
+                  <td>L4 + L5</td>
+                  <td>L4 + L5</td>
+                  <td>Notify the Board</td>
+                </tr>
+                <tr>
+                  <td>C</td>
+                  <td>750,001 – 1,000,000</td>
+                  <td>L5 + L6</td>
+                  <td>L5 + L6</td>
+                  <td>L5 + L6</td>
+                  <td>Requires prior minuted approval</td>
+                </tr>
+                <tr>
+                  <td>D</td>
+                  <td>> 1,000,000</td>
+                  <td>L5 + L6 + Board notice</td>
+                  <td>L5 + L6 + Board notice</td>
+                  <td>L5 + L6 + Board notice</td>
+                  <td>May require explicit Board resolution</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><strong>E-channels authorities:</strong> Beneficiary creation by finance staff with L3 approval and final approval (L4 for small amounts, L5/L6 for large), user limit changes by e-channels admin with L4 + L5 approval, user suspension upon signed request from L3 + L4.</p>
+            <p><strong>Change log:</strong> Capture date, change, reason, and approvers.</p>
+          </article>
+          <article>
+            <h3>(2) Bank Account Opening / Closure SOP</h3>
+            <p><strong>Opening checklist:</strong> Board resolution, certified corporate documents, signature specimens, activate e-channels, assign administrator, deposit signature matrix, conduct test transactions.</p>
+            <p><strong>Closure checklist:</strong> Settle balances and fees, cancel POS/payment gateways, close guarantees/LCs, issue closure letter, obtain bank confirmation, update internal records and notify stakeholders.</p>
+            <p><strong>Sample resolution:</strong> “Open an account with .... bank in .... currency, authorize the named signatories per the attached matrix, and appoint an e-channels administrator.”</p>
+          </article>
+          <article>
+            <h3>(3) Risk Register Template & Scoring</h3>
+            <p><strong>Fields:</strong> ID, category, description, root cause, likelihood (1–5), impact (1–5), risk score (PxI), existing controls, response action, owner, KRI, review date.</p>
+            <p><strong>Heat map:</strong> Low (1–4), Medium (5–9), High (10–15), Critical (16–25) escalated to the Board with treatment plans.</p>
+            <p><strong>Example KRIs:</strong> Project delay &gt;10%, quality defects &gt;3%, material cost variance &gt;8%, monthly turnover &gt;5% for critical roles.</p>
+            <p><strong>Sample entry:</strong> Risk R-01 “Delayed collection from government clients” (4×4=16) with weekly follow-up controls and short-term financing response.</p>
+          </article>
+          <article>
+            <h3>(4) Compliance Obligation Tracker</h3>
+            <p>Template covering regulator, frequency, due date, owner, status, and supporting evidence.</p>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>Obligation</th>
+                  <th>Authority</th>
+                  <th>Frequency</th>
+                  <th>Due</th>
+                  <th>Owner</th>
+                  <th>Status</th>
+                  <th>Evidence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Zakat & Tax filings</td>
+                  <td>ZATCA</td>
+                  <td>Annual / periodic</td>
+                  <td>Per registration</td>
+                  <td>Finance</td>
+                  <td>☐/☑</td>
+                  <td>Filing receipt</td>
+                </tr>
+                <tr>
+                  <td>GOSI subscriptions</td>
+                  <td>GOSI</td>
+                  <td>Monthly</td>
+                  <td>Month-end</td>
+                  <td>HR</td>
+                  <td>☐/☑</td>
+                  <td>Payment receipt</td>
+                </tr>
+                <tr>
+                  <td>Wage Protection (WPS)</td>
+                  <td>MoHR</td>
+                  <td>Monthly</td>
+                  <td>Per payroll</td>
+                  <td>HR</td>
+                  <td>☐/☑</td>
+                  <td>System report</td>
+                </tr>
+                <tr>
+                  <td>Chamber of Commerce certificate</td>
+                  <td>Chamber</td>
+                  <td>Annual</td>
+                  <td>Expiry date</td>
+                  <td>Admin Affairs</td>
+                  <td>☐/☑</td>
+                  <td>Valid certificate</td>
+                </tr>
+                <tr>
+                  <td>Municipality / Civil Defense permits</td>
+                  <td>Municipality / Civil Defense</td>
+                  <td>Annual</td>
+                  <td>Expiry date</td>
+                  <td>Operations</td>
+                  <td>☐/☑</td>
+                  <td>Valid permit</td>
+                </tr>
+                <tr>
+                  <td>Employment contracts & Qiwa</td>
+                  <td>MoHR</td>
+                  <td>Ongoing</td>
+                  <td>Continuous</td>
+                  <td>HR</td>
+                  <td>☐/☑</td>
+                  <td>Contracts / records</td>
+                </tr>
+                <tr>
+                  <td>InfoSec review / penetration test</td>
+                  <td>IT</td>
+                  <td>Annual / Quarterly</td>
+                  <td>Per security plan</td>
+                  <td>IT</td>
+                  <td>☐/☑</td>
+                  <td>Report</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Frequency tailored to tax registration profile and business scale.</p>
+          </article>
+          <article>
+            <h3>(5) Business Continuity & Disaster Recovery Test Pack</h3>
+            <p><strong>Exercise plan:</strong> Define scenario (data center loss / cloud outage / ERP failure), objectives (RTO/RPO), scope, team (CSIRT + IT + Operations + Finance), schedule, responsibilities, and success criteria (recovery time, data accuracy, zero critical errors).</p>
+            <p><strong>Post-exercise report:</strong> Table listing items, results, gaps, recommendations, action owner, and closure date.</p>
+          </article>
+          <article>
+            <h3>(6) Gifts & Hospitality Register</h3>
+            <p>Capture date, giver/recipient, organization, description, estimated value, acceptance/rejection rationale, approver, with reference to the policy threshold of SAR 500 or any circumstance affecting neutrality.</p>
+          </article>
+          <article>
+            <h3>(7) Related Parties Register</h3>
+            <p>Fields: name, role/relationship, entity, transaction type, date/value, approval status.</p>
+          </article>
+          <article>
+            <h3>(8) Annual Internal Audit Plan</h3>
+            <p>Risk-based plan covering finance, procurement, projects, treasury, HR, and information security with quarterly schedule, field hours, deliverables, and corrective action tracking.</p>
+          </article>
+          <article>
+            <h3>(9) Contract Review Checklist</h3>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>Focus Area</th>
+                  <th>Key Questions</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Scope & Specifications</td>
+                  <td>Is scope defined with measurable deliverables?</td>
+                  <td>☐/☑</td>
+                </tr>
+                <tr>
+                  <td>Price & Payment</td>
+                  <td>Are payment terms clear with milestones and delay penalties?</td>
+                  <td>☐/☑</td>
+                </tr>
+                <tr>
+                  <td>Risk & Guarantees</td>
+                  <td>Are liability caps, quality guarantees, and required insurance included?</td>
+                  <td>☐/☑</td>
+                </tr>
+                <tr>
+                  <td>Change & Termination</td>
+                  <td>Are change order, force majeure, and termination clauses defined?</td>
+                  <td>☐/☑</td>
+                </tr>
+                <tr>
+                  <td>Law & Jurisdiction</td>
+                  <td>Are governing law and dispute mechanisms specified?</td>
+                  <td>☐/☑</td>
+                </tr>
+                <tr>
+                  <td>Compliance</td>
+                  <td>Are tax, Saudization, safety, and other obligations addressed?</td>
+                  <td>☐/☑</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+          <article>
+            <h3>(10) RACI Matrix</h3>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>Task</th>
+                  <th>Responsible</th>
+                  <th>Accountable</th>
+                  <th>Consulted</th>
+                  <th>Informed</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Budget preparation</td>
+                  <td>Finance</td>
+                  <td>CEO</td>
+                  <td>Operations / Projects</td>
+                  <td>Board of Managers</td>
+                </tr>
+                <tr>
+                  <td>Project tender launch</td>
+                  <td>Procurement</td>
+                  <td>CEO</td>
+                  <td>Projects / Legal</td>
+                  <td>Board of Managers</td>
+                </tr>
+                <tr>
+                  <td>Risk register update</td>
+                  <td>Risk owners</td>
+                  <td>Audit & Risk Committee</td>
+                  <td>Finance / Operations</td>
+                  <td>Board of Managers</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+          <article>
+            <h3>(11) Change Order Request</h3>
+            <p>Captures project/contract, client, change reason (scope/price/time), detailed description, financial and schedule impact, supporting documents, internal approvals per DoA, and client sign-off.</p>
+          </article>
+          <article>
+            <h3>(12) Direct / Emergency Purchase Justification</h3>
+            <p>Includes description, value, justification for bypassing competition, alternatives evaluated, risk analysis, approvals by L3 + L4, and date.</p>
+          </article>
+          <article>
+            <h3>(13) Fixed Asset Register & Inventory Template</h3>
+            <p>Fields for asset ID, description, location, purchase date, cost, accumulated depreciation, net book value, custodian, receiving document, signature, and approval.</p>
+          </article>
+          <article>
+            <h3>(15) Quarterly Audit & Risk Committee Report</h3>
+            <p>Matrix summarizing domains (financial statements, internal controls, risk/compliance, cybersecurity/BCP) with columns for activity summary, non-compliance cases, and required decisions.</p>
+          </article>
+          <article>
+            <h3>(16) Board & Executive Performance Evaluation</h3>
+            <p>Criteria covering meeting effectiveness, material quality, follow-up, conflict management, and CEO performance on objectives, team building, risk management, compliance; scored 1–5 with supporting evidence.</p>
+          </article>
+        </div>
+      </section>
+      <section id="org-design" class="section-card">
+        <h2 class="lang lang-ar">القسم الخامس: الهيكلة التنظيمية الشاملة</h2>
+        <h2 class="lang lang-en">Section V – Comprehensive Organizational Design</h2>
+        <div class="lang lang-ar" dir="rtl">
+          <article>
+            <h3>1) مبادئ التصميم</h3>
+            <ul>
+              <li>ترسيخ الحوكمة بفصل التدقيق الداخلي ورفع تقاريره للجنة التدقيق والمخاطر.</li>
+              <li>اعتماد مصفوفة قيادة ثنائية (وظيفي × مشروع) لتسريع التنفيذ وضبط التكلفة.</li>
+              <li>تصميم قابل للتوسع مع إمكانية مضاعفة فرق المشاريع حسب الحجم.</li>
+              <li>فصل المهام بين المالية والخزينة والمشتريات والمستودعات والاستلام والصرف.</li>
+              <li>الامتثال للأنظمة السعودية ولوائح العمل والضرائب والتأمينات والدفاع المدني والبلدية والأمن السيبراني.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>2) المخطط العام</h3>
+            <p>يتكون من الشركاء ومجلس المديرين (رئيس/نائب/عضو-مدير تنفيذي) ولجنتي التدقيق والمخاطر والترشيحات والمكافآت، مع هيكل تنفيذي يقوده الـCEO ويضم PMO، الاستراتيجية والأداء، الجودة، الصحة والسلامة والبيئة، الشؤون القانونية والامتثال، التدقيق الداخلي، إدارة المخاطر واستمرارية الأعمال، الاتصال المؤسسي والعلاقات الحكومية، وتقنية المعلومات/أمن المعلومات.</p>
+            <p>القطاعات التنفيذية تحت الـCEO تشمل: العمليات (المشاريع والإنشاء)، القطاع التجاري والفني، سلسلة الإمداد، المعدات والورش، المالية والخزينة، الموارد البشرية والشؤون الإدارية، تطوير الأعمال والتقدير.</p>
+            <p>تفاصيل قطاع العمليات تتضمن إدارة المشاريع، التنفيذ المدني والمعماري، أعمال الـMEP، التخطيط والجدولة، ضبط التكاليف، ضبط الوثائق، المساحة والاختبارات.</p>
+          </article>
+          <article>
+            <h3>3) سلم المسميات والدرجات</h3>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>الرمز</th>
+                  <th>الدرجة</th>
+                  <th>أمثلة مسميات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>EX</td>
+                  <td>تنفيذي</td>
+                  <td>CEO / COO / CFO</td>
+                </tr>
+                <tr>
+                  <td>D</td>
+                  <td>مدير قطاع</td>
+                  <td>مدير العمليات / التجاري / SCM / المعدات / المالي / HR / BD</td>
+                </tr>
+                <tr>
+                  <td>SD</td>
+                  <td>مدير إدارة</td>
+                  <td>مدير مشاريع / مدير المكتب الفني / مدير العقود / مدير المشتريات / مدير التخطيط / مدير HSE / مدير QA / مدير المالية / مدير HR</td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>رئيس قسم</td>
+                  <td>رئيس QS / رئيس مخزون / رئيس ورشة / رئيس أسطول / رئيس تخطيط / رئيس PMO</td>
+                </tr>
+                <tr>
+                  <td>S</td>
+                  <td>أقدم</td>
+                  <td>مهندس أقدم تخطيط / مهندس أقدم موقع / محاسب أقدم مشاريع</td>
+                </tr>
+                <tr>
+                  <td>P</td>
+                  <td>محترف</td>
+                  <td>مهندس / محاسب / أخصائي / مراقب</td>
+                </tr>
+                <tr>
+                  <td>T</td>
+                  <td>تقني/فني</td>
+                  <td>فني ورشة / فني مختبر / مسّاح / رسام BIM</td>
+                </tr>
+                <tr>
+                  <td>O</td>
+                  <td>تشغيلي</td>
+                  <td>مراقب عمال / فورمان / عمال مهرة</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+          <article>
+            <h3>4) توصيف القطاعات والإدارات</h3>
+            <p><strong>العمليات:</strong> فرق المشاريع بقيادة مدير مشروع، مدير إنشاءات، مهندسو موقع، فرق MEP، التخطيط، ضبط التكاليف، QA/QC، HSE، ضبط الوثائق، المساحة.</p>
+            <p><strong>القطاع التجاري والفني:</strong> المكتب الفني (رسومات، BIM)، قسم الكميات، العقود والمطالبات، القيمة الهندسية.</p>
+            <p><strong>سلسلة الإمداد:</strong> المشتريات، اللوجستيات، المستودعات، إدارة الموردين.</p>
+            <p><strong>المعدات والورش:</strong> صيانة ميكانيكية وكهربائية وهيدروليكية، إدارة الأسطول والتخصيص والمراقبة.</p>
+            <p><strong>المالية:</strong> أقسام الحسابات العامة، الذمم، الخزينة، الضرائب، الأصول، محاسبة المشاريع.</p>
+            <p><strong>الموارد البشرية والإدارة:</strong> التوظيف، شؤون الموظفين، الرواتب والمزايا، التعلم والتطوير، الخدمات الإدارية والسفر.</p>
+            <p><strong>تطوير الأعمال والتقدير:</strong> تطوير الأعمال، ما قبل التأهيل، التقدير والتسعير، العروض الفنية والمالية.</p>
+            <p><strong>الجودة والسلامة:</strong> استقلال تنظيمي، تطبيق ISO، تدقيقات داخلية، إدارة NCR، خطط HSE، تقارير الحوادث.</p>
+            <p><strong>تقنية المعلومات/أمن المعلومات:</strong> دعم المستخدمين، الشبكات، أجهزة المواقع، ERP، الأمن السيبراني.</p>
+            <p><strong>الشؤون القانونية والامتثال:</strong> مراجعة العقود، إدارة النزاعات، الامتثال النظامي، الأطراف ذات العلاقة.</p>
+            <p><strong>الاستراتيجية وإدارة الأداء/PMO/ERM:</strong> بطاقة الأداء المتوازن، خارطة المشاريع، إدارة المخاطر المؤسسية، خطط الاستمرارية.</p>
+          </article>
+          <article>
+            <h3>5) نماذج توزيع القوى العاملة</h3>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>الفئة</th>
+                  <th>إيراد سنوي</th>
+                  <th>إجمالي الموظفين</th>
+                  <th>ملاحظات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>S</td>
+                  <td>50–100 مليون ر.س</td>
+                  <td>120–180</td>
+                  <td>مشروعان متوسطان متوازيان</td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>200–400 مليون ر.س</td>
+                  <td>300–500</td>
+                  <td>حتى 5 مشاريع متوازية</td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>500+ مليون ر.س</td>
+                  <td>700–1200</td>
+                  <td>عدة مشاريع كبرى ومتعددة المناطق</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>توزيع نموذجي لحجم M:</p>
+            <ul>
+              <li>العمليات: 200–320</li>
+              <li>القطاع التجاري والفني: 25–45</li>
+              <li>سلسلة الإمداد: 20–35</li>
+              <li>المعدات والورش: 25–40</li>
+              <li>المالية: 15–25</li>
+              <li>الموارد البشرية والإدارة: 15–25</li>
+              <li>تطوير الأعمال والتقدير: 10–18</li>
+              <li>الجودة: 6–10</li>
+              <li>السلامة: 10–18</li>
+              <li>IT/IS: 6–10</li>
+              <li>القانوني/الامتثال/ERM/PMO/استراتيجية: 6–10</li>
+            </ul>
+            <p>تكوين فرق المشاريع حسب الحجم من صغير إلى كبير كما ورد في الدليل.</p>
+          </article>
+          <article>
+            <h3>6) تبعية ماتريكس</h3>
+            <p>مهندسو التخطيط والتكلفة وHSE وQA وضبط الوثائق يتبعون وظيفيًا لمديريهم المركزيين وعمليًا لمديري المشاريع، مع تقييم سنوي 60% من المدير الوظيفي و40% من مدير المشروع.</p>
+          </article>
+          <article>
+            <h3>7) خطوط التقارير الرسمية</h3>
+            <ul>
+              <li>مديرو المشاريع يرفعون لمدير قطاع العمليات.</li>
+              <li>المكتب الفني، الكميات، العقود يرفعون للقطاع التجاري والفني مع ارتباط بالمشاريع.</li>
+              <li>المشتريات والمستودعات واللوجستيات ترفع لمدير سلسلة الإمداد.</li>
+              <li>المالية تحت المدير المالي؛ الموارد البشرية تحت مدير HR؛ المعدات تحت مدير القطاع.</li>
+              <li>HSE وQA يرفعان للـCEO مباشرة.</li>
+              <li>التدقيق الداخلي يرفع للجنة التدقيق والمخاطر وإداريًا للـCEO.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>8) توصيفات وظيفية موجزة</h3>
+            <ul>
+              <li><strong>مدير مشروع:</strong> قيادة التنفيذ وفق الوقت والميزانية والجودة، إدارة المقاولين الفرعيين، تقارير التقدم، إدارة المخاطر.</li>
+              <li><strong>مهندس تخطيط:</strong> إعداد جداول Primavera، تحديث التقدم، تقارير التأخير، دمج الموارد.</li>
+              <li><strong>مهندس كميات:</strong> حصر الكميات، إعداد المستخلصات، تقييم أوامر التغيير.</li>
+              <li><strong>مدير مشتريات:</strong> استراتيجية الشراء، عقود الباطن، التفاوض، الالتزام بالسياسات.</li>
+              <li><strong>رئيس ورشة:</strong> برنامج صيانة وقائية، جاهزية المعدات، إدارة قطع الغيار.</li>
+              <li><strong>مسؤول HSE:</strong> إعداد خطط السلامة، التوعية، التفتيش، تقارير الحوادث والإجراءات التصحيحية.</li>
+              <li><strong>مهندس جودة:</strong> خطط ITP، الفحوصات، NCR، إدارة الوثائق الفنية.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>9) مؤشرات أداء رئيسة</h3>
+            <ul>
+              <li><strong>العمليات:</strong> نسبة التقدم، SPI/CPI، زمن إغلاق قوائم الملاحظات.</li>
+              <li><strong>القطاع التجاري:</strong> نسبة أوامر التغيير المقبولة، DSO، ربحية المشروع.</li>
+              <li><strong>سلسلة الإمداد:</strong> OTIF، نسبة الشراء من موردين معتمدين، دوران المخزون.</li>
+              <li><strong>HSE:</strong> معدل الإصابات، الساعات بلا حادث، التزام خطط السلامة.</li>
+              <li><strong>QA:</strong> معدل العيوب، نتائج التدقيق.</li>
+              <li><strong>المالية:</strong> التدفق التشغيلي، DPO/DSO، دقة التنبؤ النقدي.</li>
+              <li><strong>الموارد البشرية:</strong> دوران الموظفين، نسبة السعودة، أيام التدريب للفرد.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>10) خارطة الاستلام والتسليم</h3>
+            <p>يتضمن فتح المشروع (خطة تعبئة، فريق، خطة مشتريات، أساسيات السلامة، خطة جودة) وإغلاق المشروع (رسومات As-Built، شهادات، أدلة تشغيل وصيانة، إغلاق العقود، تسليم المخزون).</p>
+          </article>
+          <article>
+            <h3>11) مخطط هرمي نصي</h3>
+            <pre class="code-block" dir="ltr">Partners
+└─ Board of Managers (Chair / Vice / CEO)
+   ├─ CEO
+   │  ├─ PMO / Strategy / ERM / Internal Audit
+   │  ├─ QA (independent)      ├─ HSE (independent)
+   │  ├─ Legal & Compliance    ├─ Corp Comms & GR
+   │  └─ IT / IS
+   ├─ Operations (Projects & Construction)
+   ├─ Commercial & Technical Office (QS / Contracts / TO / BIM)
+   ├─ SCM (Procurement / Logistics / Warehouse)
+   ├─ Plant & Equipment (Workshops / Fleet)
+   ├─ Finance & Treasury
+   └─ HR & Administration</pre>
+          </article>
+        </div>
+        <div class="lang lang-en" dir="ltr">
+          <article>
+            <h3>1) Design Principles</h3>
+            <ul>
+              <li>Embed governance by aligning Internal Audit with the Audit & Risk Committee.</li>
+              <li>Adopt a dual (functional × project) leadership matrix for speed and cost control.</li>
+              <li>Ensure scalability with fixed core roles and expandable project teams.</li>
+              <li>Segregate duties across finance, treasury, procurement, warehouse, receiving, and disbursement.</li>
+              <li>Maintain compliance with Saudi corporate, labor, tax, social insurance, civil defense, municipality, and cybersecurity requirements.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>2) High-Level Organogram</h3>
+            <p>Structure comprises partners, Board of Managers (Chair/Vice/CEO), ACRC, NRC, and an executive layer led by the CEO with PMO, Strategy & Performance, QA, HSE, Legal & Compliance, Internal Audit, ERM/BCP, Corporate Communications & Government Relations, and IT/Information Security.</p>
+            <p>Executive sectors include Operations, Commercial & Technical Office, Supply Chain, Plant & Equipment, Finance & Treasury, HR & Administration, and Business Development & Estimation.</p>
+            <p>Operations cover project management, civil/architectural execution, MEP, planning & scheduling, cost control, document control, and survey/lab services.</p>
+          </article>
+          <article>
+            <h3>3) Grade & Title Ladder</h3>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Grade</th>
+                  <th>Sample Titles</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>EX</td>
+                  <td>Executive</td>
+                  <td>CEO / COO / CFO</td>
+                </tr>
+                <tr>
+                  <td>D</td>
+                  <td>Sector Director</td>
+                  <td>Operations / Commercial / SCM / Equipment / Finance / HR / BD Director</td>
+                </tr>
+                <tr>
+                  <td>SD</td>
+                  <td>Department Director</td>
+                  <td>Projects, Technical Office, Contracts, Procurement, Planning, HSE, QA, Finance, HR Director</td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>Head of Section</td>
+                  <td>Head of QS, Inventory, Workshop, Fleet, Planning, PMO</td>
+                </tr>
+                <tr>
+                  <td>S</td>
+                  <td>Senior</td>
+                  <td>Senior Planning Engineer, Senior Site Engineer, Senior Project Accountant</td>
+                </tr>
+                <tr>
+                  <td>P</td>
+                  <td>Professional</td>
+                  <td>Engineer / Accountant / Specialist / Controller</td>
+                </tr>
+                <tr>
+                  <td>T</td>
+                  <td>Technical</td>
+                  <td>Workshop Technician, Lab Technician, Surveyor, CAD/BIM Drafter</td>
+                </tr>
+                <tr>
+                  <td>O</td>
+                  <td>Operational</td>
+                  <td>Foreman / Crew Supervisor / Skilled Labor</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+          <article>
+            <h3>4) Functional Descriptions</h3>
+            <p><strong>Operations:</strong> Project teams led by Project Managers, Construction Managers, site engineers, MEP crews, planners, cost controllers, QA/QC, HSE, document controllers, survey & lab.</p>
+            <p><strong>Commercial & Technical:</strong> Technical office (shop drawings, BIM), quantity surveying, contracts & claims, value engineering.</p>
+            <p><strong>Supply Chain:</strong> Procurement, logistics, warehouse, vendor management.</p>
+            <p><strong>Plant & Equipment:</strong> Mechanical/electrical/hydraulic workshops, fleet allocation and monitoring.</p>
+            <p><strong>Finance:</strong> GL, AP/AR, treasury, tax, fixed assets, project accounting.</p>
+            <p><strong>HR & Admin:</strong> Recruitment, employee relations, payroll & benefits, L&D, admin services, travel.</p>
+            <p><strong>BD & Estimation:</strong> Business development, pre-qualification, estimation & pricing, technical and financial proposals.</p>
+            <p><strong>QA & HSE:</strong> Independent reporting, ISO systems, internal audits, NCR/CAPA, project HSE plans, training, incident reporting.</p>
+            <p><strong>IT/IS:</strong> User support, networks, site devices, ERP (Oracle/Odoo/SAP), cybersecurity controls.</p>
+            <p><strong>Legal & Compliance:</strong> Contract review, dispute management, regulatory compliance, related parties.</p>
+            <p><strong>Strategy / PMO / ERM:</strong> Balanced scorecard, project portfolio, enterprise risk, business continuity.</p>
+          </article>
+          <article>
+            <h3>5) Workforce Models</h3>
+            <table class="inline-table">
+              <thead>
+                <tr>
+                  <th>Band</th>
+                  <th>Annual Revenue</th>
+                  <th>Total Headcount</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>S</td>
+                  <td>SAR 50–100M</td>
+                  <td>120–180</td>
+                  <td>Two medium projects in parallel</td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>SAR 200–400M</td>
+                  <td>300–500</td>
+                  <td>Up to five concurrent projects</td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>SAR 500M+</td>
+                  <td>700–1200</td>
+                  <td>Multiple mega projects across regions</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Sample distribution for size M:</p>
+            <ul>
+              <li>Operations: 200–320</li>
+              <li>Commercial/Technical: 25–45</li>
+              <li>Supply Chain: 20–35</li>
+              <li>Plant & Equipment: 25–40</li>
+              <li>Finance: 15–25</li>
+              <li>HR & Admin: 15–25</li>
+              <li>BD & Estimation: 10–18</li>
+              <li>QA: 6–10</li>
+              <li>HSE: 10–18</li>
+              <li>IT/IS: 6–10</li>
+              <li>Legal/Compliance/ERM/PMO/Strategy: 6–10</li>
+            </ul>
+            <p>Project team sizing by project scale: small (≤SAR 50M), medium (SAR 50–150M), large (≥SAR 150M) with detailed staffing as per the manual.</p>
+          </article>
+          <article>
+            <h3>6) Matrix Reporting</h3>
+            <p>Planning, cost control, HSE, QA, and document control staff report functionally to central managers and operationally to project managers; annual evaluation weighted 60% functional manager, 40% project manager.</p>
+          </article>
+          <article>
+            <h3>7) Reporting Lines</h3>
+            <ul>
+              <li>Project Managers → Operations Sector Director.</li>
+              <li>Technical Office / QS / Contracts → Commercial & Technical Director with project dotted line.</li>
+              <li>Procurement / Warehouse / Logistics → SCM Director.</li>
+              <li>Finance → CFO; HR → HR Director; Plant & Equipment → Sector Director.</li>
+              <li>HSE and QA → CEO directly.</li>
+              <li>Internal Audit → Audit & Risk Committee, administratively to CEO.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>8) Role Snapshots</h3>
+            <ul>
+              <li><strong>Project Manager:</strong> Deliver on time, budget, quality; manage subcontractors; report progress; mitigate risks.</li>
+              <li><strong>Planning Engineer:</strong> Build Primavera schedules, update progress, analyze delays, integrate resources.</li>
+              <li><strong>Quantity Surveyor:</strong> Measure quantities, prepare claims, support change orders.</li>
+              <li><strong>Procurement Manager:</strong> Sourcing strategy, subcontract agreements, negotiation, compliance.</li>
+              <li><strong>Workshop Manager:</strong> Preventive maintenance program, equipment readiness, spare parts management.</li>
+              <li><strong>HSE Officer:</strong> Develop HSE plans, training, inspections, incident reporting and corrective actions.</li>
+              <li><strong>Quality Engineer:</strong> ITP plans, inspections, NCR management, technical documentation.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>9) Key KPIs</h3>
+            <ul>
+              <li><strong>Operations:</strong> Progress vs plan %, CPI/SPI, punch list close-out time.</li>
+              <li><strong>Commercial:</strong> Approved change order ratio, DSO, project margin.</li>
+              <li><strong>Supply Chain:</strong> OTIF, approved supplier ratio, inventory turns.</li>
+              <li><strong>HSE:</strong> LTIFR, no-lost-time hours, HSE plan compliance.</li>
+              <li><strong>QA:</strong> Defect/rework rate, audit results.</li>
+              <li><strong>Finance:</strong> Operating cash flow, DPO/DSO, forecast accuracy.</li>
+              <li><strong>HR:</strong> Turnover, Saudization %, training days per employee.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>10) Handover Map</h3>
+            <p>Project kickoff: mobilization plan, team assignment, initial procurement plan, safety basics, quality plan. Project closeout: as-built drawings, test certificates, O&M manuals, contract and claim closure, inventory handover.</p>
+          </article>
+          <article>
+            <h3>11) Textual Hierarchy Diagram</h3>
+            <pre class="code-block">Partners
+└─ Board of Managers (Chair / Vice / CEO)
+   ├─ CEO
+   │  ├─ PMO / Strategy / ERM / Internal Audit
+   │  ├─ QA (independent)      ├─ HSE (independent)
+   │  ├─ Legal & Compliance    ├─ Corp Comms & GR
+   │  └─ IT / IS
+   ├─ Operations (Projects & Construction)
+   ├─ Commercial & Technical Office (QS / Contracts / TO / BIM)
+   ├─ SCM (Procurement / Logistics / Warehouse)
+   ├─ Plant & Equipment (Workshops / Fleet)
+   ├─ Finance & Treasury
+   └─ HR & Administration</pre>
+          </article>
+        </div>
+      </section>
+      <section id="operational-readiness" class="section-card">
+        <h2 class="lang lang-ar">القسم السادس: متطلبات تأسيس وتشغيل شركة كانوف</h2>
+        <h2 class="lang lang-en">Section VI – Kanuf Operational Readiness Pack</h2>
+        <div class="lang lang-ar" dir="rtl">
+          <article>
+            <h3>1) المتطلبات القانونية والتنظيمية</h3>
+            <ul>
+              <li>تحديث السجل التجاري بالنشاطات ذات الصلة بالمقاولات والخدمات المساندة.</li>
+              <li>تأكيد العنوان الوطني والتسجيلات البلدية لمقار الشركة والمخازن.</li>
+              <li>اشتراك الغرفة التجارية وتجديده السنوي.</li>
+              <li>الزكاة والضرائب: التسجيل في ZATCA وضبط الفوترة الإلكترونية (FATOORA) والإقرارات.</li>
+              <li>التأمينات الاجتماعية (GOSI) وربط حماية الأجور عبر منصة مدد.</li>
+              <li>وزارة الموارد البشرية: حسابات قِوى، نسب نطاقات، لوائح العمل المعتمدة، عقود إلكترونية.</li>
+              <li>منصة اعتماد للتأهيل على المشاريع الحكومية وتفعيل الضمانات البنكية.</li>
+              <li>تصنيف المقاولين (MOMRAH) وفق الفئة المستهدفة.</li>
+              <li>عضوية الهيئة السعودية للمقاولين وتسجيل المشاريع والكوادر.</li>
+              <li>تراخيص البلديات والدفاع المدني وخطط الطوارئ ولوحات المواقع.</li>
+              <li>اعتماد المهندسين والفنيين لدى الهيئة السعودية للمهندسين.</li>
+              <li>الإفصاح عن المالك المستفيد وتحديث السجل التجاري.</li>
+              <li>إعداد عقود قياسية (FIDIC، عقود حكومية، عقود باطن، أوامر تغيير).</li>
+              <li>حجز العلامة التجارية والموقع الإلكتروني مع سياسة خصوصية.</li>
+              <li>الحصول على رخصة استثمار (MISA) عند وجود مستثمر أجنبي.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>2) المتطلبات المصرفية والتمويلية</h3>
+            <ul>
+              <li>فتح حسابات تشغيلية متعددة العملات مع قنوات إلكترونية ومصفوفة توقيع.</li>
+              <li>الحصول على تسهيلات ضمانات بنكية وخطابات اعتماد وتمويل فواتير.</li>
+              <li>إدارة الخزينة من خلال سياسات أرصدة دنيا/عليا ولوحة تدفق نقدي أسبوعية/شهرية.</li>
+              <li>تفعيل أدوات التحصيل مثل نقاط البيع وبوابات الدفع وضوابط العهد النقدية.</li>
+              <li>تحديد قنوات اتصال بنكية للطوارئ وخطط بديلة.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>3) المتطلبات التأمينية</h3>
+            <ul>
+              <li>تأمين جميع المشاريع ببوليصة مخاطر المقاولين (CAR).</li>
+              <li>تأمين مسؤولية مدنية للطرف الثالث في المواقع.</li>
+              <li>تأمين إصابات العمال ومسؤولية صاحب العمل (مكمل لـ GOSI).</li>
+              <li>تأمين شامل للمركبات والمعدات الثقيلة.</li>
+              <li>تأمين مسؤولية مهنية عند مشاريع التصميم والبناء.</li>
+              <li>تأمين طبي للموظفين (CCHI).</li>
+              <li>تأمين الشحن البحري عند الحاجة.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>4) الأنظمة والتقنية</h3>
+            <ul>
+              <li>ERP متكامل للمشاريع يغطي المالية والتكاليف والمخزون والمشتريات والأصول والرواتب.</li>
+              <li>نظام إدارة مستندات وضبط وثائق مع قوالب ITP/NCR/RFI.</li>
+              <li>برنامج Primavera P6 للتخطيط وPower BI للتقارير.</li>
+              <li>منظومة BIM/CAD للمكتب الفني.</li>
+              <li>تكامل الفوترة الإلكترونية ومنصات GOSI وقِوى ومدد مع الـERP.</li>
+              <li>نظام HSE لتسجيل الحوادث.</li>
+              <li>حلول MDM وأمن معلومات (MFA، نسخ احتياطي، DR، VPN).</li>
+            </ul>
+          </article>
+          <article>
+            <h3>5) الموارد البشرية والإدارة</h3>
+            <ul>
+              <li>اعتماد هيكلة الدرجات والمسميات وسلم الرواتب والفوائد.</li>
+              <li>خطة سعودة وفق نطاقات مع أهداف ربع سنوية وبرامج تمهير/هدف.</li>
+              <li>مصفوفة كفاءات وخطة تدريب (HSE/QA/PM/ERP) والتحقق من صلاحية رخص المعدات.</li>
+              <li>تأمين سكن ونقل وبدلات مواقع وخدمات الصحة المهنية للمشاريع.</li>
+              <li>سياسات للسفر والمصاريف والعهد والعمل الميداني والساعات الإضافية والعمل عن بعد والسلوك المهني.</li>
+              <li>إجراءات للتوظيف والاستقدام والتوطين وإنهاء الخدمة والتقييم السنوي.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>6) العمليات وإدارة المشاريع</h3>
+            <ul>
+              <li>إطار PMO بمراحل من المناقصة حتى الإغلاق.</li>
+              <li>حزمة تعبئة المشروع تشمل خطة HSE، خطة جودة، خطة مشتريات أولية، جدول أساس، مخطط موقع.</li>
+              <li>طرق تنفيذ وITP وخطط فحص لكل بند.</li>
+              <li>قياس التقدم باستخدام Earned Value وS-Curve وتقارير أسبوعية وشهرية.</li>
+              <li>إدارة المطالبات وأوامر التغيير وفق الملاحق.</li>
+              <li>تجهيز مختبرات ومساحة مع شهادات معايرة.</li>
+              <li>إدارة الأعمال المؤقتة (Temporary Works) باعتمادات للشدات والرافعات.</li>
+              <li>تسليم المشروع مع As-Built وO&M وإغلاق العقود والمطالبات وتسليم المخزون.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>7) سلسلة الإمداد والمستودعات</h3>
+            <ul>
+              <li>تأهيل موردين ومقاولي باطن مع إدارة تضارب المصالح.</li>
+              <li>سياسة مشتريات محددة بعتبات للمنافسة وRFQ/PO وعقود قياسية وتقييم أداء ربع سنوي.</li>
+              <li>إدارة المخازن بمواقع مركزية ومواقع مشاريع مع بطاقة صنف وحدود مخزون وجرد دوري وتأمين.</li>
+              <li>خطط لوجستية للتوريد وتتبع الشحنات وإدارة الرافعات والمناولة.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>8) الصحة والسلامة والبيئة (HSE)</h3>
+            <ul>
+              <li>سياسة HSE موقعة من الـCEO.</li>
+              <li>خطة مواقع تشمل تقييم مخاطر وتصاريح عمل وToolbox Talks يومية.</li>
+              <li>تجهيزات PPE وتفتيشات دورية وسجلات تدريب وإسعافات وطوارئ.</li>
+              <li>إدارة الحوادث بتوثيق وتحقيق وإجراءات تصحيحية ومؤشرات LTIFR.</li>
+              <li>إدارة بيئية للغبار والضوضاء والمياه والنفايات مع عقود نقل معتمدة.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>9) الحوكمة والمالية والامتثال</h3>
+            <ul>
+              <li>مخطط حسابات مبني على المشاريع مع مراكز تكلفة.</li>
+              <li>سياسة الاعتراف بالإيراد وفق IFRS 15 وطريقة نسبة الإنجاز.</li>
+              <li>مصادقات شهرية تشمل المطابقات البنكية والذمم والمخزون والمخصصات.</li>
+              <li>مصفوفة تفويض وتوقيع مزدوج وإغلاق مالي شهري وتقارير مشاريع.</li>
+              <li>خطة مراجعة داخلية سنوية ولجنة تدقيق ومخاطر فعّالة.</li>
+              <li>الالتزام بمتطلبات ZATCA وGOSI/WPS وSCE/SCA.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>10) تطوير الأعمال والتسويق</h3>
+            <ul>
+              <li>ملف تعريف وشهادات خبرة تشمل المشاريع والكادر والمعدات والضمانات وشهادات ISO.</li>
+              <li>مكتبة عطاءات تحتوي على استفسارات RFI وتوضيحات وشجرة مخاطرة.</li>
+              <li>CRM لإدارة الفرص وخط الأنابيب.</li>
+              <li>مشاركة في المعارض والمنصات الرقمية والتواصل مع المطورين والاستشاريين.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>11) شهادات ومعايير</h3>
+            <ul>
+              <li>ISO 9001 وISO 45001 وISO 14001 وISO 27001 عند حساسية البيانات.</li>
+              <li>شهادات مشغلي المعدات ورخص الرافعات والتصاريح الكهربائية.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>12) مؤشرات الأداء والتقارير</h3>
+            <ul>
+              <li>عمليات: SPI/CPI، نسبة الإنجاز، زمن الإغلاق.</li>
+              <li>تجاري: قبول أوامر التغيير، هامش الربح، DSO.</li>
+              <li>HSE: LTIFR، حوادث بلا فقد وقت، ساعات تدريب.</li>
+              <li>SCM: OTIF، دوران المخزون، نسبة الشراء من موردين معتمدين.</li>
+              <li>مالية: التدفق النقدي التشغيلي، DPO/DSO/CCC، الالتزام بالإغلاق خلال 10 أيام.</li>
+              <li>HR: السعودة، دوران الموظفين، أيام التدريب للفرد.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>13) خطة 100 يوم</h3>
+            <ul>
+              <li><strong>0–30 يومًا:</strong> فتح الحسابات وتفعيل المصفوفة، تسجيل المنصات (ZATCA/GOSI/قِوى/اعتماد/SCE/SCA)، تجهيز وثائق HSE/QA، اختيار ERP.</li>
+              <li><strong>31–60 يومًا:</strong> إطلاق تجريبي لـ ERP/DMS، اعتماد سياسات المشتريات والموارد، إبرام عقود التأمين، إعداد اتفاقيات الموردين الأساسية، تجهيز ملف التصنيف.</li>
+              <li><strong>61–100 يومًا:</strong> تشغيل مشاريع تجريبية وفق PMO، لوحات BI شهرية، بدء مسار ISO 9001/45001، إغلاق مالي خلال 10 أيام، جاهزية للمناقصات الحكومية.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>14) قوائم تحقق تنفيذية</h3>
+            <p><strong>منصات وتصاريح:</strong> ZATCA، GOSI + مدد/WPS، قِوى، اعتماد، SCE، SCA، BALADY + الدفاع المدني، MOMRAH.</p>
+            <p><strong>تشغيل:</strong> ERP + DMS + P6 + BIM، سياسة مشتريات وموردين، مخازن وجرد أولي، عقود قياسية، حزمة HSE/QA.</p>
+            <p><strong>مالية:</strong> فتح تسهيلات ضمانات/LC، خطة تدفق نقدي ودورة مطالبات، سياسة اعتراف إيراد وتكاليف، إغلاق شهري منتظم.</p>
+            <p><strong>موارد بشرية:</strong> توصيفات وظيفية وخطة توظيف، سلم رواتب، خطة سعودة وتدريب، تجهيز السكن والنقل والمواقع.</p>
+          </article>
+        </div>
+        <div class="lang lang-en" dir="ltr">
+          <article>
+            <h3>1) Legal & Regulatory Requirements</h3>
+            <ul>
+              <li>Update commercial registration with contracting and support activities.</li>
+              <li>Confirm national address and municipal registrations for offices and warehouses.</li>
+              <li>Maintain active Chamber of Commerce membership.</li>
+              <li>ZATCA registration, VAT/e-invoicing compliance (FATOORA), and periodic filings.</li>
+              <li>Register with GOSI and integrate Wage Protection via Mudad.</li>
+              <li>MoHR: Qiwa accounts, Saudization targets, approved labor regulations, digital contracts.</li>
+              <li>Etimad platform onboarding for government bids and bank guarantee activation.</li>
+              <li>Contractor classification (MOMRAH) aligned with target grade.</li>
+              <li>Saudi Contractors Authority membership with project and workforce listings.</li>
+              <li>Municipality and Civil Defense permits, emergency plans, site signage.</li>
+              <li>Saudi Council of Engineers accreditation for engineers and technicians.</li>
+              <li>Ultimate Beneficial Owner disclosure and CR updates.</li>
+              <li>Standard contract templates (FIDIC, government, subcontract, procurement, change orders).</li>
+              <li>Trademark and domain registration with privacy policy.</li>
+              <li>MISA investment license where foreign ownership exists.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>2) Banking & Treasury</h3>
+            <ul>
+              <li>Open multi-currency operating accounts with e-channel setup and signature matrix.</li>
+              <li>Arrange bank guarantee lines, letters of credit, and invoice financing.</li>
+              <li>Implement treasury policies for minimum/maximum balances and weekly/monthly cash dashboards.</li>
+              <li>Enable collection tools (POS, payment gateways) and petty cash controls.</li>
+              <li>Define emergency bank contacts and contingency plans.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>3) Insurance</h3>
+            <ul>
+              <li>Contractors All Risks for every project.</li>
+              <li>Third-party/public liability for sites.</li>
+              <li>Workmen’s compensation / employer liability (supplementary to GOSI).</li>
+              <li>Fleet and equipment all-risk coverage.</li>
+              <li>Professional indemnity for design-build or supervision contracts.</li>
+              <li>Medical insurance (CCHI) for employees.</li>
+              <li>Marine cargo insurance for shipments.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>4) Systems & Technology</h3>
+            <ul>
+              <li>Integrated project ERP covering finance, cost, inventory, procurement, assets, payroll.</li>
+              <li>DMS/document control with ITP/NCR/RFI templates.</li>
+              <li>Primavera P6 for planning and Power BI for analytics.</li>
+              <li>BIM/CAD suite for the technical office.</li>
+              <li>Integrations with e-invoicing, GOSI, Qiwa, Mudad.</li>
+              <li>HSE system for incident logging.</li>
+              <li>MDM and cybersecurity stack (MFA, backups, DR, VPN).</li>
+            </ul>
+          </article>
+          <article>
+            <h3>5) Human Resources & Administration</h3>
+            <ul>
+              <li>Approve grade structure, titles, salary bands, and benefits.</li>
+              <li>Saudization roadmap with quarterly targets and Tamheer/Hadaf programs.</li>
+              <li>Competency matrix and training plan (HSE/QA/PM/ERP) with license verification for equipment operators.</li>
+              <li>Provide accommodation, transportation, site allowances, occupational health, water, and catering.</li>
+              <li>Policies for travel, expenses, cash advances, field work, overtime, remote work, and conduct.</li>
+              <li>Processes for recruitment, mobilization, localization, termination, and annual appraisal.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>6) Operations & Project Management</h3>
+            <ul>
+              <li>PMO framework from tender to closeout.</li>
+              <li>Mobilization pack: HSE plan, quality plan, initial procurement, baseline schedule, site layout.</li>
+              <li>Method statements and ITPs per activity.</li>
+              <li>Progress measurement via Earned Value, S-curves, weekly/monthly reporting.</li>
+              <li>Claims and change order management aligned with annexes.</li>
+              <li>Calibrated labs and survey equipment.</li>
+              <li>Temporary works design and approvals for formwork and lifting.</li>
+              <li>Handover deliverables: as-built, O&M manuals, contract/claim closure, inventory transfer.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>7) Supply Chain & Warehousing</h3>
+            <ul>
+              <li>Pre-qualify suppliers/subcontractors with conflict controls.</li>
+              <li>Procurement policy with competition thresholds, RFQ/PO, standard subcontracts, quarterly performance reviews.</li>
+              <li>Warehouse management across central and project sites with item codes, min/max, cycle counts, fire protection.</li>
+              <li>Logistics plans covering delivery schedules, shipment tracking, lifting and handling resources.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>8) Health, Safety & Environment</h3>
+            <ul>
+              <li>CEO-endorsed HSE policy.</li>
+              <li>Site plans with risk assessments, permits (hot work, work at height, lifting, confined space), daily toolbox talks.</li>
+              <li>PPE issuance, inspections, training records, first aid and emergency exits.</li>
+              <li>Incident management with reporting, investigation, corrective actions, LTIFR monitoring.</li>
+              <li>Environmental controls for dust, noise, water, waste, and licensed disposal.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>9) Governance, Finance & Compliance</h3>
+            <ul>
+              <li>Project-based chart of accounts with cost centers.</li>
+              <li>Revenue recognition policy (IFRS 15) and percentage-of-completion methodology.</li>
+              <li>Monthly reconciliations (bank, AR, AP, GRN, accruals).</li>
+              <li>Delegation matrix with dual signatures, monthly closes, project reporting.</li>
+              <li>Annual internal audit plan and active Audit & Risk Committee.</li>
+              <li>Compliance with ZATCA (VAT/withholding), GOSI/WPS, SCE/SCA.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>10) Business Development & Marketing</h3>
+            <ul>
+              <li>Company profile and capability statement covering projects, team, equipment, guarantees, ISO certificates.</li>
+              <li>Tender library with RFI templates, clarifications, risk register.</li>
+              <li>CRM to manage opportunities and pipeline.</li>
+              <li>Engagement through exhibitions, digital channels, and stakeholder outreach.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>11) Certifications & Standards</h3>
+            <ul>
+              <li>ISO 9001, 45001, 14001, and 27001 where data sensitivity applies.</li>
+              <li>Equipment operator certificates, crane permits, electrical authorizations.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>12) KPIs & Reporting</h3>
+            <ul>
+              <li>Operations: SPI/CPI, completion %, closeout time.</li>
+              <li>Commercial: Change order acceptance, project margin, DSO.</li>
+              <li>HSE: LTIFR, incident-free hours, training hours.</li>
+              <li>SCM: OTIF, inventory turns, approved supplier ratio.</li>
+              <li>Finance: Operating cash flow, DPO/DSO/CCC, close within 10 days.</li>
+              <li>HR: Saudization, turnover, training days per employee.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>13) 100-Day Plan</h3>
+            <ul>
+              <li><strong>Days 0–30:</strong> Bank accounts and signature matrix, platform registrations (ZATCA/GOSI/Qiwa/Etimad/SCE/SCA), HSE/QA documentation, ERP selection.</li>
+              <li><strong>Days 31–60:</strong> Pilot ERP/DMS, approve procurement & HR policies, finalize insurance, secure key supplier agreements, prepare classification dossier.</li>
+              <li><strong>Days 61–100:</strong> Pilot projects under PMO, monthly BI dashboards, launch ISO 9001/45001, achieve 10-day month-end close, readiness for government bids.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>14) Execution Checklists</h3>
+            <p><strong>Platforms & Permits:</strong> ZATCA, GOSI + Mudad/WPS, Qiwa, Etimad, SCE, SCA, Balady + Civil Defense, MOMRAH.</p>
+            <p><strong>Operations:</strong> ERP + DMS + P6 + BIM, procurement policy & vendor list, warehouse setup & initial inventory, standard contracts, HSE/QA packs.</p>
+            <p><strong>Finance:</strong> Guarantee/LC facilities, cash flow & claims cycle, revenue/cost recognition policy, monthly close cadence.</p>
+            <p><strong>HR:</strong> Job descriptions & hiring plan, salary grid, Saudization & training plan, accommodation/transport/site readiness.</p>
+          </article>
+        </div>
+      </section>
+      <section id="resources" class="section-card">
+        <h2 class="lang lang-ar">القسم السابع: موارد إضافية</h2>
+        <h2 class="lang lang-en">Section VII – Additional Resources</h2>
+        <div class="lang lang-ar" dir="rtl">
+          <article>
+            <h3>عارض الهيكل التنظيمي التفاعلي (HTML)</h3>
+            <p>الشيفرة التالية تعكس النموذج الوارد في الدليل الأصلي باستخدام Tailwind CSS وJavaScript بسيط لعرض الهيكل الهرمي القابل للطي.</p>
+            <details>
+              <summary>عرض الشيفرة</summary>
+              <pre class="code-block" dir="ltr"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+   &lt;meta charset="UTF-8"&gt;
+   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+   &lt;title&gt;الهيكل التنظيمي التفاعلي - شركة كانوف&lt;/title&gt;
+   &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+   &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+   &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+   &lt;link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"&gt;
+   &lt;!-- Chosen Palette: Calm Neutrals --&gt;
+   &lt;!-- Application Structure Plan ... (كما في الدليل) --&gt;
+   &lt;style&gt;
+       body {
+           font-family: 'Tajawal', sans-serif;
+           background-color: #f8f7f4;
+           color: #3d4451;
+       }
+       .subtitle, .note, h1, p {
+           font-family: 'Roboto', 'Tajawal', sans-serif;
+       }
+       .org-chart {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+       }
+       .org-chart ul {
+           padding-top: 20px;
+           position: relative;
+           transition: all 0.5s;
+           display: flex;
+           justify-content: center;
+           flex-wrap: wrap;
+       }
+       .org-chart li {
+           float: right;
+           text-align: center;
+           list-style-type: none;
+           position: relative;
+           padding: 20px 5px 0 5px;
+           transition: all 0.5s;
+       }
+       .org-chart li::before, .org-chart li::after {
+           content: '';
+           position: absolute;
+           top: 0;
+           right: 50%;
+           border-top: 2px solid #a1a1aa;
+           width: 50%;
+           height: 20px;
+       }
+       .org-chart li::after {
+           right: auto;
+           left: 50%;
+           border-left: 2px solid #a1a1aa;
+       }
+       .org-chart li:only-child::after, .org-chart li:only-child::before {
+           display: none;
+       }
+       .org-chart li:only-child {
+           padding-top: 0;
+       }
+       .org-chart li:first-child::before, .org-chart li:last-child::after {
+           border: 0 none;
+       }
+       .org-chart li:last-child::before {
+           border-right: 2px solid #a1a1aa;
+           border-radius: 0 5px 0 0;
+       }
+       .org-chart li:first-child::after {
+           border-radius: 5px 0 0 0;
+       }
+       .org-chart ul ul::before {
+           content: '';
+           position: absolute;
+           top: 0;
+           right: 50%;
+           border-right: 2px solid #a1a1aa;
+           width: 0;
+           height: 20px;
+       }
+       .org-chart li .node {
+           border: 2px solid #e2e8f0;
+           padding: 12px 16px;
+           text-decoration: none;
+           color: #3d4451;
+           background-color: #ffffff;
+           display: inline-block;
+           min-width: 180px;
+           min-height: 80px;
+           border-radius: 8px;
+           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+           transition: all 0.3s;
+           cursor: pointer;
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+       }
+       .org-chart li .node:hover, .org-chart li .node:hover+ul li .node {
+           background: #f7fafc;
+           border-color: #4c51bf;
+       }
+       .org-chart li .node .title {
+           font-weight: 700;
+           font-size: 0.9rem;
+       }
+       .org-chart li .node .subtitle {
+           font-size: 0.75rem;
+           color: #718096;
+           direction: ltr;
+       }
+       .node.level-board { background-color: #e3f2fd; border-color: #90caf9; }
+       .node.level-ceo { background-color: #e8f5e9; border-color: #a5d6a7; }
+       .node.level-control { background-color: #fffde7; border-color: #fff176; }
+       .node.level-sector { background-color: #f3e5f5; border-color: #ce93d8; }
+       .node.level-dept { background-color: #e0f2f1; border-color: #80cbc4; }
+       .node.has-children::after {
+           content: ' ▼';
+           font-size: 10px;
+           display: inline-block;
+           margin-right: 5px;
+           transition: transform 0.3s;
+       }
+       .node.collapsed::after {
+           transform: rotate(-90deg);
+       }
+       .node .note {
+           font-size: 0.65rem;
+           color: #f56565;
+           font-style: italic;
+           margin-top: 4px;
+           direction: ltr;
+       }
+       .independent-line li::before, .independent-line li::after {
+           border-top: 2px dashed #fb923c;
+       }
+       .independent-line li:last-child::before {
+            border-right: 2px dashed #fb923c;
+       }
+       .independent-line ul::before {
+            border-right: 2px dashed #fb923c;
+       }
+   &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class="bg-stone-50 text-gray-800"&gt;
+   &lt;div class="container mx-auto p-4 sm:p-6 lg:p-8"&gt;
+       &lt;header class="text-center mb-12"&gt;
+           &lt;h1 class="text-3xl md:text-4xl font-bold text-gray-900"&gt;الهيكل التنظيمي الشامل لشركة كانوف&lt;/h1&gt;
+           &lt;p class="text-xl text-gray-700 mt-1" lang="en" dir="ltr"&gt;Kanuf Company - Comprehensive Organizational Chart&lt;/p&gt;
+           &lt;p class="mt-4 text-md text-gray-600"&gt;هذا المخطط التفاعلي يوضح التسلسل الإداري. انقر على أي قسم يحتوي على رمز (▼) لتوسيعه.&lt;/p&gt;
+           &lt;p class="mt-1 text-sm text-gray-500" lang="en" dir="ltr"&gt;This interactive chart illustrates the reporting lines. Click on any node with a (▼) to expand.&lt;/p&gt;
+       &lt;/header&gt;
+       &lt;!-- (يستكمل النموذج بنفس البنية كما ورد في الدليل) --&gt;
+   &lt;/div&gt;
+&lt;script&gt;
+   document.addEventListener('DOMContentLoaded', function () {
+       const toggles = document.querySelectorAll('.has-children');
+       const collapseAll = (exceptNode) =&gt; {
+            toggles.forEach(toggle =&gt; {
+               if (toggle !== exceptNode) {
+                   const targetId = toggle.getAttribute('data-target');
+                   const targetElement = document.getElementById(targetId);
+                   if (targetElement &amp;&amp; !targetElement.classList.contains('hidden')) {
+                        targetElement.classList.add('hidden');
+                        toggle.classList.add('collapsed');
+                   }
+               }
+           });
+       }
+       toggles.forEach(toggle =&gt; {
+           toggle.addEventListener('click', function (event) {
+               event.stopPropagation();
+               const targetId = this.getAttribute('data-target');
+               const targetElement = document.getElementById(targetId);
+               if (targetElement) {
+                   const isCollapsed = targetElement.classList.toggle('hidden');
+                   this.classList.toggle('collapsed', isCollapsed);
+               }
+           });
+       });
+       collapseAll(null);
+       const boardNode = document.querySelector('[data-target="board-children"]');
+       if (boardNode) {
+            document.getElementById('board-children').classList.remove('hidden');
+            boardNode.classList.remove('collapsed');
+       }
+       const ceoNode = document.querySelector('[data-target="ceo-children"]');
+       if (ceoNode) {
+            document.getElementById('ceo-children').classList.remove('hidden');
+            ceoNode.classList.remove('collapsed');
+       }
+   });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </details>
+          </article>
+        </div>
+        <div class="lang lang-en" dir="ltr">
+          <article>
+            <h3>Interactive Org Chart HTML</h3>
+            <p>The following code reproduces the Tailwind CSS-based interactive organogram shipped with the original guidance.</p>
+            <details>
+              <summary>Show code</summary>
+              <pre class="code-block"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+   &lt;meta charset="UTF-8"&gt;
+   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+   &lt;title&gt;الهيكل التنظيمي التفاعلي - شركة كانوف&lt;/title&gt;
+   &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+   &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+   &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+   &lt;link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"&gt;
+   &lt;!-- Chosen Palette: Calm Neutrals --&gt;
+   &lt;!-- Application Structure Plan ... (as documented) --&gt;
+   &lt;style&gt;
+       /* Styles identical to the Arabic block above */
+   &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class="bg-stone-50 text-gray-800"&gt;
+   &lt;div class="container mx-auto p-4 sm:p-6 lg:p-8"&gt;
+       &lt;header class="text-center mb-12"&gt;
+           &lt;h1 class="text-3xl md:text-4xl font-bold text-gray-900"&gt;الهيكل التنظيمي الشامل لشركة كانوف&lt;/h1&gt;
+           &lt;p class="text-xl text-gray-700 mt-1" lang="en" dir="ltr"&gt;Kanuf Company - Comprehensive Organizational Chart&lt;/p&gt;
+           &lt;p class="mt-4 text-md text-gray-600"&gt;هذا المخطط التفاعلي يوضح التسلسل الإداري. انقر على أي قسم يحتوي على رمز (▼) لتوسيعه.&lt;/p&gt;
+           &lt;p class="mt-1 text-sm text-gray-500" lang="en" dir="ltr"&gt;This interactive chart illustrates the reporting lines. Click on any node with a (▼) to expand.&lt;/p&gt;
+       &lt;/header&gt;
+       &lt;!-- Remaining structure matches the source document --&gt;
+   &lt;/div&gt;
+&lt;script&gt;
+   // Same JavaScript as shown in the Arabic block
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </details>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="lang lang-ar">تم إعداد هذه البوابة للاستخدام الداخلي فقط، وأي تحديث تنظيمي أو تشغيلي يُحدّث في هذا المستودع فور اعتماده.</div>
+    <div class="lang lang-en">This portal is for internal use only; regulatory or operational updates are incorporated here immediately upon approval.</div>
+  </footer>
+  <script>
+    const toggleButtons = document.querySelectorAll('.lang-toggle button');
+    const body = document.body;
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selected = button.getAttribute('data-lang');
+        body.classList.remove('lang-ar', 'lang-en');
+        body.classList.add(`lang-${selected}`);
+        toggleButtons.forEach(btn => btn.classList.toggle('active', btn === button));
+        document.documentElement.setAttribute('lang', selected === 'ar' ? 'ar' : 'en');
+        document.documentElement.setAttribute('dir', selected === 'ar' ? 'rtl' : 'ltr');
+      });
+    });
+  </script>
+</body>
+</html>
